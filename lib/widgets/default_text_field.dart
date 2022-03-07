@@ -5,10 +5,12 @@ import 'package:sizer/sizer.dart';
 class DefaultTextField extends StatelessWidget {
   TextEditingController controller;
   String hintText;
+  double? width;
 
   DefaultTextField({
     required this.controller,
     required this.hintText,
+    this.width,
     Key? key,
   }) : super(key: key);
 
