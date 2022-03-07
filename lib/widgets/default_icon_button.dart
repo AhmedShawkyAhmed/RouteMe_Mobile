@@ -29,6 +29,7 @@ class DefaultIconButton extends StatelessWidget {
         ),
         child: Center(
           child: Icon(
+              
               icon,
             color: iconColor,
             size: width-20,

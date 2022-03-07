@@ -7,7 +7,7 @@ class OrderCard extends StatelessWidget {
   String client;
   String phone;
   String branch;
-  int count;
+  int Items;
   String status;
 
   OrderCard({
@@ -16,7 +16,7 @@ class OrderCard extends StatelessWidget {
     required this.status,
     required this.phone,
     required this.branch,
-    required this.count,
+    required this.Items,
     Key? key,
   }) : super(key: key);
 
@@ -120,7 +120,7 @@ class OrderCard extends StatelessWidget {
                 child: Row(
                   children: [
                     Text(
-                      'Count : ',
+                      'Items : ',
                       style: TextStyle(
                         fontSize: 15.sp,
                         color: AppColors.white,
@@ -130,7 +130,7 @@ class OrderCard extends StatelessWidget {
                       width: 2.w,
                     ),
                     Text(
-                      count.toString(),
+                      Items.toString(),
                       style: TextStyle(
                         fontSize: 15.sp,
                         color: AppColors.white,

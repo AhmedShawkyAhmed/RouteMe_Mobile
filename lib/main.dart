@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:mobile/screens/vendor/home.dart';
+import 'package:mobile/screens/vendor/order_status_screen.dart';
+import 'package:mobile/screens/vendor/request_pick_up_screen.dart';
 import 'package:mobile/styles/colors.dart';
 import 'package:sizer/sizer.dart';
+
+import 'widgets/buttom_nav_bar.dart';
 
 void main() {
   runApp(const MyApp());
@@ -19,7 +22,7 @@ class MyApp extends StatelessWidget {
           title: 'Route Me',
           theme: ThemeData(
               fontFamily: 'cairo', scaffoldBackgroundColor: AppColors.white),
-          home: Home(),
+          home: ButtomNavBar(),
         );
       },
     );
