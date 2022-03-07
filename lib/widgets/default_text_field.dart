@@ -18,13 +18,13 @@ class DefaultTextField extends StatelessWidget {
   Widget build(BuildContext context) {
     return Padding(
       padding: EdgeInsets.only(
-        top: 0.8.h,
+        top: 1.h,
       ),
       child: Container(
-        width: 90.w,
-        height: 9.5.h,
+        width:width?? 90.w,
+        height: 10.h,
         margin: EdgeInsets.symmetric(
-          vertical: 0.2.h,
+          vertical: 0.8.h,
         ),
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(

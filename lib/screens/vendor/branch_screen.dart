@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:mobile/screens/vendor/google_maps_screen.dart';
 import 'package:sizer/sizer.dart';
 
 import '../../styles/colors.dart';
@@ -15,8 +16,10 @@ class BranchScreen extends StatefulWidget {
 
 class _BranchScreenState extends State<BranchScreen> {
   var _branchContainer = TextEditingController();
+  var _phoneContainer = TextEditingController();
+  var _locationContainer = TextEditingController();
   bool isSwitched = false;
-  int _currentIndex = 0;
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -33,7 +36,7 @@ class _BranchScreenState extends State<BranchScreen> {
                 fontWeight: FontWeight.bold,
                 fontSize: 27,
               ),
-              ),
+            ),
           ),
           centerTitle: true,
           title: Padding(
@@ -46,120 +49,119 @@ class _BranchScreenState extends State<BranchScreen> {
             ),
           ),
           actions: [
-           Transform.scale(
-             scale:1.7,
-             child: Padding(
-               padding: const EdgeInsets.only(top: 8, right:10),
-               child: Switch(
-                 
-                 activeThumbImage: AssetImage('assets/night-mode (3).png'),
-                 inactiveThumbImage: AssetImage('assets/night-mode (2).png'),
-                 inactiveThumbColor: Colors.white,
-                 activeColor: Colors.white,
+            Transform.scale(
+              scale: 1.7,
+              child: Padding(
+                padding: const EdgeInsets.only(top: 8, right: 10),
+                child: Switch(
+                    activeThumbImage: AssetImage('assets/night-mode (3).png'),
+                    inactiveThumbImage: AssetImage('assets/night-mode (2).png'),
+                    inactiveThumbColor: Colors.white,
+                    activeColor: Colors.white,
                     value: isSwitched,
-                    onChanged: (value){
+                    onChanged: (value) {
                       setState(() {
                         isSwitched = value;
                       });
-                  }),
-             ),
-           ),
-           
+                    }),
+              ),
+            ),
           ],
         ),
-
       ),
       body: Container(
-          width:double.infinity,
-          child:  Column(
-              children: [
-                 Padding(
-                   padding: const EdgeInsets.only(top: 50,left:50,right:50,bottom:50),
-                   child: Image(image: NetworkImage(
-                     'https://p.kindpng.com/picc/s/112-1126481_transparent-adidas-logo-clipart-hockey-brands-hd-png.png',
-                     
-                     ),),
-                 ),
-                   BranchWidgets(branch:'Maadi' ,location: 'ff',phoneNumber: 'ff',),
-                   SizedBox(height: 10,),
-                   BranchWidgets(branch:'Maadi' ,location: 'ff',phoneNumber: 'ff',),
-                   SizedBox(height: 10,),
-                   BranchWidgets(branch:'Maadi' ,location: 'ff',phoneNumber: 'ff',),
-              ],),
+        width: double.infinity,
+        child: Column(
+          children: [
+            Padding(
+              padding: const EdgeInsets.only(
+                  top: 50, left: 50, right: 50, bottom: 50),
+              child: Image(
+                image: NetworkImage(
+                  'https://pngimg.com/uploads/nike/nike_PNG6.png',
+                ),
+              ),
+            ),
+            BranchWidgets(
+              branch: 'Maadi',
+              location: 'ff',
+              phoneNumber: 'ff',
+            ),
+            SizedBox(
+              height: 10,
+            ),
+            BranchWidgets(
+              branch: 'Maadi',
+              location: 'ff',
+              phoneNumber: 'ff',
+            ),
+            SizedBox(
+              height: 10,
+            ),
+            BranchWidgets(
+              branch: 'Maadi',
+              location: 'ff',
+              phoneNumber: 'ff',
+            ),
+          ],
         ),
-        
-    bottomNavigationBar: BottomNavigationBar(
-      currentIndex: _currentIndex,
-      items: [
-     BottomNavigationBarItem(
-        icon: Icon(Icons.pie_chart),
-        label: 'State',
-        backgroundColor: AppColors.lightBlue,
       ),
-      BottomNavigationBarItem(
-        icon: Icon(Icons.pin_drop),
-        label: 'Pick up',
-        backgroundColor: AppColors.lightBlue,
-      ),
-      BottomNavigationBarItem(
-        icon: Icon(Icons.store),
-        label: 'Branches',
-        backgroundColor: AppColors.lightBlue,
-      ),
-      
-    ],
-    onTap: (index){
-        setState((){
-          _currentIndex = index;
-        });
-      },
-    ),
-
-    floatingActionButton: new FloatingActionButton(
-      elevation: 0.0,
-      child:  Icon(
-        
-        Icons.add,
-        size:45,
-        
-        ),
-      backgroundColor: AppColors.lightBlue,
-      onPressed: (){
-        _onButtonPressed();
-      }
-    ),
+      floatingActionButton: new FloatingActionButton(
+          elevation: 0.0,
+          child: Icon(
+            Icons.add,
+            size: 45,
+          ),
+          backgroundColor: AppColors.lightBlue,
+          onPressed: () {
+            _onButtonPressed();
+          }),
     );
   }
-  void _onButtonPressed(){
-      showModalBottomSheet(context: context, builder: (context){
-        return Container(
-          height: 45.h,
-          width:double.infinity,
-          child: Padding(
-            padding: const EdgeInsets.only(top:20,right: 35,left: 35),
-            child: Column(
-              children: [
-                       DefaultTextField(controller: _branchContainer, hintText: 'Branch'),
 
-                       DefaultTextField(controller: _branchContainer, hintText: 'Phone'),
-
-                      
-                 Row(
+  void _onButtonPressed() {
+    showModalBottomSheet(
+        context: context,
+        builder: (context) {
+          return Container(
+            height: 45.h,
+            width: double.infinity,
+            child: Padding(
+              padding: const EdgeInsets.only(top: 20, right: 35, left: 35),
+              child: Column(
+                children: [
+                  DefaultTextField(
+                      controller: _branchContainer, hintText: 'Branch'),
+                  DefaultTextField(
+                      controller: _phoneContainer, hintText: 'Phone'),
+                  Row(
                     mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                     children: [
-                    DefaultTextField(controller: _branchContainer, hintText: 'Phone',width:65.w),
-                    Padding(
-                      padding: const EdgeInsets.only(left: 7,bottom: 7),
-                      child: DefaultIconButton(width: 14.7.w, buttonColor: AppColors.darkBlue, iconColor: AppColors.white, icon: Icons.location_on, onTap: (){}),
-                    )
-                  ],),
-       
-                
-              ],
+                      DefaultTextField(
+                          controller: _locationContainer,
+                          hintText: 'Location',
+                          width: 65.w),
+                      Padding(
+                        padding: const EdgeInsets.only(left: 7, bottom: 7),
+                        child: DefaultIconButton(
+                            width: 14.7.w,
+                            buttonColor: AppColors.darkBlue,
+                            iconColor: AppColors.white,
+                            icon: Icons.location_on,
+                            onTap: () {
+                              Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (context) => const GoogleMapsScreen()),
+                              );
+                            }),
+                      )
+                    ],
+                  ),
+                ],
+              ),
             ),
-          ),
-
-        );
-      });
+          );
+        });
   }
 }
