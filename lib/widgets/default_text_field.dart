@@ -21,7 +21,7 @@ class DefaultTextField extends StatelessWidget {
         top: 1.h,
       ),
       child: Container(
-        width: 90.w,
+        width:width?? 90.w,
         height: 10.h,
         margin: EdgeInsets.symmetric(
           vertical: 0.8.h,
