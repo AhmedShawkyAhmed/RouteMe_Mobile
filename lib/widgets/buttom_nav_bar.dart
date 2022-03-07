@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import '../screens/vendor/branch_screen.dart';
+import '../screens/vendor/order_status_screen.dart';
 import '../styles/colors.dart';
+import '../screens/vendor/request_pick_up_screen.dart';
 
 class ButtomNavBar extends StatefulWidget {
   const ButtomNavBar({ Key? key }) : super(key: key);
@@ -17,6 +19,8 @@ class _ButtomNavBarState extends State<ButtomNavBar> {
     });
   }
   final List<Widget> _children = [
+    OrderStatusScreen(),
+    requestPickUpScreen(),
     BranchScreen(),
   ];
   @override
