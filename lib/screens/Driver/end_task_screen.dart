@@ -13,10 +13,10 @@ class EndTaskScreen extends StatefulWidget {
 
 class _EndTaskScreenState extends State<EndTaskScreen> {
   var orderContainer = TextEditingController();
-  var branch = ['branch','maddi', 'nacr city', 'new cairo'];
+  var branch = ['Task Status','Done', 'On the way'];
   @override
   Widget build(BuildContext context) {
-    String dropdownValue = 'branch';
+    String dropdownValue = 'Task Status';
     return Scaffold(
       appBar: AppBar(
         backgroundColor: AppColors.darkBlue,
@@ -39,14 +39,17 @@ class _EndTaskScreenState extends State<EndTaskScreen> {
           child: Column(
             children: [
               DefaultTextField(
+                readonly: true,
                 controller: orderContainer,
                 hintText: "Order Number",
               ),
               DefaultTextField(
+                readonly: true,
                 controller: orderContainer,
                 hintText: "Total",
               ),
               DefaultTextField(
+                readonly: false,
                 controller: orderContainer,
                 hintText: "Comment",
                 hight: 30.h,
@@ -58,6 +61,7 @@ class _EndTaskScreenState extends State<EndTaskScreen> {
                   Stack(
                     children: [
                       DefaultTextField(
+                        readonly: true,
                         controller: orderContainer,
                         hintText: "Attach Image",
                         width: 82.w,
@@ -89,32 +93,35 @@ class _EndTaskScreenState extends State<EndTaskScreen> {
                     20,
                   ),
                 ),
-                child: DropdownButton<String>(
-                  value: dropdownValue,
-                  underline: SizedBox(),
-                  icon: const Icon(
-                    Icons.keyboard_arrow_down,
-                    size: 36,
+                child: Padding(
+                  padding: const EdgeInsets.only(left: 12, right: 12, top: 5),
+                  child: DropdownButton<String>(
+                    value: dropdownValue,
+                    underline: SizedBox(),
+                    icon: const Icon(
+                      Icons.keyboard_arrow_down,
+                      size: 36,
+                    ),
+                    hint: Text(""),
+                    isExpanded: true,
+                    elevation: 1,
+                    style: const TextStyle(
+                        color: AppColors.black,
+                        fontSize: 16,
+                        fontWeight: FontWeight.w300),
+                    onChanged: (String? newValue) {
+                      setState(() {
+                        dropdownValue = newValue!;
+                      });
+                    },
+                    items: branch
+                        .map<DropdownMenuItem<String>>((String value) {
+                      return DropdownMenuItem<String>(
+                        value: value,
+                        child: Text(value),
+                      );
+                    }).toList(),
                   ),
-                  hint: Text(""),
-                  isExpanded: true,
-                  elevation: 1,
-                  style: const TextStyle(
-                      color: AppColors.black,
-                      fontSize: 16,
-                      fontWeight: FontWeight.w300),
-                  onChanged: (String? newValue) {
-                    setState(() {
-                      dropdownValue = newValue!;
-                    });
-                  },
-                  items: branch
-                      .map<DropdownMenuItem<String>>((String value) {
-                    return DropdownMenuItem<String>(
-                      value: value,
-                      child: Text(value),
-                    );
-                  }).toList(),
                 ),
               ),
               DefaultAppButton(

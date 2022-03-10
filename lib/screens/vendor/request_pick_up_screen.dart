@@ -42,12 +42,16 @@ class _requestPickUpScreenState extends State<requestPickUpScreen> {
         child: SingleChildScrollView(
           child: Column(children: [
               DefaultTextField(
+                readonly: false,
                   controller: clientNameContainer, hintText: 'Clinet Name'),
               DefaultTextField(
+                readonly: false,
                   controller: clientPhoneContainer, hintText: 'Client Phone'),
               DefaultTextField(
+                readonly: false,
                   controller: itemsCountContainer, hintText: 'Items Count'),
               DefaultTextField(
+                readonly: false,
                   controller: totalPriceContainer, hintText: 'Total Price'),
               Container(
                 width: 80.w,
@@ -92,7 +96,8 @@ class _requestPickUpScreenState extends State<requestPickUpScreen> {
                   ),
                 ),
               ),
-              DefaultTextField(controller: addressContainer, hintText: 'Address'),
+              DefaultTextField(
+                readonly: false,controller: addressContainer, hintText: 'Address'),
               Padding(
                 padding: const EdgeInsets.only(top: 15),
                 child: DefaultAppButton(
