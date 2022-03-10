@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:mobile/screens/vendor/order_status_screen.dart';
-import 'package:mobile/screens/vendor/request_pick_up_screen.dart';
-//import '../screens/vendor/branch_screen.dart';
+import '../screens/vendor/branch_screen.dart';
+import '../screens/vendor/order_status_screen.dart';
 import '../styles/colors.dart';
+import '../screens/vendor/request_pick_up_screen.dart';
 
 class ButtomNavBar extends StatefulWidget {
   const ButtomNavBar({ Key? key }) : super(key: key);
@@ -19,9 +19,9 @@ class _ButtomNavBarState extends State<ButtomNavBar> {
     });
   }
   final List<Widget> _children = [
-    OrderStatusScreen() ,
+    OrderStatusScreen(),
     requestPickUpScreen(),
-    //BranchScreen(),
+    BranchScreen(),
   ];
   @override
   Widget build(BuildContext context) {
@@ -29,7 +29,7 @@ class _ButtomNavBarState extends State<ButtomNavBar> {
       body: _children[currentIndex],
       bottomNavigationBar: BottomNavigationBar(
         onTap: _selectedPage,
-      currentIndex: currentIndex,
+      currentIndex: currentIndex,     
       items: [
      BottomNavigationBarItem(
         icon: Icon(Icons.pie_chart),
