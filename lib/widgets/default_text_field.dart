@@ -6,11 +6,14 @@ class DefaultTextField extends StatelessWidget {
   TextEditingController controller;
   String hintText;
   double? width;
-
+double? hight;
+int? maxline;
   DefaultTextField({
     required this.controller,
     required this.hintText,
     this.width,
+    this.hight,
+    this.maxline,
     Key? key,
   }) : super(key: key);
 
@@ -22,7 +25,7 @@ class DefaultTextField extends StatelessWidget {
       ),
       child: Container(
         width:width?? 90.w,
-        height: 10.h,
+        height: hight?? 10.h,
         margin: EdgeInsets.symmetric(
           vertical: 0.8.h,
         ),
@@ -38,7 +41,7 @@ class DefaultTextField extends StatelessWidget {
             fontSize: 15.sp,
           ),
           cursorColor: AppColors.blue,
-          maxLines: 1,
+          maxLines: maxline?? 1,
           decoration: InputDecoration(
             hintText: hintText,
             alignLabelWithHint: true,
