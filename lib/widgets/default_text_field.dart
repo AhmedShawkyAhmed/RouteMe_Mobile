@@ -6,11 +6,13 @@ class DefaultTextField extends StatelessWidget {
   TextEditingController controller;
   String hintText;
   double? width;
-double? hight;
-int? maxline;
+  double? hight;
+  int? maxline;
+  bool readonly=true;
   DefaultTextField({
     required this.controller,
     required this.hintText,
+    required this.readonly,
     this.width,
     this.hight,
     this.maxline,
@@ -24,10 +26,10 @@ int? maxline;
         top: 1.h,
       ),
       child: Container(
-        width:width?? 90.w,
-        height: hight?? 10.h,
+        width: width ?? 90.w,
+        height: hight ?? 10.h,
         margin: EdgeInsets.symmetric(
-          vertical: 0.8.h,
+          vertical: 0.5.h,
         ),
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(
@@ -35,13 +37,14 @@ int? maxline;
           ),
         ),
         child: TextFormField(
+          readOnly: readonly,
           controller: controller,
           style: TextStyle(
             color: Colors.black,
             fontSize: 15.sp,
           ),
           cursorColor: AppColors.blue,
-          maxLines: maxline?? 1,
+          maxLines: maxline ?? 1,
           decoration: InputDecoration(
             hintText: hintText,
             alignLabelWithHint: true,

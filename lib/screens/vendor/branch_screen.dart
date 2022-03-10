@@ -131,13 +131,16 @@ class _BranchScreenState extends State<BranchScreen> {
               child: Column(
                 children: [
                   DefaultTextField(
+                    readonly: false,
                       controller: _branchContainer, hintText: 'Branch'),
                   DefaultTextField(
+                    readonly: false,
                       controller: _phoneContainer, hintText: 'Phone'),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                     children: [
                       DefaultTextField(
+                        readonly: false,
                           controller: _locationContainer,
                           hintText: 'Location',
                           width: 65.w),
