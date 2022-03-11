@@ -27,54 +27,67 @@ class _LoginState extends State<Login> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: AppColors.darkBlue,
-      body: Padding(
-        padding: EdgeInsets.only(top: 30.h),
-        child: Container(
-          width: 100.w,
-          height: 70.h,
-          decoration: BoxDecoration(
-            color: AppColors.white,
-            borderRadius: BorderRadius.only(
-                topLeft: Radius.circular(50), topRight: Radius.circular(50)),
-          ),
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
+      body: Column(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        children: [
+          Row(
+            crossAxisAlignment:CrossAxisAlignment.start,
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              DefaultTextField(
-                readonly: false,
-                controller: server,
-                hintText: 'Server name',
-              ),
-              DefaultTextField(
-                readonly: false,
-                controller: email,
-                hintText: 'Email',
-              ),
-              DefaultPasswordField(
-                  controller: password,
-                  hintText: 'Password',
-                  onTap: show,
-                  password: pass),
-              SizedBox(
-                height: 30,
-              ),
-              DefaultAppButton(
-                text: 'Login',
-                backGround: AppColors.blue,
-                fontSize: 30,
-                height: 10.h,
-                onTap: () {},
-                width: 48.w,
-                textColor: AppColors.white,
-              ),
+              Image.asset('assets/Mask_Group_1.png',),
               Padding(
-                padding: const EdgeInsets.only(top: 10.0),
-                child: TextButton(
-                    onPressed: () {}, child: Text('Forget password...?')),
-              )
-            ],
+                padding: const EdgeInsets.only(top:40),
+                child: Image.asset('assets/Group_10.png',height: 160,),
+              ),
+              Image.asset('assets/Mask_Group_2.png',),
+          ],),
+          Container(
+            width: 100.w,
+            height: 70.h,
+            decoration: BoxDecoration(
+              color: AppColors.white,
+              borderRadius: BorderRadius.only(
+                  topLeft: Radius.circular(50), topRight: Radius.circular(50)),
+            ),
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                DefaultTextField(
+                  readonly: false,
+                  controller: server,
+                  hintText: 'Server name',
+                ),
+                DefaultTextField(
+                  readonly: false,
+                  controller: email,
+                  hintText: 'Email',
+                ),
+                DefaultPasswordField(
+                    controller: password,
+                    hintText: 'Password',
+                    onTap: show,
+                    password: pass),
+                SizedBox(
+                  height: 30,
+                ),
+                DefaultAppButton(
+                  text: 'Login',
+                  backGround: AppColors.blue,
+                  fontSize: 30,
+                  height: 10.h,
+                  onTap: () {},
+                  width: 48.w,
+                  textColor: AppColors.white,
+                ),
+                Padding(
+                  padding: const EdgeInsets.only(top: 10.0),
+                  child: TextButton(
+                      onPressed: () {}, child: Text('Forget password...?')),
+                )
+              ],
+            ),
           ),
-        ),
+        ],
       ),
     );
   }

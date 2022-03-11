@@ -1,8 +1,12 @@
 import 'package:flutter/material.dart';
 
+import 'package:mobile/screens/splash_screen.dart';
+
+
 import 'package:mobile/screens/vendor/my_tasks.dart';
 import 'package:mobile/screens/vendor/order_status_screen.dart';
 import 'package:mobile/screens/vendor/request_pick_up_screen.dart';
+
 
 import 'package:mobile/styles/colors.dart';
 import 'package:mobile/styles/colors.dart';
@@ -10,8 +14,11 @@ import 'package:mobile/widgets/buttom_nav_bar.dart';
 import 'package:sizer/sizer.dart';
 import 'screens/Driver/end_task_screen.dart';
 import 'screens/Driver/task_details_screen.dart';
+import 'screens/Login.dart';
+import 'screens/Setpassword.dart';
 import 'screens/vendor/branch_screen.dart';
 import 'screens/vendor/google_maps_screen.dart';
+import 'screens/verify.dart';
 
 void main() {
   runApp(const MyApp());
@@ -30,9 +37,12 @@ class MyApp extends StatelessWidget {
           theme: ThemeData(
               fontFamily: 'cairo', scaffoldBackgroundColor: AppColors.white),
 
+
+
           
 
           home: TaskSetailsScreen(),
+
 
         );
       },
