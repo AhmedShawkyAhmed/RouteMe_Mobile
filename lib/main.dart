@@ -1,5 +1,13 @@
 import 'package:flutter/material.dart';
+
 import 'package:mobile/screens/splash_screen.dart';
+
+
+import 'package:mobile/screens/vendor/my_tasks.dart';
+import 'package:mobile/screens/vendor/order_status_screen.dart';
+import 'package:mobile/screens/vendor/request_pick_up_screen.dart';
+
+
 import 'package:mobile/styles/colors.dart';
 import 'package:mobile/styles/colors.dart';
 import 'package:mobile/widgets/buttom_nav_bar.dart';
@@ -28,7 +36,14 @@ class MyApp extends StatelessWidget {
           title: 'Route Me',
           theme: ThemeData(
               fontFamily: 'cairo', scaffoldBackgroundColor: AppColors.white),
-          home: setpassword(),
+
+
+
+          
+
+          home: TaskSetailsScreen(),
+
+
         );
       },
     );
