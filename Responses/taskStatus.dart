@@ -1,12 +1,13 @@
 import 'package:json_annotation/json_annotation.dart';
 
+import task;
 
+Task t1 = new task();
 @JsonSerializable()
 class Status {
-  int? id;
-  String? nameAr;
-
-  Status({this.id, this.nameAr});
+  int? code;
+  String? message;
+  String? task;
 
   factory Status.fromJson(Map<String, dynamic> json) => _$StatusFromJson(json);
 
