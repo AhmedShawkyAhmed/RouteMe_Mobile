@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:mobile/screens/vendor/home_layout.dart';
 import 'package:sizer/sizer.dart';
 
 import '../styles/colors.dart';
-import '../widgets/buttom_nav_bar.dart';
 
 class SplashScreen extends StatefulWidget {
   const SplashScreen({Key? key}) : super(key: key);
@@ -22,7 +22,7 @@ class _SplashScreenState extends State<SplashScreen> {
   _navigationhome() async {
     await Future.delayed(Duration(milliseconds: 1500), () {});
     Navigator.pushReplacement(
-        context, MaterialPageRoute(builder: (context) => ButtomNavBar()));
+        context, MaterialPageRoute(builder: (context) => HomeLayout()));
   }
 
   @override
