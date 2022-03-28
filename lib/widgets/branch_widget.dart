@@ -3,20 +3,84 @@ import 'package:sizer/sizer.dart';
 
 import '../styles/colors.dart';
 
-class BranchWidgets extends StatelessWidget {
-  String branch;
-  String phoneNumber;
-  String location;
+class BranchModel{
+   String? branchName;
+   String? phoneNumber;
+   String? location;
 
-  BranchWidgets({
-    required this.branch,
-    required this.phoneNumber,
-    required this.location,
-  });
+    BranchModel(
+     { 
+      required this.branchName, 
+      required  this.phoneNumber, 
+      required  this.location,
+      }
+      );
+  }
+
+class BranchWidgets extends StatelessWidget {
+  // String branch;
+  // String phoneNumber;
+  // String location;
+
+
+  // BranchWidgets({
+  //   required this.branch,
+  //   required this.phoneNumber,
+  //   required this.location,
+  // });
+
+  
+  List<BranchModel> branchs =[
+    BranchModel(
+      branchName: 'deviceType', 
+    phoneNumber: '315404664', 
+    location: 'asjkbfbasd'
+    ),
+    BranchModel(
+      branchName: 'devidsfdsf', 
+    phoneNumber: '315404664', 
+    location: 'asjkbfbasd'
+    ),
+    BranchModel(
+      branchName: 'desdfdse', 
+    phoneNumber: '315404664', 
+    location: 'asjkbfbasd'
+    ),
+    BranchModel(
+      branchName: 'devisdfsde', 
+    phoneNumber: '315404664', 
+    location: 'asjkbfbasd'
+    ),
+    BranchModel(
+      branchName: 'devisdfsde', 
+    phoneNumber: '315404664', 
+    location: 'asjkbfbasd'
+    ),
+    BranchModel(
+      branchName: 'devisdfsde', 
+    phoneNumber: '315404664', 
+    location: 'asjkbfbasd'
+    ),
+  ];
 
   @override
-  Widget build(BuildContext context) {
-    return Container(
+  Widget build(BuildContext context ) {
+    return 
+      Container(
+                  height: 45.h,
+                  child: ListView.separated(
+                    itemBuilder: (context, index) => buildBranchItem(branchs[index]),
+                    separatorBuilder: (context, index) => Container(
+                      width: double.infinity,
+                      height: 15,
+                    ),
+                    itemCount: branchs.length,
+                  ),
+                );
+    
+  }
+
+  Widget buildBranchItem(branch) =>Container(
       width: 98.w,
       height: 9.h,
       decoration: BoxDecoration(
@@ -32,7 +96,7 @@ class BranchWidgets extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 Text(
-                  branch,
+                  '${branch.branchName}',
                   style: TextStyle(
                     fontSize: 18.sp,
                     color: AppColors.white,
@@ -56,6 +120,7 @@ class BranchWidgets extends StatelessWidget {
           ),
         ]),
       ),
-    );
-  }
+    ); 
+
 }
+ 
