@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:geolocator/geolocator.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:sizer/sizer.dart';
 
@@ -13,10 +14,30 @@ class GoogleMapsScreen extends StatefulWidget {
 }
 
 class _GoogleMapsScreenState extends State<GoogleMapsScreen> {
-  static const _initialCameraPosition = CameraPosition(
-    target: LatLng(30.033333, 31.233334),
-    zoom: 11.5,
-  );
+
+   var latitudeData ;
+   var longitudeData ;
+
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    getCurrentLocation();
+    print(latitudeData);
+  }
+  void getCurrentLocation() async{
+   final geoposition = await Geolocator.getCurrentPosition(desiredAccuracy: LocationAccuracy.high);
+
+    setState(() {
+      latitudeData = geoposition.latitude;
+      longitudeData = geoposition.longitude;
+    });
+  }
+
+    late var _initialCameraPosition = CameraPosition(
+        target: LatLng( latitudeData, longitudeData),
+        zoom: 11.5,
+      );
 
   @override
   Widget build(BuildContext context) {
