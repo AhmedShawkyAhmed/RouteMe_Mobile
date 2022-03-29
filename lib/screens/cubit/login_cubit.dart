@@ -22,7 +22,7 @@ class LoginCubit extends Cubit<LoginStates> {
 
     DioHelper.postData(
       url: LOGIN,
-      query:
+      data:
       {
         'server': server,
         'email': email,
@@ -30,7 +30,7 @@ class LoginCubit extends Cubit<LoginStates> {
       },
     ).then((value)
     {
-      print(value.data);
+      print(value.statusCode);
      loginModel = LoginModle.fromJSON(value.data);
       emit(LoginSuccessState(loginModel!));
     }).catchError((error)

@@ -107,13 +107,16 @@ class Login extends StatelessWidget {
                           fontSize: 30,
                           height: 10.h,
                           onTap: () {
-                            if (formKey.currentState!.validate()) {
-                                      cubit.userLogin(
-                                        server: server.text,
-                                        email: email.text,
-                                        password: password.text,
-                                      );
-                                    }
+                            
+                              LoginCubit.get(context).userLogin(
+                                server: server.text,
+                                email: email.text,
+                                password: password.text,
+                              );
+                              print(server.text);
+                              print(email.text);
+                              print(password.text);
+
                           },
                           width: 48.w,
                           textColor: AppColors.white,
