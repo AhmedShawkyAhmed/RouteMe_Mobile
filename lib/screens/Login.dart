@@ -1,12 +1,18 @@
+import 'dart:convert';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:mobile/models/users/login_model.dart';
+import 'package:mobile/network/end_points.dart';
 import 'package:mobile/screens/cubit/login_cubit.dart';
 import 'package:mobile/screens/cubit/login_state.dart';
+import 'package:mobile/shared/serves.dart';
 import 'package:mobile/styles/colors.dart';
 import 'package:mobile/widgets/default_app_button.dart';
 import 'package:mobile/widgets/default_password_field.dart';
 import 'package:mobile/widgets/default_text_field.dart';
 import 'package:sizer/sizer.dart';
+import 'package:http/http.dart' as http;
 
 class Login extends StatelessWidget {
   TextEditingController server = TextEditingController();
@@ -14,30 +20,17 @@ class Login extends StatelessWidget {
   TextEditingController password = TextEditingController();
   bool pass = true;
   var formKey = GlobalKey<FormState>();
+  List<AccountModel> account = [];
 
   @override
   Widget build(BuildContext context) {
-    var cubit =  LoginCubit.get(context);
     return BlocProvider(
       create: ((context) => LoginCubit()),
       child: BlocConsumer<LoginCubit , LoginStates>(
         listener: (context , state){
-          if (state is LoginSuccessState) {
-            // if (state.loginModel) {
-              
-             
-
-            //   // CacheHelper.saveData(key: 'token', value: state.loginModel.message).then((value) {
-            //   //   navigateAndFinish(context, ShopLayout());
-            //   // });
-            // } else {
-            //   // print(state.loginModel.message);
-            //   // showToast(
-            //   //   text:'${state.loginModel.message}',
-            //   //   state: ToastStates.ERROR,
-            //   // );
-            // }
-          }
+          // if (state is LoginSuccessState) {
+           
+          // }
         },
         builder: (context, state){
           return Scaffold(
@@ -88,11 +81,11 @@ class Login extends StatelessWidget {
                             hintText: 'Password',
                             submitte: (value){
                               if (formKey.currentState!.validate()) {
-                                      cubit.userLogin(
-                                        server: server.text,
-                                        email: email.text,
-                                        password: password.text,
-                                      );
+                                      // LoginCubit.get(context).userLogin(
+                                      //   server: server.text,
+                                      //   email: email.text,
+                                      //   password: password.text,
+                                      // );
                                     }
                             },
                         ),
@@ -106,13 +99,29 @@ class Login extends StatelessWidget {
                           backGround: AppColors.blue,
                           fontSize: 30,
                           height: 10.h,
-                          onTap: () {
-                            if (formKey.currentState!.validate()) {
-                                      cubit.userLogin(
-                                        server: server.text,
-                                        email: email.text,
-                                        password: password.text,
-                                      );
+                          onTap: () async {
+                            if (formKey.currentState!.validate()){
+
+                                MyServes lol =  MyServes();
+                                lol.userLogin(server: server.text, email: email.text, password: password.text);
+                                      // LoginCubit.get(context).userLogin(
+                                      //   server: server.text,
+                                      //   email: email.text,
+                                      //   password: password.text,
+                                      // );
+                                      // var url = Uri.parse(URL+LOGIN);
+                                      // await http.post(url, body: {
+                                      //   'server': 'www.routeme.com',
+                                      //   'email': 'marian.adly@gmail.com',
+                                      //   'password': '123456',
+                                      // }).then((value){
+                                      //   final List data = json.decode(value.body);
+                                      //   data.forEach((element) {
+                                      //     account.add(AccountModel.fromJson(element));
+                                      //   });
+                                      //   print("test "+value.body);
+                                      //   });
+                                      //   print(account[0].email);
                                     }
                           },
                           width: 48.w,

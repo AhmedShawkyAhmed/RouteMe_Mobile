@@ -1,3 +1,5 @@
+import 'dart:convert';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:mobile/models/users/login_model.dart';
@@ -10,7 +12,7 @@ class LoginCubit extends Cubit<LoginStates> {
 
   static LoginCubit get(context) => BlocProvider.of(context);
 
-  LoginModle? loginModel;
+  LoginResponse? loginModel;
 
   void userLogin({
     required String? server,
@@ -22,7 +24,7 @@ class LoginCubit extends Cubit<LoginStates> {
 
     DioHelper.postData(
       url: LOGIN,
-      query:
+      data:
       {
         'server': server,
         'email': email,
@@ -31,8 +33,14 @@ class LoginCubit extends Cubit<LoginStates> {
     ).then((value)
     {
       print(value.data);
-     loginModel = LoginModle.fromJSON(value.data);
+      print('lol');
+      final String data = json.decode(value.data.toString());
+      //print(data[0]['name']);
+      print('done 1');
+     //loginModel = LoginResponse.fromJson(data);
+     print('done 2');
       emit(LoginSuccessState(loginModel!));
+      print('done3');
     }).catchError((error)
     {
       print(error.toString());
