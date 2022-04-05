@@ -15,9 +15,9 @@ class BranchScreen extends StatelessWidget {
   var scaffoldKey = GlobalKey<ScaffoldState>();
   var formKey = GlobalKey<FormState>();
   bool isSwitched = false;
-  var _branchContainer = TextEditingController();
-  var _phoneContainer = TextEditingController();
-  var _locationContainer = TextEditingController();
+  var branchContainer = TextEditingController();
+  var phoneContainer = TextEditingController();
+  var locationContainer = TextEditingController();
 
   
 
@@ -100,13 +100,13 @@ class BranchScreen extends StatelessWidget {
                                   children: [
                                     DefaultTextField(
                                         readonly: false,
-                                        controller: _branchContainer,
+                                        controller: branchContainer,
                                         hintText: 'Branch',
                                         validationText:
                                             'branch must not be empty'),
                                     DefaultTextField(
                                         readonly: false,
-                                        controller: _phoneContainer,
+                                        controller: phoneContainer,
                                         hintText: 'Phone',
                                         validationText:
                                             'phone must not be empty'),
@@ -116,7 +116,7 @@ class BranchScreen extends StatelessWidget {
                                       children: [
                                         DefaultTextField(
                                             readonly: false,
-                                            controller: _locationContainer,
+                                            controller: locationContainer,
                                             hintText: 'Location',
                                             validationText:
                                                 'location must not be empty',
