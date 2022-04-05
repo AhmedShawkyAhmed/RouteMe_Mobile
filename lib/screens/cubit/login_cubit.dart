@@ -32,6 +32,7 @@ class LoginCubit extends Cubit<LoginStates> {
       },
     ).then((value)
     {
+
       print(value.data);
       print('lol');
       final String data = json.decode(value.data.toString());
@@ -39,6 +40,10 @@ class LoginCubit extends Cubit<LoginStates> {
       print('done 1');
      //loginModel = LoginResponse.fromJson(data);
      print('done 2');
+
+      print(value.statusCode);
+     loginModel = LoginModle.fromJSON(value.data);
+
       emit(LoginSuccessState(loginModel!));
       print('done3');
     }).catchError((error)

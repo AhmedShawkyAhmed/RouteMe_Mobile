@@ -84,10 +84,14 @@ class DioHelper{
     @required String? url,
     Map<String, dynamic>? query,
     required Map<String, dynamic>? data,
+
     FormData? formData,
     String lang = 'ar',
     String? token,
   }) async
+
+    }) async
+
   {
     dio!.options.headers =
     {
@@ -95,6 +99,14 @@ class DioHelper{
       // 'lang':lang,
     };
 
+
     return dio!.post(url!,data: formData);
+
+   return await dio.post(
+     url,
+     queryParameters: query,
+     data: data,
+   );
+
   }
 }
