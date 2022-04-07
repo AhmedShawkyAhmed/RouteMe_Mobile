@@ -33,19 +33,19 @@ class _SplashScreenState extends State<SplashScreen> {
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-              Image.asset('assets/Mask_Group_6.png',height: 200,),
-              Image.asset('assets/Mask_Group_7.png',height: 200,),
+              Image.asset('assets/images/Mask_Group_6.png',height: 200,),
+              Image.asset('assets/images/Mask_Group_7.png',height: 200,),
             ],),
             SizedBox(
               width:50.w,
-              child: Image.asset('assets/Group_10.png',)
+              child: Image.asset('assets/images/Group_10.png',)
               ),
               
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-              Image.asset('assets/Mask_Group_4.png',height: 280),
-              Image.asset('assets/Mask_Group_3.png',height: 280),
+              Image.asset('assets/images/Mask_Group_4.png',height: 280),
+              Image.asset('assets/images/Mask_Group_3.png',height: 280),
             ],)
       ],),
     );

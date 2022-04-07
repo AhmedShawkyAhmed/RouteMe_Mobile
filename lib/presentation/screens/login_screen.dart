@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_translate/flutter_translate.dart';
 import 'package:mobile/business_logic/login_cubit/login_cubit.dart';
 import 'package:mobile/constants/end_points.dart';
 import 'package:mobile/data/local/cache_helper.dart';
@@ -47,17 +48,17 @@ class _LoginScreenState extends State<LoginScreen> {
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
                       Image.asset(
-                        'assets/Mask_Group_1.png',
+                        'assets/images/Mask_Group_1.png',
                       ),
                       Padding(
                         padding: const EdgeInsets.only(top: 40),
                         child: Image.asset(
-                          'assets/Group_10.png',
+                          'assets/images/Group_10.png',
                           height: 160,
                         ),
                       ),
                       Image.asset(
-                        'assets/Mask_Group_2.png',
+                        'assets/images/Mask_Group_2.png',
                       ),
                     ],
                   ),
@@ -107,9 +108,9 @@ class _LoginScreenState extends State<LoginScreen> {
                             height: 30,
                           ),
                           DefaultAppButton(
-                            text: 'Login',
+                            text: translate("login"),
                             backGround: AppColors.blue,
-                            fontSize: 30,
+                            fontSize: 25,
                             height: 10.h,
                             onTap: () {
                               if (formKey.currentState!.validate()) {
@@ -142,8 +143,8 @@ class _LoginScreenState extends State<LoginScreen> {
                               onPressed: () {
                                 Navigator.of(context).pushNamed('/verify');
                               },
-                              child: const Text(
-                                'Forget password...?',
+                              child: Text(
+                                translate("forget"),
                               ),
                             ),
                           )
