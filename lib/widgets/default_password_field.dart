@@ -1,17 +1,26 @@
 import 'package:flutter/material.dart';
+import 'package:mobile/screens/Login.dart';
 import 'package:mobile/styles/colors.dart';
 import 'package:sizer/sizer.dart';
 
 class DefaultPasswordField extends StatelessWidget {
   TextEditingController controller;
   String hintText;
-  VoidCallback onTap;
+  VoidCallback? onTap;
+  String? validationText;
   bool password;
+  IconData? suffix;
+  ValueChanged? submitte;
+  Widget? icon_widget;
 
   DefaultPasswordField({
     required this.controller,
     required this.hintText,
-    required this.onTap,
+    this.validationText,
+    this.submitte,
+    this.suffix,
+     this.onTap,
+     this.icon_widget,
     required this.password,
     Key? key,
   }) : super(key: key);
@@ -34,7 +43,14 @@ class DefaultPasswordField extends StatelessWidget {
           ),
         ),
         child: TextFormField(
+          validator: (vlaue) {
+            if (vlaue!.isEmpty) {
+              return validationText;
+            }
+            return null;
+          },
           controller: controller,
+          onFieldSubmitted: submitte,
           style: TextStyle(
             color: Colors.black,
             fontSize: 15.sp,
@@ -47,10 +63,11 @@ class DefaultPasswordField extends StatelessWidget {
               padding: const EdgeInsets.only(
                 right: 10,
               ),
-              child: IconButton(
-                icon: Icon(password ? Icons.visibility_off : Icons.visibility),
-                onPressed: onTap,
-              ),
+               child: icon_widget
+               //IconButton(
+              //   icon: Icon(password ? Icons.visibility_off : Icons.visibility),
+              //   onPressed: onTap,
+              // ),
             ),
             alignLabelWithHint: true,
             hintStyle: TextStyle(
@@ -77,3 +94,4 @@ class DefaultPasswordField extends StatelessWidget {
     );
   }
 }
+

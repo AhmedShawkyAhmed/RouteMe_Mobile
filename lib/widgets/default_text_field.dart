@@ -8,11 +8,13 @@ class DefaultTextField extends StatelessWidget {
   double? width;
   double? hight;
   int? maxline;
-  bool readonly=true;
+  String? validationText;
+  bool readonly = true;
   DefaultTextField({
     required this.controller,
     required this.hintText,
     required this.readonly,
+    this.validationText,
     this.width,
     this.hight,
     this.maxline,
@@ -37,6 +39,12 @@ class DefaultTextField extends StatelessWidget {
           ),
         ),
         child: TextFormField(
+          validator: (vlaue) {
+            if (vlaue!.isEmpty) {
+              return validationText;
+            }
+            return null;
+          },
           readOnly: readonly,
           controller: controller,
           style: TextStyle(

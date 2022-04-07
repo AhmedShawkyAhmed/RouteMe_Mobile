@@ -17,6 +17,7 @@ class _LoginState extends State<Login> {
   TextEditingController email = TextEditingController();
   TextEditingController password = TextEditingController();
   bool pass = true;
+    var formKey = GlobalKey<FormState>();
   show() {
     setState(() {
       pass = !pass;
@@ -25,57 +26,118 @@ class _LoginState extends State<Login> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      backgroundColor: AppColors.darkBlue,
-      body: Padding(
-        padding: EdgeInsets.only(top: 30.h),
-        child: Container(
-          width: 100.w,
-          height: 70.h,
-          decoration: BoxDecoration(
-            color: AppColors.white,
-            borderRadius: BorderRadius.only(
-                topLeft: Radius.circular(50), topRight: Radius.circular(50)),
+     return Scaffold(
+          backgroundColor: AppColors.darkBlue,
+          body: SingleChildScrollView(
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Row(
+                  crossAxisAlignment:CrossAxisAlignment.start,
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Image.asset('assets/Mask_Group_1.png',),
+                    Padding(
+                      padding: const EdgeInsets.only(top:40),
+                      child: Image.asset('assets/Group_10.png',height: 160,),
+                    ),
+                    Image.asset('assets/Mask_Group_2.png',),
+                ],),
+                Container(
+                  width: 100.w,
+                  height: 75.h,
+                  decoration: BoxDecoration(
+                    color: AppColors.white,
+                    borderRadius: BorderRadius.only(
+                        topLeft: Radius.circular(50), topRight: Radius.circular(50)),
+                  ),
+                  child: Form(
+                    key: formKey,
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        DefaultTextField(
+                          validationText: 'server name must not be empty',
+                          readonly: false,
+                          controller: server,
+                          hintText: 'Server name',
+                        ),
+                        DefaultTextField(
+                          validationText: 'email must not be empty',
+                          readonly: false,
+                          controller: email,
+                          hintText: 'Email',
+                        ),
+                        DefaultPasswordField(
+                          password: pass,
+                          validationText: 'password must not be empty',
+                            controller: password,
+                            icon_widget: IconButton(
+                            icon: Icon(pass ? Icons.visibility_off : Icons.visibility),
+                            onPressed: show,
+                          ),
+                            hintText: 'Password',
+                            submitte: (value){
+                              if (formKey.currentState!.validate()) {
+                                      // LoginCubit.get(context).userLogin(
+                                      //   server: server.text,
+                                      //   email: email.text,
+                                      //   password: password.text,
+                                      // );
+                                    }
+                            },
+                        ),
+                        SizedBox(
+                          height: 30,
+                        ),
+                        //state is LoginLoadingState
+                       // ? Center(child: CircularProgressIndicator())
+                       //: 
+                       DefaultAppButton(
+                          text: 'Login',
+                          backGround: AppColors.blue,
+                          fontSize: 30,
+                          height: 10.h,
+                          onTap: () async {
+                            if (formKey.currentState!.validate()){
+
+                                // MyServes lol =  MyServes();
+                                // lol.userLogin(server: server.text, email: email.text, password: password.text);
+                                      // LoginCubit.get(context).userLogin(
+                                      //   server: server.text,
+                                      //   email: email.text,
+                                      //   password: password.text,
+                                      // );
+                                      // var url = Uri.parse(URL+LOGIN);
+                                      // await http.post(url, body: {
+                                      //   'server': 'www.routeme.com',
+                                      //   'email': 'marian.adly@gmail.com',
+                                      //   'password': '123456',
+                                      // }).then((value){
+                                      //   final List data = json.decode(value.body);
+                                      //   data.forEach((element) {
+                                      //     account.add(AccountModel.fromJson(element));
+                                      //   });
+                                      //   print("test "+value.body);
+                                      //   });
+                                      //   print(account[0].email);
+                                    }
+                          },
+                          width: 48.w,
+                          textColor: AppColors.white,
+                        ),
+                        Padding(
+                          padding: const EdgeInsets.only(top: 10.0),
+                          child: TextButton(
+                              onPressed: () {}, child: Text('Forget password...?')),
+                        )
+                      ],
+                    ),
+                  ),
+                ),
+              ],
+            ),
           ),
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              DefaultTextField(
-                readonly: false,
-                controller: server,
-                hintText: 'Server name',
-              ),
-              DefaultTextField(
-                readonly: false,
-                controller: email,
-                hintText: 'Email',
-              ),
-              DefaultPasswordField(
-                  controller: password,
-                  hintText: 'Password',
-                  onTap: show,
-                  password: pass),
-              SizedBox(
-                height: 30,
-              ),
-              DefaultAppButton(
-                text: 'Login',
-                backGround: AppColors.blue,
-                fontSize: 30,
-                height: 10.h,
-                onTap: () {},
-                width: 48.w,
-                textColor: AppColors.white,
-              ),
-              Padding(
-                padding: const EdgeInsets.only(top: 10.0),
-                child: TextButton(
-                    onPressed: () {}, child: Text('Forget password...?')),
-              )
-            ],
-          ),
-        ),
-      ),
-    );
+        );
   }
 }

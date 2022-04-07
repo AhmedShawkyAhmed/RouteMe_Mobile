@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:mobile/screens/vendor/google_maps_screen.dart';
 import 'package:sizer/sizer.dart';
-
 import '../../styles/colors.dart';
 import '../../widgets/branch_widget.dart';
 import '../../widgets/default_icon_button.dart';
@@ -15,14 +14,18 @@ class BranchScreen extends StatefulWidget {
 }
 
 class _BranchScreenState extends State<BranchScreen> {
-  var _branchContainer = TextEditingController();
-  var _phoneContainer = TextEditingController();
-  var _locationContainer = TextEditingController();
-  bool isSwitched = false;
+  var scaffoldKey = GlobalKey<ScaffoldState>();
+  var formKey = GlobalKey<FormState>();
+  var branchContainer = TextEditingController();
+  var phoneContainer = TextEditingController();
+  var locationContainer = TextEditingController();
+  bool isBottomSheetShown = false;
+  IconData fabIcon = Icons.add;
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      key: scaffoldKey,
       appBar: PreferredSize(
         preferredSize: Size.fromHeight(70.0),
         child: AppBar(
@@ -48,25 +51,6 @@ class _BranchScreenState extends State<BranchScreen> {
               ),
             ),
           ),
-          actions: [
-            Transform.scale(
-              scale: 1.7,
-              child: Padding(
-                padding: const EdgeInsets.only(top: 8, right: 10),
-                child: Switch(
-                    activeThumbImage: AssetImage('assets/night-mode (3).png'),
-                    inactiveThumbImage: AssetImage('assets/night-mode (2).png'),
-                    inactiveThumbColor: Colors.white,
-                    activeColor: Colors.white,
-                    value: isSwitched,
-                    onChanged: (value) {
-                      setState(() {
-                        isSwitched = value;
-                      });
-                    }),
-              ),
-            ),
-          ],
         ),
       ),
       body: Container(
@@ -82,89 +66,97 @@ class _BranchScreenState extends State<BranchScreen> {
                 ),
               ),
             ),
-            BranchWidgets(
-              branch: 'Maadi',
-              location: 'ff',
-              phoneNumber: 'ff',
-            ),
-            SizedBox(
-              height: 10,
-            ),
-            BranchWidgets(
-              branch: 'Maadi',
-              location: 'ff',
-              phoneNumber: 'ff',
-            ),
-            SizedBox(
-              height: 10,
-            ),
-            BranchWidgets(
-              branch: 'Maadi',
-              location: 'ff',
-              phoneNumber: 'ff',
-            ),
+            BranchWidgets(),
           ],
         ),
       ),
-      floatingActionButton: new FloatingActionButton(
-          elevation: 0.0,
+      floatingActionButton: FloatingActionButton(
           child: Icon(
-            Icons.add,
+            fabIcon,
             size: 45,
           ),
           backgroundColor: AppColors.lightBlue,
           onPressed: () {
-            _onButtonPressed();
+            if (isBottomSheetShown) {
+              setState(() {
+                fabIcon = Icons.add;
+              });
+
+              if (formKey.currentState!.validate()) {
+                print('no data');
+              }
+            } else {
+              scaffoldKey.currentState!
+                  .showBottomSheet((context) => Container(
+                        height: 45.h,
+                        width: double.infinity,
+                        padding: EdgeInsets.all(20),
+                        child: Padding(
+                          padding: const EdgeInsets.only(
+                              top: 20, right: 20, left: 15),
+                          child: Form(
+                            key: formKey,
+                            child: Column(
+                              mainAxisSize: MainAxisSize.min,
+                              children: [
+                                DefaultTextField(
+                                    readonly: false,
+                                    controller: branchContainer,
+                                    hintText: 'Branch',
+                                    validationText: 'branch must not be empty'),
+                                DefaultTextField(
+                                    readonly: false,
+                                    controller: phoneContainer,
+                                    hintText: 'Phone',
+                                    validationText: 'phone must not be empty'),
+                                Row(
+                                  mainAxisAlignment:
+                                      MainAxisAlignment.spaceEvenly,
+                                  children: [
+                                    DefaultTextField(
+                                        readonly: false,
+                                        controller: locationContainer,
+                                        hintText: 'Location',
+                                        validationText:
+                                            'location must not be empty',
+                                        width: 65.w),
+                                    Padding(
+                                      padding: const EdgeInsets.only(
+                                          left: 7, bottom: 7),
+                                      child: DefaultIconButton(
+                                          width: 14.w,
+                                          buttonColor: AppColors.darkBlue,
+                                          iconColor: AppColors.white,
+                                          icon: Icons.location_on,
+                                          onTap: () {
+                                            Navigator.push(
+                                              context,
+                                              MaterialPageRoute(
+                                                  builder: (context) =>
+                                                      const GoogleMapsScreen()),
+                                            );
+                                          }),
+                                    )
+                                  ],
+                                ),
+                              ],
+                            ),
+                          ),
+                        ),
+                      ))
+                  .closed
+                  .then((value) {
+                isBottomSheetShown = false;
+                setState(() {
+                fabIcon = Icons.add;
+              });
+              });
+              isBottomSheetShown = true;
+              setState(() {
+                fabIcon = Icons.check;
+              });
+            }
           }),
     );
-  }
-
-  void _onButtonPressed() {
-    showModalBottomSheet(
-        context: context,
-        builder: (context) {
-          return Container(
-            height: 45.h,
-            width: double.infinity,
-            child: Padding(
-              padding: const EdgeInsets.only(top: 20, right: 35, left: 35),
-              child: Column(
-                children: [
-                  DefaultTextField(
-                    readonly: false,
-                      controller: _branchContainer, hintText: 'Branch'),
-                  DefaultTextField(
-                    readonly: false,
-                      controller: _phoneContainer, hintText: 'Phone'),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                    children: [
-                      DefaultTextField(
-                        readonly: false,
-                          controller: _locationContainer,
-                          hintText: 'Location',
-                          width: 65.w),
-                      Padding(
-                        padding: const EdgeInsets.only(left: 7, bottom: 7),
-                        child: DefaultIconButton(
-                            width: 14.7.w,
-                            buttonColor: AppColors.darkBlue,
-                            iconColor: AppColors.white,
-                            icon: Icons.location_on,
-                            onTap: () {
-                              Navigator.push(
-                                context,
-                                MaterialPageRoute(
-                                    builder: (context) => const GoogleMapsScreen()),
-                              );
-                            }),
-                      )
-                    ],
-                  ),
-                ],
-              ),
-            ),
-          );
-        });
   }
 }
