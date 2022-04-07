@@ -7,30 +7,46 @@ import 'package:mobile/business_logic/login_cubit/login_cubit.dart';
 import 'package:mobile/data/remote/dio_helper.dart';
 import 'package:mobile/presentation/screens/login_screen.dart';
 import 'package:sizer/sizer.dart';
+import 'data/local/cache_helper.dart';
+import 'presentation/router/app_router.dart';
 import 'presentation/styles/colors.dart';
 
 void main() {
   WidgetsFlutterBinding.ensureInitialized();
   BlocOverrides.runZoned(
-    () {
+    () async {
       DioHelper.init();
-      runApp(const MyApp());
+      await CacheHelper.init();
+      bool? isLogin = CacheHelper.getDataFromSharedPreference(key: 'login');
+      runApp(MyApp(
+        appRouter: AppRouter(),
+        isLogin: isLogin,
+      ));
     },
     blocObserver: MyBlocObserver(),
   );
 }
 
 class MyApp extends StatelessWidget {
-  const MyApp({Key? key}) : super(key: key);
+  final AppRouter appRouter;
+  final bool? isLogin;
+
+  const MyApp({
+    required this.appRouter,
+    required this.isLogin,
+    Key? key,
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return MultiBlocProvider(
       providers: [
         BlocProvider(
-          create: ((context) => AppCubit()),),
+          create: ((context) => AppCubit()),
+        ),
         BlocProvider(
-          create: ((context) => LoginCubit()),),
+          create: ((context) => LoginCubit()),
+        ),
       ],
       child: BlocConsumer<AppCubit, AppStates>(
         listener: (context, state) {},
@@ -40,11 +56,11 @@ class MyApp extends StatelessWidget {
               return MaterialApp(
                 debugShowCheckedModeBanner: false,
                 title: 'Route Me',
+                onGenerateRoute: appRouter.onGenerateRoute,
                 theme: ThemeData(
                   fontFamily: 'cairo',
                   scaffoldBackgroundColor: AppColors.white,
                 ),
-                home: const LoginScreen(),
               );
             },
           );

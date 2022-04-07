@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:mobile/business_logic/login_cubit/login_cubit.dart';
-import 'package:mobile/constants/constants.dart';
 import 'package:mobile/constants/end_points.dart';
+import 'package:mobile/data/local/cache_helper.dart';
 import 'package:mobile/presentation/styles/colors.dart';
 import 'package:mobile/presentation/widgets/default_app_button.dart';
 import 'package:mobile/presentation/widgets/default_password_field.dart';
@@ -32,12 +32,10 @@ class _LoginScreenState extends State<LoginScreen> {
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
-        create: ((context) => LoginCubit()),
+      create: ((context) => LoginCubit()),
       child: BlocConsumer<LoginCubit, LoginState>(
-        listener: (context, state){
-
-        },
-        builder: (context, state){
+        listener: (context, state) {},
+        builder: (context, state) {
           return Scaffold(
             backgroundColor: AppColors.darkBlue,
             body: SingleChildScrollView(
@@ -95,8 +93,9 @@ class _LoginScreenState extends State<LoginScreen> {
                             validationText: 'password must not be empty',
                             controller: password,
                             icon: IconButton(
-                              icon: Icon(
-                                  pass ? Icons.visibility_off : Icons.visibility),
+                              icon: Icon(pass
+                                  ? Icons.visibility_off
+                                  : Icons.visibility),
                               onPressed: show,
                             ),
                             hintText: 'Password',
@@ -115,10 +114,22 @@ class _LoginScreenState extends State<LoginScreen> {
                             onTap: () {
                               if (formKey.currentState!.validate()) {
                                 LoginCubit.get(context).userLogin(
-                                    server: server.text,
-                                    email: email.text,
-                                    password: password.text,
-                                    endPoint: eLOGIN,
+                                  server: server.text,
+                                  email: email.text,
+                                  password: password.text,
+                                  endPoint: eLOGIN,
+                                  afterSuccess: (){
+                                    print(state);
+                                    if(state is LoginSuccessState){
+                                      if(CacheHelper.getDataFromSharedPreference(key: "type") == "Driver"){
+                                        Navigator.of(context).pushNamed('/tasks');
+                                      }else if(CacheHelper.getDataFromSharedPreference(key: "type") == "Vendor"){
+                                        Navigator.of(context).pushNamed('/home');
+                                      }else{
+                                        print("Can't Login With this User");
+                                      }
+                                    }
+                                  }
                                 );
                               }
                             },
@@ -128,7 +139,13 @@ class _LoginScreenState extends State<LoginScreen> {
                           Padding(
                             padding: const EdgeInsets.only(top: 10.0),
                             child: TextButton(
-                                onPressed: () {}, child: Text('Forget password...?')),
+                              onPressed: () {
+                                Navigator.of(context).pushNamed('/verify');
+                              },
+                              child: const Text(
+                                'Forget password...?',
+                              ),
+                            ),
                           )
                         ],
                       ),

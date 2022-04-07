@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:mobile/presentation/screens/vendor/home_layout.dart';
 import 'package:sizer/sizer.dart';
 
 import '../styles/colors.dart';
@@ -20,9 +19,8 @@ class _SplashScreenState extends State<SplashScreen> {
   }
 
   _navigationhome() async {
-    await Future.delayed(Duration(milliseconds: 1500), () {});
-    Navigator.pushReplacement(
-        context, MaterialPageRoute(builder: (context) => HomeLayout()));
+    await Future.delayed(const Duration(milliseconds: 1500), () {});
+    Navigator.of(context).pushNamed('/login');
   }
 
   @override

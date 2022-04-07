@@ -1,5 +1,7 @@
+import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:meta/meta.dart';
+import 'package:mobile/data/local/cache_helper.dart';
 import 'package:mobile/data/network/responses/login_response.dart';
 import 'package:mobile/data/remote/dio_helper.dart';
 
@@ -17,6 +19,7 @@ class LoginCubit extends Cubit<LoginState> {
     required String? email,
     required String? password,
     required String endPoint,
+    required VoidCallback afterSuccess,
   }) async {
     emit(LoginLoadingState());
     await DioHelper.postData(url: endPoint, body: {
@@ -28,11 +31,14 @@ class LoginCubit extends Cubit<LoginState> {
       final myData = Map<String, dynamic>.from(value.data);
       loginResponse = LoginResponse.fromJson(myData);
       if (loginResponse!.status == 200) {
+        emit(LoginSuccessState(loginResponse!));
         print(loginResponse!.user![0].name);
+        CacheHelper.saveDataSharedPreference(
+            key: 'type', value: loginResponse!.user![0].type);
+        afterSuccess();
       } else {
         print(loginResponse!.message);
       }
-      emit(LoginSuccessState(loginResponse!));
     }).catchError((error) {
       emit(LoginErrorState(error.toString()));
       print(error.toString());
