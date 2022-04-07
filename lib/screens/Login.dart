@@ -79,11 +79,7 @@ class _LoginState extends State<Login> {
                             hintText: 'Password',
                             submitte: (value){
                               if (formKey.currentState!.validate()) {
-                                      // LoginCubit.get(context).userLogin(
-                                      //   server: server.text,
-                                      //   email: email.text,
-                                      //   password: password.text,
-                                      // );
+                                      
                                     }
                             },
                         ),
@@ -101,26 +97,7 @@ class _LoginState extends State<Login> {
                           onTap: () async {
                             if (formKey.currentState!.validate()){
 
-                                // MyServes lol =  MyServes();
-                                // lol.userLogin(server: server.text, email: email.text, password: password.text);
-                                      // LoginCubit.get(context).userLogin(
-                                      //   server: server.text,
-                                      //   email: email.text,
-                                      //   password: password.text,
-                                      // );
-                                      // var url = Uri.parse(URL+LOGIN);
-                                      // await http.post(url, body: {
-                                      //   'server': 'www.routeme.com',
-                                      //   'email': 'marian.adly@gmail.com',
-                                      //   'password': '123456',
-                                      // }).then((value){
-                                      //   final List data = json.decode(value.body);
-                                      //   data.forEach((element) {
-                                      //     account.add(AccountModel.fromJson(element));
-                                      //   });
-                                      //   print("test "+value.body);
-                                      //   });
-                                      //   print(account[0].email);
+                            
                                     }
                           },
                           width: 48.w,

@@ -4,7 +4,6 @@ import 'package:mobile/screens/Setpassword.dart';
 import 'package:mobile/screens/verify.dart';
 import 'package:mobile/styles/colors.dart';
 import 'package:mobile/styles/colors.dart';
-import 'package:mobile/widgets/buttom_nav_bar.dart';
 import 'package:sizer/sizer.dart';
 import 'screens/Driver/end_task_screen.dart';
 import 'screens/Driver/task_details_screen.dart';
@@ -28,7 +27,7 @@ class MyApp extends StatelessWidget {
           title: 'Route Me',
           theme: ThemeData(
               fontFamily: 'cairo', scaffoldBackgroundColor: AppColors.white),
-          home: verify(),
+          home: Login(),
         );
       },
     );
