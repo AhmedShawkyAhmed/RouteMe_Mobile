@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:mobile/styles/colors.dart';
+import 'package:mobile/presentation/styles/colors.dart';
 import 'package:sizer/sizer.dart';
 
 class OrderCard extends StatelessWidget {

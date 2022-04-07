@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:mobile/styles/colors.dart';
+import 'package:mobile/presentation/styles/colors.dart';
 import 'package:sizer/sizer.dart';
-
 import '../../widgets/default_app_button.dart';
 import '../../widgets/default_icon_button.dart';
 import '../../widgets/default_text_field.dart';
@@ -52,8 +51,8 @@ class _EndTaskScreenState extends State<EndTaskScreen> {
                 readonly: false,
                 controller: orderContainer,
                 hintText: "Comment",
-                hight: 30.h,
-                maxline: 8,
+                height: 30.h,
+                maxLine: 8,
               ),
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,

@@ -1,16 +1,16 @@
 import 'package:flutter/material.dart';
-import 'package:mobile/styles/colors.dart';
+import 'package:mobile/presentation/styles/colors.dart';
 import 'package:sizer/sizer.dart';
 
 import '../../widgets/default_app_button.dart';
 import '../../widgets/default_text_field.dart';
 
-class requestPickUpScreen extends StatefulWidget {
+class RequestPickupScreen extends StatefulWidget {
   @override
-  State<requestPickUpScreen> createState() => _requestPickUpScreenState();
+  State<RequestPickupScreen> createState() => _RequestPickupScreenState();
 }
 
-class _requestPickUpScreenState extends State<requestPickUpScreen> {
+class _RequestPickupScreenState extends State<RequestPickupScreen> {
   var clientNameContainer = TextEditingController();
 
   var clientPhoneContainer = TextEditingController();

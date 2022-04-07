@@ -1,9 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:mobile/styles/colors.dart';
+import 'package:mobile/presentation/styles/colors.dart';
 import 'package:sizer/sizer.dart';
-
 import '../../widgets/default_search_field.dart';
-import '../../widgets/default_text_field.dart';
 import '../../widgets/order_card.dart';
 
 class OrderStatusScreen extends StatelessWidget {

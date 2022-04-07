@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:mobile/screens/vendor/branch_screen.dart';
-import 'package:mobile/screens/vendor/order_status_screen.dart';
-import 'package:mobile/screens/vendor/request_pick_up_screen.dart';
-import 'package:mobile/styles/colors.dart';
+import 'package:mobile/presentation/screens/vendor/order_status_screen.dart';
+import 'package:mobile/presentation/styles/colors.dart';
+import 'branch_screen.dart';
+import 'request_pick_up_screen.dart';
 
 class HomeLayout extends StatefulWidget {
   const HomeLayout({ Key? key }) : super(key: key);
@@ -18,7 +18,7 @@ class _HomeLayoutState extends State<HomeLayout> {
   int currentIndex = 0;
   final List<Widget> children = [
     OrderStatusScreen(),
-    requestPickUpScreen(),
+    RequestPickupScreen(),
     BranchScreen(),
   ];
   void _onItemTapped(int index) {

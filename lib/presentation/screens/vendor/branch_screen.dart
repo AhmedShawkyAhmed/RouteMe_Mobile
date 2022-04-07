@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:mobile/screens/vendor/google_maps_screen.dart';
 import 'package:sizer/sizer.dart';
 import '../../styles/colors.dart';
 import '../../widgets/branch_widget.dart';
 import '../../widgets/default_icon_button.dart';
 import '../../widgets/default_text_field.dart';
+import 'google_maps_screen.dart';
 
 class BranchScreen extends StatefulWidget {
   const BranchScreen({Key? key}) : super(key: key);

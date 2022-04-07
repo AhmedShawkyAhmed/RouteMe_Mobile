@@ -1,27 +1,23 @@
 import 'package:flutter/material.dart';
-import 'package:mobile/screens/Login.dart';
-import 'package:mobile/styles/colors.dart';
+import 'package:mobile/presentation/styles/colors.dart';
 import 'package:sizer/sizer.dart';
 
-class DefaultPasswordField extends StatelessWidget {
+class DefaultTextField extends StatelessWidget {
   TextEditingController controller;
   String hintText;
-  VoidCallback? onTap;
+  double? width;
+  double? height;
+  int? maxLine;
   String? validationText;
-  bool password;
-  IconData? suffix;
-  ValueChanged? submitte;
-  Widget? icon_widget;
-
-  DefaultPasswordField({
+  bool readonly = true;
+  DefaultTextField({
     required this.controller,
     required this.hintText,
+    required this.readonly,
     this.validationText,
-    this.submitte,
-    this.suffix,
-     this.onTap,
-     this.icon_widget,
-    required this.password,
+    this.width,
+    this.height,
+    this.maxLine,
     Key? key,
   }) : super(key: key);
 
@@ -32,10 +28,10 @@ class DefaultPasswordField extends StatelessWidget {
         top: 1.h,
       ),
       child: Container(
-        width: 90.w,
-        height: 10.h,
+        width: width ?? 90.w,
+        height: height ?? 10.h,
         margin: EdgeInsets.symmetric(
-          vertical: 0.8.h,
+          vertical: 0.5.h,
         ),
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(
@@ -49,26 +45,16 @@ class DefaultPasswordField extends StatelessWidget {
             }
             return null;
           },
+          readOnly: readonly,
           controller: controller,
-          onFieldSubmitted: submitte,
           style: TextStyle(
             color: Colors.black,
             fontSize: 15.sp,
           ),
           cursorColor: AppColors.blue,
-          maxLines: 1,
+          maxLines: maxLine ?? 1,
           decoration: InputDecoration(
             hintText: hintText,
-            suffixIcon: Padding(
-              padding: const EdgeInsets.only(
-                right: 10,
-              ),
-               child: icon_widget
-               //IconButton(
-              //   icon: Icon(password ? Icons.visibility_off : Icons.visibility),
-              //   onPressed: onTap,
-              // ),
-            ),
             alignLabelWithHint: true,
             hintStyle: TextStyle(
               fontSize: 12.sp,
@@ -88,10 +74,8 @@ class DefaultPasswordField extends StatelessWidget {
               ),
             ),
           ),
-          obscureText: password,
         ),
       ),
     );
   }
 }
-

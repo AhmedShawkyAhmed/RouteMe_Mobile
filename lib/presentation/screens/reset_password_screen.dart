@@ -1,22 +1,20 @@
 import 'package:flutter/material.dart';
-import 'package:mobile/styles/colors.dart';
-import 'package:mobile/widgets/default_app_button.dart';
-import 'package:mobile/widgets/default_password_field.dart';
-import 'package:mobile/widgets/default_text_field.dart';
+import 'package:mobile/presentation/styles/colors.dart';
+import 'package:mobile/presentation/widgets/default_app_button.dart';
+import 'package:mobile/presentation/widgets/default_password_field.dart';
 import 'package:sizer/sizer.dart';
-import 'package:otp_text_field/otp_text_field.dart';
 
 
-class setpassword extends StatefulWidget {
-  const setpassword({Key? key}) : super(key: key);
+class ResetPassword extends StatefulWidget {
+  const ResetPassword({Key? key}) : super(key: key);
 
   @override
-  State<setpassword> createState() => _setpasswordState();
+  State<ResetPassword> createState() => _ResetPasswordState();
 }
 
-class _setpasswordState extends State<setpassword> {
+class _ResetPasswordState extends State<ResetPassword> {
   TextEditingController password=TextEditingController();
-  TextEditingController confpassword=TextEditingController();
+  TextEditingController confPassword=TextEditingController();
   bool pass=true;
   show(){
     setState(() {
@@ -50,7 +48,7 @@ class _setpasswordState extends State<setpassword> {
           Container(
             width: 100.w,
             height: 70.h,
-            decoration: BoxDecoration(
+            decoration: const BoxDecoration(
               color: AppColors.white,
               borderRadius: BorderRadius.only(
                   topLeft:Radius.circular(50),
@@ -63,8 +61,8 @@ class _setpasswordState extends State<setpassword> {
                 mainAxisAlignment: MainAxisAlignment.center,
                 crossAxisAlignment: CrossAxisAlignment.start  ,
                 children: [
-                  Padding(
-                    padding: const EdgeInsets.only(bottom: 60.0),
+                  const Padding(
+                    padding:  EdgeInsets.only(bottom: 60.0),
                     child: Text( 'Set your password', style: TextStyle(fontSize: 30), ),
                   ),
                   DefaultPasswordField(
@@ -75,11 +73,11 @@ class _setpasswordState extends State<setpassword> {
 
                   ),
                   DefaultPasswordField(
-                      controller: confpassword,
+                      controller: confPassword,
                       hintText: 'Confirm Password',
                       onTap:show1,
                       password: pass2),
-                  SizedBox(
+                  const SizedBox(
                     height: 80,),
                   Padding(
                     padding: const EdgeInsets.only(left: 80.0),

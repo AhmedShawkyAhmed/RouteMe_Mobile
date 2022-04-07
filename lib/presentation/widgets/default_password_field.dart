@@ -1,23 +1,26 @@
 import 'package:flutter/material.dart';
-import 'package:mobile/styles/colors.dart';
+import 'package:mobile/presentation/styles/colors.dart';
 import 'package:sizer/sizer.dart';
 
-class DefaultTextField extends StatelessWidget {
+class DefaultPasswordField extends StatelessWidget {
   TextEditingController controller;
   String hintText;
-  double? width;
-  double? hight;
-  int? maxline;
+  VoidCallback? onTap;
   String? validationText;
-  bool readonly = true;
-  DefaultTextField({
+  bool password;
+  IconData? suffix;
+  ValueChanged? submit;
+  Widget? icon;
+
+  DefaultPasswordField({
     required this.controller,
     required this.hintText,
-    required this.readonly,
     this.validationText,
-    this.width,
-    this.hight,
-    this.maxline,
+    this.submit,
+    this.suffix,
+     this.onTap,
+     this.icon,
+    required this.password,
     Key? key,
   }) : super(key: key);
 
@@ -28,10 +31,10 @@ class DefaultTextField extends StatelessWidget {
         top: 1.h,
       ),
       child: Container(
-        width: width ?? 90.w,
-        height: hight ?? 10.h,
+        width: 90.w,
+        height: 10.h,
         margin: EdgeInsets.symmetric(
-          vertical: 0.5.h,
+          vertical: 0.8.h,
         ),
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(
@@ -39,22 +42,32 @@ class DefaultTextField extends StatelessWidget {
           ),
         ),
         child: TextFormField(
-          validator: (vlaue) {
-            if (vlaue!.isEmpty) {
+          validator: (value) {
+            if (value!.isEmpty) {
               return validationText;
             }
             return null;
           },
-          readOnly: readonly,
           controller: controller,
+          onFieldSubmitted: submit,
           style: TextStyle(
-            color: Colors.black,
+            color: AppColors.black,
             fontSize: 15.sp,
           ),
           cursorColor: AppColors.blue,
-          maxLines: maxline ?? 1,
+          maxLines: 1,
           decoration: InputDecoration(
             hintText: hintText,
+            suffixIcon: Padding(
+              padding: const EdgeInsets.only(
+                right: 10,
+              ),
+               child: icon
+               //IconButton(
+              //   icon: Icon(password ? Icons.visibility_off : Icons.visibility),
+              //   onPressed: onTap,
+              // ),
+            ),
             alignLabelWithHint: true,
             hintStyle: TextStyle(
               fontSize: 12.sp,
@@ -74,8 +87,10 @@ class DefaultTextField extends StatelessWidget {
               ),
             ),
           ),
+          obscureText: password,
         ),
       ),
     );
   }
 }
+

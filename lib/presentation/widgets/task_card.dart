@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:mobile/styles/colors.dart';
-import 'package:mobile/widgets/default_app_button.dart';
+import 'package:mobile/presentation/styles/colors.dart';
+import 'package:mobile/presentation/widgets/default_app_button.dart';
 import 'package:sizer/sizer.dart';
 
 class TaskCard extends StatelessWidget {
