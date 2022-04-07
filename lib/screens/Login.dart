@@ -1,39 +1,32 @@
-import 'dart:convert';
-
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:mobile/models/users/login_model.dart';
-import 'package:mobile/network/end_points.dart';
-import 'package:mobile/screens/cubit/login_cubit.dart';
-import 'package:mobile/screens/cubit/login_state.dart';
-import 'package:mobile/shared/serves.dart';
 import 'package:mobile/styles/colors.dart';
 import 'package:mobile/widgets/default_app_button.dart';
 import 'package:mobile/widgets/default_password_field.dart';
 import 'package:mobile/widgets/default_text_field.dart';
 import 'package:sizer/sizer.dart';
-import 'package:http/http.dart' as http;
 
-class Login extends StatelessWidget {
+class Login extends StatefulWidget {
+  const Login({Key? key}) : super(key: key);
+
+  @override
+  State<Login> createState() => _LoginState();
+}
+
+class _LoginState extends State<Login> {
   TextEditingController server = TextEditingController();
   TextEditingController email = TextEditingController();
   TextEditingController password = TextEditingController();
   bool pass = true;
-  var formKey = GlobalKey<FormState>();
-  List<AccountModel> account = [];
+    var formKey = GlobalKey<FormState>();
+  show() {
+    setState(() {
+      pass = !pass;
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
-    return BlocProvider(
-      create: ((context) => LoginCubit()),
-      child: BlocConsumer<LoginCubit , LoginStates>(
-        listener: (context , state){
-          // if (state is LoginSuccessState) {
-           
-          // }
-        },
-        builder: (context, state){
-          return Scaffold(
+     return Scaffold(
           backgroundColor: AppColors.darkBlue,
           body: SingleChildScrollView(
             child: Column(
@@ -76,8 +69,13 @@ class Login extends StatelessWidget {
                           hintText: 'Email',
                         ),
                         DefaultPasswordField(
+                          password: pass,
                           validationText: 'password must not be empty',
                             controller: password,
+                            icon_widget: IconButton(
+                            icon: Icon(pass ? Icons.visibility_off : Icons.visibility),
+                            onPressed: show,
+                          ),
                             hintText: 'Password',
                             submitte: (value){
                               if (formKey.currentState!.validate()) {
@@ -92,19 +90,19 @@ class Login extends StatelessWidget {
                         SizedBox(
                           height: 30,
                         ),
-                        state is LoginLoadingState
-                        ? Center(child: CircularProgressIndicator())
-                       : DefaultAppButton(
+                        //state is LoginLoadingState
+                       // ? Center(child: CircularProgressIndicator())
+                       //: 
+                       DefaultAppButton(
                           text: 'Login',
                           backGround: AppColors.blue,
                           fontSize: 30,
                           height: 10.h,
-
                           onTap: () async {
                             if (formKey.currentState!.validate()){
 
-                                MyServes lol =  MyServes();
-                                lol.userLogin(server: server.text, email: email.text, password: password.text);
+                                // MyServes lol =  MyServes();
+                                // lol.userLogin(server: server.text, email: email.text, password: password.text);
                                       // LoginCubit.get(context).userLogin(
                                       //   server: server.text,
                                       //   email: email.text,
@@ -124,10 +122,6 @@ class Login extends StatelessWidget {
                                       //   });
                                       //   print(account[0].email);
                                     }
-
-                       
-
-
                           },
                           width: 48.w,
                           textColor: AppColors.white,
@@ -145,6 +139,5 @@ class Login extends StatelessWidget {
             ),
           ),
         );
-        },
-      ) );
-  }}
+  }
+}

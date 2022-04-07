@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:mobile/screens/Login.dart';
-import 'package:mobile/screens/cubit/login_cubit.dart';
 import 'package:mobile/styles/colors.dart';
 import 'package:sizer/sizer.dart';
 
@@ -9,9 +8,10 @@ class DefaultPasswordField extends StatelessWidget {
   String hintText;
   VoidCallback? onTap;
   String? validationText;
-  bool? password;
+  bool password;
   IconData? suffix;
   ValueChanged? submitte;
+  Widget? icon_widget;
 
   DefaultPasswordField({
     required this.controller,
@@ -20,7 +20,8 @@ class DefaultPasswordField extends StatelessWidget {
     this.submitte,
     this.suffix,
      this.onTap,
-     this.password,
+     this.icon_widget,
+    required this.password,
     Key? key,
   }) : super(key: key);
 
@@ -62,12 +63,11 @@ class DefaultPasswordField extends StatelessWidget {
               padding: const EdgeInsets.only(
                 right: 10,
               ),
-              child: IconButton(
-                icon: Icon(LoginCubit.get(context).suffix),
-                onPressed: (){
-                  LoginCubit.get(context).changePasswordVisibility();
-                },
-              ),
+               child: icon_widget
+               //IconButton(
+              //   icon: Icon(password ? Icons.visibility_off : Icons.visibility),
+              //   onPressed: onTap,
+              // ),
             ),
             alignLabelWithHint: true,
             hintStyle: TextStyle(
@@ -88,9 +88,10 @@ class DefaultPasswordField extends StatelessWidget {
               ),
             ),
           ),
-          obscureText: LoginCubit.get(context).isPassword,
+          obscureText: password,
         ),
       ),
     );
   }
 }
+
