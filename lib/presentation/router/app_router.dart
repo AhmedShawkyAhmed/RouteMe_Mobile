@@ -20,7 +20,7 @@ class AppRouter {
       case '/verify':
         return MaterialPageRoute(
             builder: (_) => const VerifyScreen());
-      case '/resetPassword':
+      case '/reset':
         return MaterialPageRoute(
             builder: (_) => const ResetPassword());
       case '/tasks':

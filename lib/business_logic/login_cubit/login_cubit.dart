@@ -35,6 +35,14 @@ class LoginCubit extends Cubit<LoginState> {
         print(loginResponse!.user![0].name);
         CacheHelper.saveDataSharedPreference(
             key: 'type', value: loginResponse!.user![0].type);
+        CacheHelper.saveDataSharedPreference(
+            key: 'server', value: loginResponse!.user![0].server);
+        CacheHelper.saveDataSharedPreference(
+            key: 'email', value: loginResponse!.user![0].email);
+        CacheHelper.saveDataSharedPreference(
+            key: 'password', value: loginResponse!.user![0].password);
+        CacheHelper.saveDataSharedPreference(
+            key: 'login', value: true);
         afterSuccess();
       } else {
         print(loginResponse!.message);

@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
 
 class DefaultIconButton extends StatelessWidget {
-  double width;
-  Color buttonColor;
-  Color iconColor;
-  IconData icon;
-  VoidCallback onTap;
+  final double width;
+  final Color buttonColor;
+  final Color iconColor;
+  final IconData icon;
+  final VoidCallback onTap;
 
-  DefaultIconButton({
+  const DefaultIconButton({
     required this.width,
     required this.buttonColor,
     required this.iconColor,
@@ -24,15 +24,14 @@ class DefaultIconButton extends StatelessWidget {
         width: width,
         height: width,
         decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(15),
+          borderRadius: BorderRadius.circular(10),
           color: buttonColor,
         ),
         child: Center(
           child: Icon(
-              
               icon,
             color: iconColor,
-            size: width-20,
+            size: width-10,
           ),
         ),
       ),

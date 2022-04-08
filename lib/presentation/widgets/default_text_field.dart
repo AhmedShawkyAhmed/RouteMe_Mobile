@@ -3,14 +3,14 @@ import 'package:mobile/presentation/styles/colors.dart';
 import 'package:sizer/sizer.dart';
 
 class DefaultTextField extends StatelessWidget {
-  TextEditingController controller;
-  String hintText;
-  double? width;
-  double? height;
-  int? maxLine;
-  String? validationText;
-  bool readonly = true;
-  DefaultTextField({
+  final TextEditingController controller;
+  final String hintText;
+  final double? width;
+  final double? height;
+  final int? maxLine;
+  final String? validationText;
+  final bool? readonly;
+  const DefaultTextField({
     required this.controller,
     required this.hintText,
     required this.readonly,
@@ -29,46 +29,52 @@ class DefaultTextField extends StatelessWidget {
       ),
       child: Container(
         width: width ?? 90.w,
-        height: height ?? 10.h,
+        height: height ?? 8.h,
         margin: EdgeInsets.symmetric(
           vertical: 0.5.h,
         ),
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(
-            20.0,
+            10,
           ),
         ),
         child: TextFormField(
-          validator: (vlaue) {
-            if (vlaue!.isEmpty) {
+          validator: (value) {
+            if (value!.isEmpty) {
               return validationText;
             }
             return null;
           },
-          readOnly: readonly,
+          readOnly: readonly ?? true,
           controller: controller,
-          style: TextStyle(
+          style: const TextStyle(
             color: Colors.black,
-            fontSize: 15.sp,
+            fontSize: 18,
           ),
           cursorColor: AppColors.blue,
           maxLines: maxLine ?? 1,
           decoration: InputDecoration(
             hintText: hintText,
             alignLabelWithHint: true,
-            hintStyle: TextStyle(
-              fontSize: 12.sp,
+            hintStyle: const TextStyle(
+              fontSize: 15,
             ),
             filled: true,
             fillColor: AppColors.lightGray,
             focusedBorder: OutlineInputBorder(
-              borderRadius: BorderRadius.circular(20.0),
+              borderRadius: BorderRadius.circular(10.0),
               borderSide: const BorderSide(
                 color: AppColors.transparent,
               ),
             ),
             enabledBorder: OutlineInputBorder(
-              borderRadius: BorderRadius.circular(20.0),
+              borderRadius: BorderRadius.circular(10.0),
+              borderSide: const BorderSide(
+                color: AppColors.transparent,
+              ),
+            ),
+            disabledBorder: OutlineInputBorder(
+              borderRadius: BorderRadius.circular(10.0),
               borderSide: const BorderSide(
                 color: AppColors.transparent,
               ),

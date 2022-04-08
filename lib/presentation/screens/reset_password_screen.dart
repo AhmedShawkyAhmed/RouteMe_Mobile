@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_translate/flutter_translate.dart';
 import 'package:mobile/presentation/styles/colors.dart';
 import 'package:mobile/presentation/widgets/default_app_button.dart';
 import 'package:mobile/presentation/widgets/default_password_field.dart';
 import 'package:sizer/sizer.dart';
-
 
 class ResetPassword extends StatefulWidget {
   const ResetPassword({Key? key}) : super(key: key);
@@ -13,92 +13,139 @@ class ResetPassword extends StatefulWidget {
 }
 
 class _ResetPasswordState extends State<ResetPassword> {
-  TextEditingController password=TextEditingController();
-  TextEditingController confPassword=TextEditingController();
-  bool pass=true;
-  show(){
+  TextEditingController password = TextEditingController();
+  TextEditingController confPassword = TextEditingController();
+  var formKey = GlobalKey<FormState>();
+  bool pass = true;
+  bool passConf = true;
+
+  show() {
     setState(() {
-      pass=!pass;
+      pass = !pass;
     });
   }
-  bool pass2=true;
-  show1(){
+
+  showConf() {
     setState(() {
-      pass2=!pass2;
+      passConf = !passConf;
     });
   }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: AppColors.darkBlue,
-      body: Column(
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-      children: [
-        Row(
-          crossAxisAlignment:CrossAxisAlignment.start,
+      body: SingleChildScrollView(
+        child: Column(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
-            Image.asset('assets/Mask_Group_1.png',),
-            Padding(
-              padding: const EdgeInsets.only(top:40),
-              child: Image.asset('assets/Group_10.png',height: 160,),
+            Row(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              textDirection: TextDirection.ltr,
+              children: [
+                Image.asset(
+                  'assets/images/Mask_Group_1.png',
+                ),
+                Padding(
+                  padding: const EdgeInsets.only(
+                    top: 40,
+                  ),
+                  child: Image.asset(
+                    'assets/images/Group_10.png',
+                    height: 160,
+                  ),
+                ),
+                Image.asset(
+                  'assets/images/Mask_Group_2.png',
+                ),
+              ],
             ),
-            Image.asset('assets/Mask_Group_2.png',),
-        ],),
-          Container(
-            width: 100.w,
-            height: 70.h,
-            decoration: const BoxDecoration(
-              color: AppColors.white,
-              borderRadius: BorderRadius.only(
-                  topLeft:Radius.circular(50),
-                  topRight: Radius.circular(50)
+            SizedBox(
+              height: 3.h,
+            ),
+            Container(
+              width: 100.w,
+              height: 72.h,
+              decoration: const BoxDecoration(
+                color: AppColors.white,
+                borderRadius: BorderRadius.only(
+                  topLeft: Radius.circular(50),
+                  topRight: Radius.circular(50),
+                ),
               ),
-            ),
-            child:Padding(
-              padding: const EdgeInsets.only(left:20),
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                crossAxisAlignment: CrossAxisAlignment.start  ,
-                children: [
-                  const Padding(
-                    padding:  EdgeInsets.only(bottom: 60.0),
-                    child: Text( 'Set your password', style: TextStyle(fontSize: 30), ),
-                  ),
-                  DefaultPasswordField(
-                    controller: password,
-                    hintText: 'Password',
-                    onTap:show,
-                    password: pass,
-
-                  ),
-                  DefaultPasswordField(
+              child: Form(
+                key: formKey,
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.start,
+                  children: [
+                    Padding(
+                      padding: const EdgeInsets.only(
+                        left: 20,
+                        right: 20,
+                        top: 35,
+                      ),
+                      child: Text(
+                        translate("resetPassword"),
+                        style: const TextStyle(
+                          fontSize: 20,
+                          fontWeight: FontWeight.bold,
+                        ),
+                      ),
+                    ),
+                    const SizedBox(
+                      height: 100,
+                    ),
+                    DefaultPasswordField(
+                      password: pass,
+                      validationText: translate("passwordValidate"),
+                      controller: password,
+                      icon: IconButton(
+                        icon: Icon(
+                          pass ? Icons.visibility_off : Icons.visibility,
+                        ),
+                        onPressed: show,
+                      ),
+                      hintText: translate("password"),
+                      submit: (value) {
+                        if (formKey.currentState!.validate()) {}
+                      },
+                    ),
+                    DefaultPasswordField(
+                      password: passConf,
+                      validationText: translate("passwordValidate"),
                       controller: confPassword,
-                      hintText: 'Confirm Password',
-                      onTap:show1,
-                      password: pass2),
-                  const SizedBox(
-                    height: 80,),
-                  Padding(
-                    padding: const EdgeInsets.only(left: 80.0),
-                    child: DefaultAppButton(
-                      text: 'Set',
+                      icon: IconButton(
+                        icon: Icon(
+                          passConf ? Icons.visibility_off : Icons.visibility,
+                        ),
+                        onPressed: showConf,
+                      ),
+                      hintText: translate("passwordConf"),
+                      submit: (value) {
+                        if (formKey.currentState!.validate()) {}
+                      },
+                    ),
+                    const SizedBox(
+                      height: 70,
+                    ),
+                    DefaultAppButton(
+                      text: translate("reset"),
                       backGround: AppColors.blue,
-                      fontSize: 30,
-                      height: 10.h,
-                      onTap: (){},
-                      width: 48.w,
-                      textColor: AppColors.white ,),
-                  )
-
-
-
-
-                ],
+                      fontSize: 25,
+                      height: 8.h,
+                      width: 60.w,
+                      textColor: AppColors.white,
+                      onTap: () {
+                        if (formKey.currentState!.validate()) {}
+                      },
+                    ),
+                  ],
+                ),
               ),
-            )  ,
-          ),
-        ],
+            ),
+          ],
+        ),
       ),
     );
   }

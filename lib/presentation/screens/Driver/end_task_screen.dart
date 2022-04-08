@@ -19,14 +19,14 @@ class _EndTaskScreenState extends State<EndTaskScreen> {
     return Scaffold(
       appBar: AppBar(
         backgroundColor: AppColors.darkBlue,
-        title: Text(
+        title: const Text(
           'Task #7823',
           style: TextStyle(fontSize: 30),
         ),
         centerTitle: true,
         leading: IconButton(
           onPressed: () {},
-          icon: Icon(
+          icon: const Icon(
             Icons.arrow_back_ios,
             size: 30,
           ),
@@ -83,7 +83,7 @@ class _EndTaskScreenState extends State<EndTaskScreen> {
               Container(
                 width: 80.w,
                 height: 7.7.h,
-                margin: EdgeInsets.only(
+                margin: const EdgeInsets.only(
                     top: 5,bottom: 10
                 ),
                 decoration: BoxDecoration(
@@ -96,12 +96,12 @@ class _EndTaskScreenState extends State<EndTaskScreen> {
                   padding: const EdgeInsets.only(left: 12, right: 12, top: 5),
                   child: DropdownButton<String>(
                     value: dropdownValue,
-                    underline: SizedBox(),
+                    underline: const SizedBox(),
                     icon: const Icon(
                       Icons.keyboard_arrow_down,
                       size: 36,
                     ),
-                    hint: Text(""),
+                    hint: const Text(""),
                     isExpanded: true,
                     elevation: 1,
                     style: const TextStyle(

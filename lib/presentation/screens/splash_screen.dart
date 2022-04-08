@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:mobile/presentation/styles/colors.dart';
 import 'package:sizer/sizer.dart';
-
-import '../styles/colors.dart';
 
 class SplashScreen extends StatefulWidget {
   const SplashScreen({Key? key}) : super(key: key);
@@ -13,14 +12,13 @@ class SplashScreen extends StatefulWidget {
 class _SplashScreenState extends State<SplashScreen> {
   @override
   void initState() {
-    // TODO: implement initState
     super.initState();
-    _navigationhome();
+    navigate();
   }
 
-  _navigationhome() async {
+  navigate() async {
     await Future.delayed(const Duration(milliseconds: 1500), () {});
-    Navigator.of(context).pushNamed('/login');
+    Navigator.of(context).pushNamed('/home');
   }
 
   @override
@@ -30,24 +28,41 @@ class _SplashScreenState extends State<SplashScreen> {
       child: Column(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-              Image.asset('assets/images/Mask_Group_6.png',height: 200,),
-              Image.asset('assets/images/Mask_Group_7.png',height: 200,),
-            ],),
-            SizedBox(
-              width:50.w,
-              child: Image.asset('assets/images/Group_10.png',)
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            textDirection: TextDirection.ltr,
+            children: [
+              Image.asset(
+                'assets/images/Mask_Group_6.png',
+                height: 200,
               ),
-              
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-              Image.asset('assets/images/Mask_Group_4.png',height: 280),
-              Image.asset('assets/images/Mask_Group_3.png',height: 280),
-            ],)
-      ],),
+              Image.asset(
+                'assets/images/Mask_Group_7.png',
+                height: 200,
+              ),
+            ],
+          ),
+          SizedBox(
+              width: 50.w,
+              child: Image.asset(
+                'assets/images/Group_10.png',
+              )),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            textDirection: TextDirection.ltr,
+            children: [
+              Image.asset(
+                'assets/images/Mask_Group_4.png',
+                height: 280,
+              ),
+              Image.asset(
+                'assets/images/Mask_Group_3.png',
+                height: 280,
+              ),
+            ],
+          )
+        ],
+      ),
     );
   }
 }

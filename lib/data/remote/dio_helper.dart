@@ -1,5 +1,5 @@
 import 'package:dio/dio.dart';
-import 'package:mobile/constants/constants.dart';
+import 'package:mobile/constants/end_points.dart';
 
 class DioHelper
 {

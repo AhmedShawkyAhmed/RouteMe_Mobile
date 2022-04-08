@@ -34,7 +34,7 @@ class _GoogleMapsScreenState extends State<GoogleMapsScreen> {
     });
   }
 
-    late var _initialCameraPosition = CameraPosition(
+    late final _initialCameraPosition = CameraPosition(
         target: LatLng( latitudeData, longitudeData),
         zoom: 11.5,
       );

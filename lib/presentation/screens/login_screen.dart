@@ -46,12 +46,15 @@ class _LoginScreenState extends State<LoginScreen> {
                   Row(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    textDirection: TextDirection.ltr,
                     children: [
                       Image.asset(
                         'assets/images/Mask_Group_1.png',
                       ),
                       Padding(
-                        padding: const EdgeInsets.only(top: 40),
+                        padding: const EdgeInsets.only(
+                          top: 40,
+                        ),
                         child: Image.asset(
                           'assets/images/Group_10.png',
                           height: 160,
@@ -62,9 +65,12 @@ class _LoginScreenState extends State<LoginScreen> {
                       ),
                     ],
                   ),
+                  SizedBox(
+                    height: 3.h,
+                  ),
                   Container(
                     width: 100.w,
-                    height: 75.h,
+                    height: 72.h,
                     decoration: const BoxDecoration(
                       color: AppColors.white,
                       borderRadius: BorderRadius.only(
@@ -78,28 +84,28 @@ class _LoginScreenState extends State<LoginScreen> {
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
                           DefaultTextField(
-                            validationText: 'server name must not be empty',
+                            validationText: translate("serverValidate"),
                             readonly: false,
                             controller: server,
-                            hintText: 'Server name',
+                            hintText: translate("server"),
                           ),
                           DefaultTextField(
-                            validationText: 'email must not be empty',
+                            validationText: translate("emailValidate"),
                             readonly: false,
                             controller: email,
-                            hintText: 'Email',
+                            hintText: translate("email"),
                           ),
                           DefaultPasswordField(
                             password: pass,
-                            validationText: 'password must not be empty',
+                            validationText: translate("passwordValidate"),
                             controller: password,
                             icon: IconButton(
-                              icon: Icon(pass
-                                  ? Icons.visibility_off
-                                  : Icons.visibility),
+                              icon: Icon(
+                                pass ? Icons.visibility_off : Icons.visibility,
+                              ),
                               onPressed: show,
                             ),
-                            hintText: 'Password',
+                            hintText: translate("password"),
                             submit: (value) {
                               if (formKey.currentState!.validate()) {}
                             },
@@ -111,34 +117,41 @@ class _LoginScreenState extends State<LoginScreen> {
                             text: translate("login"),
                             backGround: AppColors.blue,
                             fontSize: 25,
-                            height: 10.h,
+                            height: 8.h,
+                            width: 60.w,
+                            textColor: AppColors.white,
                             onTap: () {
                               if (formKey.currentState!.validate()) {
                                 LoginCubit.get(context).userLogin(
                                   server: server.text,
                                   email: email.text,
                                   password: password.text,
-                                  endPoint: eLOGIN,
-                                  afterSuccess: (){
-                                    print(state);
-                                    if(state is LoginSuccessState){
-                                      if(CacheHelper.getDataFromSharedPreference(key: "type") == "Driver"){
-                                        Navigator.of(context).pushNamed('/tasks');
-                                      }else if(CacheHelper.getDataFromSharedPreference(key: "type") == "Vendor"){
-                                        Navigator.of(context).pushNamed('/home');
-                                      }else{
-                                        print("Can't Login With this User");
-                                      }
+                                  endPoint: login,
+                                  afterSuccess: () {
+                                    print("Done Here");
+                                    if (CacheHelper.getDataFromSharedPreference(
+                                            key: "type") ==
+                                        "Driver") {
+                                      print("Done Here 222");
+                                      Navigator.of(context).pushNamed('/tasks');
+                                    } else if (CacheHelper
+                                            .getDataFromSharedPreference(
+                                                key: "type") ==
+                                        "Vendor") {
+                                      print("Done Here 444");
+                                      Navigator.of(context).pushNamed('/home');
+                                    } else {
+                                      print("Can't Login With this User");
                                     }
-                                  }
+                                  },
                                 );
                               }
                             },
-                            width: 48.w,
-                            textColor: AppColors.white,
                           ),
                           Padding(
-                            padding: const EdgeInsets.only(top: 10.0),
+                            padding: const EdgeInsets.only(
+                              top: 10,
+                            ),
                             child: TextButton(
                               onPressed: () {
                                 Navigator.of(context).pushNamed('/verify');

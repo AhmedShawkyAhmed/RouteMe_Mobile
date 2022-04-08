@@ -1,56 +1,69 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_translate/flutter_translate.dart';
 import 'package:mobile/presentation/styles/colors.dart';
 import 'package:sizer/sizer.dart';
 
 class OrderCard extends StatelessWidget {
-  String order;
-  String client;
-  String phone;
-  String branch;
-  int Items;
-  String status;
+  final String order;
+  final String client;
+  final String phone;
+  final String branch;
+  final String status;
+  final int items;
 
-  OrderCard({
+  const OrderCard({
     required this.order,
     required this.client,
     required this.status,
     required this.phone,
     required this.branch,
-    required this.Items,
+    required this.items,
     Key? key,
   }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.only(left: 10, right: 10, top: 15, bottom: 10),
+      padding: const EdgeInsets.only(
+        left: 10,
+        right: 10,
+        top: 15,
+        bottom: 10,
+      ),
       child: Container(
         width: 100.w,
-        height: 28.h,
+        height: 25.h,
         decoration: BoxDecoration(
           color: AppColors.darkBlue,
           borderRadius: BorderRadius.circular(20),
         ),
         child: Padding(
-          padding:
-              const EdgeInsets.only(top: 8, bottom: 8, left: 15, right: 15),
+          padding: const EdgeInsets.only(
+            top: 8,
+            bottom: 3,
+            left: 15,
+            right: 15,
+          ),
           child: Column(
             children: [
               Text(
                 order,
-                style: TextStyle(
-                  fontSize: 18.sp,
+                style: const TextStyle(
+                  fontSize: 20,
                   color: AppColors.white,
                 ),
               ),
               Padding(
-                padding: const EdgeInsets.only(top: 8, left: 8, right: 8),
+                padding: const EdgeInsets.only(
+                  left: 8,
+                  right: 8,
+                ),
                 child: Row(
                   children: [
                     Text(
-                      'Client : ',
-                      style: TextStyle(
-                        fontSize: 15.sp,
+                      translate("client"),
+                      style: const TextStyle(
+                        fontSize: 18,
                         color: AppColors.white,
                       ),
                     ),
@@ -59,8 +72,8 @@ class OrderCard extends StatelessWidget {
                     ),
                     Text(
                       client,
-                      style: TextStyle(
-                        fontSize: 15.sp,
+                      style: const TextStyle(
+                        fontSize: 18,
                         color: AppColors.white,
                       ),
                     ),
@@ -68,13 +81,16 @@ class OrderCard extends StatelessWidget {
                 ),
               ),
               Padding(
-                padding: const EdgeInsets.only(top: 8, left: 8, right: 8),
+                padding: const EdgeInsets.only(
+                  left: 8,
+                  right: 8,
+                ),
                 child: Row(
                   children: [
                     Text(
-                      'Phone : ',
-                      style: TextStyle(
-                        fontSize: 15.sp,
+                      translate("phone"),
+                      style: const TextStyle(
+                        fontSize: 18,
                         color: AppColors.white,
                       ),
                     ),
@@ -83,8 +99,8 @@ class OrderCard extends StatelessWidget {
                     ),
                     Text(
                       phone,
-                      style: TextStyle(
-                        fontSize: 15.sp,
+                      style: const TextStyle(
+                        fontSize: 18,
                         color: AppColors.white,
                       ),
                     ),
@@ -92,13 +108,16 @@ class OrderCard extends StatelessWidget {
                 ),
               ),
               Padding(
-                padding: const EdgeInsets.only(top: 8, left: 8, right: 8),
+                padding: const EdgeInsets.only(
+                  left: 8,
+                  right: 8,
+                ),
                 child: Row(
                   children: [
                     Text(
-                      'Branch : ',
-                      style: TextStyle(
-                        fontSize: 15.sp,
+                      translate("branch"),
+                      style: const TextStyle(
+                        fontSize: 18,
                         color: AppColors.white,
                       ),
                     ),
@@ -107,8 +126,8 @@ class OrderCard extends StatelessWidget {
                     ),
                     Text(
                       branch,
-                      style: TextStyle(
-                        fontSize: 15.sp,
+                      style: const TextStyle(
+                        fontSize: 18,
                         color: AppColors.white,
                       ),
                     ),
@@ -116,13 +135,16 @@ class OrderCard extends StatelessWidget {
                 ),
               ),
               Padding(
-                padding: const EdgeInsets.only(top: 8, left: 8, right: 8),
+                padding: const EdgeInsets.only(
+                  left: 8,
+                  right: 8,
+                ),
                 child: Row(
                   children: [
                     Text(
-                      'Items : ',
-                      style: TextStyle(
-                        fontSize: 15.sp,
+                      translate("items"),
+                      style: const TextStyle(
+                        fontSize: 18,
                         color: AppColors.white,
                       ),
                     ),
@@ -130,9 +152,9 @@ class OrderCard extends StatelessWidget {
                       width: 2.w,
                     ),
                     Text(
-                      Items.toString(),
-                      style: TextStyle(
-                        fontSize: 15.sp,
+                      items.toString(),
+                      style: const TextStyle(
+                        fontSize: 18,
                         color: AppColors.white,
                       ),
                     ),
@@ -140,13 +162,16 @@ class OrderCard extends StatelessWidget {
                 ),
               ),
               Padding(
-                padding: const EdgeInsets.only(top: 8, left: 8, right: 8),
+                padding: const EdgeInsets.only(
+                  left: 8,
+                  right: 8,
+                ),
                 child: Row(
                   children: [
                     Text(
-                      'Status : ',
-                      style: TextStyle(
-                        fontSize: 15.sp,
+                      translate("state"),
+                      style: const TextStyle(
+                        fontSize: 18,
                         color: AppColors.white,
                       ),
                     ),
@@ -155,8 +180,8 @@ class OrderCard extends StatelessWidget {
                     ),
                     Text(
                       status,
-                      style: TextStyle(
-                        fontSize: 15.sp,
+                      style: const TextStyle(
+                        fontSize: 18,
                         color: AppColors.white,
                       ),
                     ),

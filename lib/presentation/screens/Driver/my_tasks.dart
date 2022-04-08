@@ -9,12 +9,12 @@ class MyTasks extends StatelessWidget {
     return Scaffold(
         appBar: AppBar(
       backgroundColor: AppColors.darkBlue,
-      leading: Icon(
+      leading: const Icon(
         Icons.settings,
         size: 32,
       ),
       centerTitle: true,
-      title: Text(
+      title: const Text(
         'My Tasks',
         style: TextStyle(fontWeight: FontWeight.bold, fontSize: 25),
       ),

@@ -18,9 +18,9 @@ class AppCubit extends Cubit<AppStates>
   IconData fabIcon = Icons.add;
 
   final List<Widget> children = [
-    OrderStatusScreen(),
+    MyOrdersScreen(),
     RequestPickupScreen(),
-    BranchScreen(),
+    const BranchScreen(),
   ];
 
   void changeIndex(int index){
@@ -37,23 +37,5 @@ class AppCubit extends Cubit<AppStates>
     fabIcon = icon;
     emit(AppChangeBottomSheetState());
   }
-
-// List<dynamic> branch = [];
-
-// void getBranch()
-// {
-//   emit(AppGetBranchLodingState());
-//   DioHelper.getData(url: 'getBranches', query: {
-//             "key": "vendorId",
-// 						"value": "13"
-//   }).then((value) {
-//     //print(value.data.toString());
-//     branch = value.data['api'];
-//     print(branch[0]['getBranches']);
-//     emit(AppGetBranchSuccessState());
-//   }).catchError((error) {
-//     print(error.toString());
-//     emit(AppGetBranchErrorState(error.toString()));
-//   });
-// }
+  
 }

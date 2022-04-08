@@ -1,126 +1,63 @@
 import 'package:flutter/material.dart';
+import 'package:mobile/presentation/styles/colors.dart';
+import 'package:mobile/presentation/widgets/default_icon_button.dart';
 import 'package:sizer/sizer.dart';
+import 'package:url_launcher/url_launcher.dart';
 
-import '../styles/colors.dart';
+class Branches extends StatelessWidget {
+  final String branch;
+  final String phone;
 
-class BranchModel{
-   String? branchName;
-   String? phoneNumber;
-   String? location;
-
-    BranchModel(
-     { 
-      required this.branchName, 
-      required  this.phoneNumber, 
-      required  this.location,
-      }
-      );
-  }
-
-class BranchWidgets extends StatelessWidget {
-  // String branch;
-  // String phoneNumber;
-  // String location;
-
-
-  // BranchWidgets({
-  //   required this.branch,
-  //   required this.phoneNumber,
-  //   required this.location,
-  // });
-
-  
-  List<BranchModel> branchs =[
-    BranchModel(
-      branchName: 'deviceType', 
-    phoneNumber: '315404664', 
-    location: 'asjkbfbasd'
-    ),
-    BranchModel(
-      branchName: 'devidsfdsf', 
-    phoneNumber: '315404664', 
-    location: 'asjkbfbasd'
-    ),
-    BranchModel(
-      branchName: 'desdfdse', 
-    phoneNumber: '315404664', 
-    location: 'asjkbfbasd'
-    ),
-    BranchModel(
-      branchName: 'devisdfsde', 
-    phoneNumber: '315404664', 
-    location: 'asjkbfbasd'
-    ),
-    BranchModel(
-      branchName: 'devisdfsde', 
-    phoneNumber: '315404664', 
-    location: 'asjkbfbasd'
-    ),
-    BranchModel(
-      branchName: 'devisdfsde', 
-    phoneNumber: '315404664', 
-    location: 'asjkbfbasd'
-    ),
-  ];
+  const Branches({
+    required this.branch,
+    required this.phone,
+    Key? key,
+  }) : super(key: key);
 
   @override
-  Widget build(BuildContext context ) {
-    return 
-      Container(
-                  height: 45.h,
-                  child: ListView.separated(
-                    itemBuilder: (context, index) => buildBranchItem(branchs[index]),
-                    separatorBuilder: (context, index) => Container(
-                      width: double.infinity,
-                      height: 15,
-                    ),
-                    itemCount: branchs.length,
-                  ),
-                );
-    
-  }
-
-  Widget buildBranchItem(branch) =>Container(
-      width: 98.w,
-      height: 9.h,
-      decoration: BoxDecoration(
-        color: AppColors.darkBlue,
-        borderRadius: BorderRadius.circular(15),
-      ),
+  Widget build(BuildContext context) {
+    return Padding(
+      padding: const EdgeInsets.all(10.0),
       child: Container(
-        width: double.infinity,
-        child: Column(children: [
-          Padding(
-            padding: const EdgeInsets.only(top: 10,left: 23,right:23),
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                Text(
-                  '${branch.branchName}',
-                  style: TextStyle(
-                    fontSize: 18.sp,
-                    color: AppColors.white,
-                  ),
-                ),
-                Container(
-                   width: 12.w,
-                  height: 6.5.h,
-                  decoration: BoxDecoration(
-                  color: AppColors.white,
-                  borderRadius: BorderRadius.circular(15),
-                    ),
-                  child: IconButton(
-                    iconSize: 8.5.w,
-                    onPressed: () {},
-                    icon: Icon(Icons.phone,color: AppColors.darkBlue,),
-                  ),
-                ),
-              ],
-            ),
+        width: 100.w,
+        height: 8.h,
+        decoration: BoxDecoration(
+          color: AppColors.darkBlue,
+          borderRadius: BorderRadius.circular(10),
+        ),
+        child: Padding(
+          padding: const EdgeInsets.only(
+            left: 15,
+            right: 15,
           ),
-        ]),
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              Text(
+                branch,
+                style: const TextStyle(
+                  color: AppColors.white,
+                  fontSize: 18,
+                ),
+              ),
+              DefaultIconButton(
+                width: 5.h,
+                buttonColor: AppColors.white,
+                iconColor: AppColors.blue,
+                icon: Icons.phone,
+                onTap: () async {
+                  var url = 'tel:$phone';
+                  if (await canLaunch(url)) {
+                    await launch(url);
+                  } else {
+                    throw 'Could not launch $url';
+                  }
+                },
+              ),
+            ],
+          ),
+        ),
       ),
-    ); 
-
+    );
+  }
 }
- 

@@ -21,17 +21,17 @@ class _TaskSetailsScreenState extends State<TaskSetailsScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: PreferredSize(
-        preferredSize: Size.fromHeight(60),
+        preferredSize: const Size.fromHeight(60),
         child: AppBar(
           backgroundColor: AppColors.darkBlue,
-          title: Text(
+          title: const Text(
             'Task #7823',
             style: TextStyle(fontSize: 30),
           ),
           centerTitle: true,
           leading: IconButton(
             onPressed: () {},
-            icon: Icon(
+            icon: const Icon(
               Icons.arrow_back_ios,
               size: 30,
             ),
@@ -40,7 +40,7 @@ class _TaskSetailsScreenState extends State<TaskSetailsScreen> {
       ),
       body: Stack(
         children: [
-          GoogleMap(
+          const GoogleMap(
             myLocationButtonEnabled: false,
             zoomControlsEnabled: false,
             initialCameraPosition: _initialCameraPosition,

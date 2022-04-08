@@ -1,56 +1,79 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_translate/flutter_translate.dart';
 import 'package:mobile/presentation/styles/colors.dart';
 import 'package:sizer/sizer.dart';
 import '../../widgets/default_search_field.dart';
 import '../../widgets/order_card.dart';
 
-class OrderStatusScreen extends StatelessWidget {
-  var _searchContainer = TextEditingController();
+class MyOrdersScreen extends StatelessWidget {
+  MyOrdersScreen({Key? key}) : super(key: key);
+  final _searchContainer = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: PreferredSize(
-          preferredSize: Size.fromHeight(107),
+          preferredSize: const Size.fromHeight(110),
           child: AppBar(
             backgroundColor: AppColors.darkBlue,
             title: Padding(
-              padding: const EdgeInsets.only(top: 112),
-              child: Container(
+              padding: const EdgeInsets.only(
+                top: 100,
+              ),
+              child: SizedBox(
                 height: 17.h,
                 child: Text(
-                  'My Orders',
-                  style: TextStyle(fontWeight: FontWeight.bold, fontSize: 25),
+                  translate("orders"),
+                  style: const TextStyle(
+                    fontWeight: FontWeight.bold,
+                    fontSize: 25,
+                  ),
                 ),
               ),
             ),
             centerTitle: true,
             bottom: PreferredSize(
+              preferredSize: Size.fromHeight(2.h),
               child: Padding(
-                padding: const EdgeInsets.only(bottom: 12),
+                padding: const EdgeInsets.only(
+                  bottom: 8,
+                ),
                 child: DefaultSearchField(
-                    controller: _searchContainer,
-                    hintText: 'Search',
-                    onTap: () {},
-                    width: 90.w,
-                    height: 5.h),
+                  controller: _searchContainer,
+                  hintText: translate("search"),
+                  onTap: () {},
+                  width: 90.w,
+                  height: 6.h,
+                ),
               ),
-              preferredSize: Size.fromHeight(5.h),
             ),
           )),
-          body: SingleChildScrollView(
-            child: Padding(
-              padding: const EdgeInsets.only(top: 10,right: 5,left: 5),
-              child: Column(children: [
-                OrderCard(order: '#625035', client: 'Magico', status: 'On it\'s way', phone: '01254886243', branch: 'El-Maadi', Items: 4),
-                OrderCard(order: '#625035', client: 'Magico', status: 'On it\'s way', phone: '01254886243', branch: 'El-Maadi', Items: 4),
-                OrderCard(order: '#625035', client: 'Magico', status: 'On it\'s way', phone: '01254886243', branch: 'El-Maadi', Items: 4),
-              
-              ],),
+      body: SingleChildScrollView(
+        child: Padding(
+          padding: const EdgeInsets.only(
+            top: 5,
+            right: 5,
+            left: 5,
+          ),
+          child: SizedBox(
+            width: 100.w,
+            height: 70.h,
+            child: ListView.builder(
+              itemCount: 8,
+              itemBuilder: (context, position) {
+                return OrderCard(
+                  order: '#625035',
+                  client: 'Magico',
+                  status: 'On it\'s way',
+                  phone: '01254886243',
+                  branch: 'El-Maadi',
+                  items: 4,
+                );
+              },
             ),
           ),
-          
-      
+        ),
+      ),
     );
   }
 }
