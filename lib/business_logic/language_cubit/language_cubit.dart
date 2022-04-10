@@ -12,6 +12,7 @@ class LanguageCubit extends Cubit<LanguageState> {
   static LanguageCubit get(context) => BlocProvider.of(context);
 
   void onLanguageChange(){
+    emit(LanguageLoadingState());
     if(CacheHelper.getDataFromSharedPreference(key: 'language') == "ar"){
       CacheHelper.saveDataSharedPreference(key: 'language', value: "en");
       delegate.changeLocale(const Locale("en"));
@@ -19,5 +20,6 @@ class LanguageCubit extends Cubit<LanguageState> {
       CacheHelper.saveDataSharedPreference(key: 'language', value: "ar");
       delegate.changeLocale(const Locale("ar"));
     }
+    emit(LanguageSuccessState("ar"));
   }
 }

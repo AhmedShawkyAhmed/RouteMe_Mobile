@@ -41,7 +41,7 @@ class _BranchScreenState extends State<BranchScreen> {
                 leading: Padding(
                   padding: const EdgeInsets.all(7.0),
                   child: InkWell(
-                    onTap: (){
+                    onTap: () {
                       LanguageCubit.get(context).onLanguageChange();
                     },
                     child: Container(
@@ -64,7 +64,9 @@ class _BranchScreenState extends State<BranchScreen> {
                 ),
                 centerTitle: true,
                 title: const Padding(
-                  padding: EdgeInsets.only(top: 10,),
+                  padding: EdgeInsets.only(
+                    top: 10,
+                  ),
                   child: Text(
                     'Reebok',
                     style: TextStyle(
@@ -125,63 +127,67 @@ class _BranchScreenState extends State<BranchScreen> {
                     }
                   } else {
                     scaffoldKey.currentState!
-                        .showBottomSheet((context) => Container(
-                      height: 45.h,
-                      width: double.infinity,
-                      padding: const EdgeInsets.all(20),
-                      child: Padding(
-                        padding: const EdgeInsets.only(
-                            top: 20, right: 20, left: 15),
-                        child: Form(
-                          key: formKey,
-                          child: Column(
-                            mainAxisSize: MainAxisSize.min,
-                            children: [
-                              DefaultTextField(
-                                  readonly: false,
-                                  controller: branchContainer,
-                                  hintText: 'Branch',
-                                  validationText: 'branch must not be empty'),
-                              DefaultTextField(
-                                  readonly: false,
-                                  controller: phoneContainer,
-                                  hintText: 'Phone',
-                                  validationText: 'phone must not be empty'),
-                              Row(
-                                mainAxisAlignment:
-                                MainAxisAlignment.spaceEvenly,
-                                children: [
-                                  DefaultTextField(
-                                      readonly: false,
-                                      controller: locationContainer,
-                                      hintText: 'Location',
-                                      validationText:
-                                      'location must not be empty',
-                                      width: 65.w),
-                                  Padding(
-                                    padding: const EdgeInsets.only(
-                                        left: 7, bottom: 7),
-                                    child: DefaultIconButton(
-                                        width: 14.w,
-                                        buttonColor: AppColors.darkBlue,
-                                        iconColor: AppColors.white,
-                                        icon: Icons.location_on,
-                                        onTap: () {
-                                          Navigator.push(
-                                            context,
-                                            MaterialPageRoute(
-                                                builder: (context) =>
-                                                const GoogleMapsScreen()),
-                                          );
-                                        }),
-                                  )
-                                ],
+                        .showBottomSheet(
+                          (context) => Container(
+                            height: 45.h,
+                            width: double.infinity,
+                            padding: const EdgeInsets.all(20),
+                            child: Padding(
+                              padding: const EdgeInsets.only(
+                                  top: 20, right: 20, left: 15,),
+                              child: Form(
+                                key: formKey,
+                                child: Column(
+                                  mainAxisSize: MainAxisSize.min,
+                                  children: [
+                                    DefaultTextField(
+                                        readonly: false,
+                                        controller: branchContainer,
+                                        hintText: 'Branch',
+                                        validationText:
+                                            'branch must not be empty',),
+                                    DefaultTextField(
+                                        readonly: false,
+                                        controller: phoneContainer,
+                                        hintText: 'Phone',
+                                        validationText:
+                                            'phone must not be empty',),
+                                    Row(
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.spaceEvenly,
+                                      children: [
+                                        DefaultTextField(
+                                            readonly: false,
+                                            controller: locationContainer,
+                                            hintText: 'Location',
+                                            validationText:
+                                                'location must not be empty',
+                                            width: 65.w),
+                                        Padding(
+                                          padding: const EdgeInsets.only(
+                                              left: 7, bottom: 7),
+                                          child: DefaultIconButton(
+                                              width: 14.w,
+                                              buttonColor: AppColors.darkBlue,
+                                              iconColor: AppColors.white,
+                                              icon: Icons.location_on,
+                                              onTap: () {
+                                                Navigator.push(
+                                                  context,
+                                                  MaterialPageRoute(
+                                                      builder: (context) =>
+                                                          const GoogleMapsScreen()),
+                                                );
+                                              }),
+                                        )
+                                      ],
+                                    ),
+                                  ],
+                                ),
                               ),
-                            ],
+                            ),
                           ),
-                        ),
-                      ),
-                    ))
+                        )
                         .closed
                         .then((value) {
                       isBottomSheetShown = false;
