@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_translate/flutter_translate.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
@@ -16,13 +17,15 @@ import 'presentation/router/app_router.dart';
 import 'presentation/styles/colors.dart';
 
 late LocalizationDelegate delegate;
+
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
   BlocOverrides.runZoned(
     () async {
       DioHelper.init();
       await CacheHelper.init();
-      final locale = CacheHelper.getDataFromSharedPreference(key: 'language') ?? "ar";
+      final locale =
+          CacheHelper.getDataFromSharedPreference(key: 'language') ?? "ar";
       delegate = await LocalizationDelegate.create(
         fallbackLocale: locale,
         supportedLocales: ['ar', 'en'],
@@ -53,18 +56,17 @@ class MyApp extends StatefulWidget {
 }
 
 class _MyAppState extends State<MyApp> {
-
   @override
   void initState() {
     super.initState();
     Intl.defaultLocale = delegate.currentLocale.languageCode;
 
     delegate.onLocaleChanged = (Locale value) async {
-      try{
+      try {
         setState(() {
           Intl.defaultLocale = value.languageCode;
         });
-      }catch (e) {
+      } catch (e) {
         print(e);
       }
     };
@@ -108,6 +110,13 @@ class _MyAppState extends State<MyApp> {
                     theme: ThemeData(
                       fontFamily: 'cairo',
                       scaffoldBackgroundColor: AppColors.white,
+                      appBarTheme: const AppBarTheme(
+                        elevation: 0.0,
+                        systemOverlayStyle: SystemUiOverlayStyle(
+                          statusBarColor: AppColors.white,
+                          statusBarIconBrightness: Brightness.dark,
+                        ),
+                      ),
                     ),
                   );
                 }),

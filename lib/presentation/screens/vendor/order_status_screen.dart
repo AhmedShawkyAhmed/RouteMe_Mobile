@@ -15,7 +15,7 @@ class MyOrdersScreen extends StatelessWidget {
       appBar: PreferredSize(
           preferredSize: const Size.fromHeight(110),
           child: AppBar(
-            backgroundColor: AppColors.darkBlue,
+            backgroundColor: AppColors.white,
             title: Padding(
               padding: const EdgeInsets.only(
                 top: 100,
@@ -27,10 +27,12 @@ class MyOrdersScreen extends StatelessWidget {
                   style: const TextStyle(
                     fontWeight: FontWeight.bold,
                     fontSize: 25,
+                    color: AppColors.darkGray,
                   ),
                 ),
               ),
             ),
+            automaticallyImplyLeading: false,
             centerTitle: true,
             bottom: PreferredSize(
               preferredSize: Size.fromHeight(2.h),
@@ -63,11 +65,7 @@ class MyOrdersScreen extends StatelessWidget {
               itemBuilder: (context, position) {
                 return OrderCard(
                   order: '#625035',
-                  client: 'Magico',
                   status: 'On it\'s way',
-                  phone: '01254886243',
-                  branch: 'El-Maadi',
-                  items: 4,
                 );
               },
             ),

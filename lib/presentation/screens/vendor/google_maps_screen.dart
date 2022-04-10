@@ -53,7 +53,7 @@ class _GoogleMapsScreenState extends State<GoogleMapsScreen> {
             padding: const EdgeInsets.only(top: 640,left:50),
             child: DefaultAppButton(
                 text: 'Set Location',
-                backGround: AppColors.darkBlue,
+                backGround: AppColors.darkPurple,
                 fontSize: 30,
                 height: 10.h,
                 onTap: () {},

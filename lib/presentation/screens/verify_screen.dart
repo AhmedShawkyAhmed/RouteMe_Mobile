@@ -19,7 +19,7 @@ class _VerifyScreenState extends State<VerifyScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: AppColors.darkBlue,
+      backgroundColor: AppColors.darkPurple,
       body: SingleChildScrollView(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -131,7 +131,7 @@ class _VerifyScreenState extends State<VerifyScreen> {
                         ),
                         child: DefaultAppButton(
                           text: translate("verify"),
-                          backGround: AppColors.blue,
+                          backGround: AppColors.purple,
                           fontSize: 30,
                           height: 10.h,
                           onTap: () {},

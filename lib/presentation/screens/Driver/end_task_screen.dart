@@ -18,7 +18,7 @@ class _EndTaskScreenState extends State<EndTaskScreen> {
     String dropdownValue = 'Task Status';
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: AppColors.darkBlue,
+        backgroundColor: AppColors.darkPurple,
         title: const Text(
           'Task #7823',
           style: TextStyle(fontSize: 30),
@@ -69,7 +69,7 @@ class _EndTaskScreenState extends State<EndTaskScreen> {
                         padding: const EdgeInsets.only(top: 25, left: 270),
                         child: DefaultIconButton(
                           width: 10.w,
-                          buttonColor: AppColors.darkBlue,
+                          buttonColor: AppColors.darkPurple,
                           iconColor: AppColors.white,
                           icon: Icons.attach_file,
                           onTap: () {},
@@ -125,7 +125,7 @@ class _EndTaskScreenState extends State<EndTaskScreen> {
               ),
               DefaultAppButton(
                 text: 'Finish Task',
-                backGround: AppColors.darkBlue,
+                backGround: AppColors.darkPurple,
                 fontSize: 20,
                 height: 8.h,
                 width: 75.w,

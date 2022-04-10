@@ -1,5 +1,6 @@
 {
-  "lang": "ع",
+  "language": "Language",
+  "lang": "العربية",
   "login": "Login",
   "forget": "Forget Password....?",
   "server": "Server Name",
@@ -31,5 +32,8 @@
   "hintItems": "Items Count",
   "total": "Total Price",
   "address": "Address",
-  "request": "Request"
+  "request": "Request",
+  "settings": "Settings",
+  "logout": "Logout",
+  "about": "About App"
 }

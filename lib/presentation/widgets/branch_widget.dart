@@ -22,7 +22,7 @@ class Branches extends StatelessWidget {
         width: 100.w,
         height: 8.h,
         decoration: BoxDecoration(
-          color: AppColors.darkBlue,
+          color: AppColors.darkPurple,
           borderRadius: BorderRadius.circular(10),
         ),
         child: Padding(
@@ -43,7 +43,7 @@ class Branches extends StatelessWidget {
               DefaultIconButton(
                 width: 5.h,
                 buttonColor: AppColors.white,
-                iconColor: AppColors.blue,
+                iconColor: AppColors.purple,
                 icon: Icons.phone,
                 onTap: () async {
                   var url = 'tel:$phone';
