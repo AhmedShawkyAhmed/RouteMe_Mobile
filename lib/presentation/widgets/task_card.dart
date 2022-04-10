@@ -27,7 +27,7 @@ class TaskCard extends StatelessWidget {
         width: 100.w,
         height: 28.h,
         decoration: BoxDecoration(
-          color: AppColors.darkBlue,
+          color: AppColors.darkPurple,
           borderRadius: BorderRadius.circular(20),
         ),
         child: Padding(
@@ -144,7 +144,7 @@ class TaskCard extends StatelessWidget {
                   height: 7.h,
                   backGround: AppColors.white,
                   fontSize: 17.sp,
-                  textColor: AppColors.lightBlue,
+                  textColor: AppColors.lightPurple,
                   width: 50.w,
                 ),
               ),

@@ -8,7 +8,7 @@ class MyTasks extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
-      backgroundColor: AppColors.darkBlue,
+      backgroundColor: AppColors.darkPurple,
       leading: const Icon(
         Icons.settings,
         size: 32,

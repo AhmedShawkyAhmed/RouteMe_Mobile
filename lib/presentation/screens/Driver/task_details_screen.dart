@@ -23,7 +23,7 @@ class _TaskSetailsScreenState extends State<TaskSetailsScreen> {
       appBar: PreferredSize(
         preferredSize: const Size.fromHeight(60),
         child: AppBar(
-          backgroundColor: AppColors.darkBlue,
+          backgroundColor: AppColors.darkPurple,
           title: const Text(
             'Task #7823',
             style: TextStyle(fontSize: 30),
@@ -52,7 +52,7 @@ class _TaskSetailsScreenState extends State<TaskSetailsScreen> {
                 width: 100.w,
                 height: 29.h,
                 decoration: BoxDecoration(
-                  color: AppColors.darkBlue,
+                  color: AppColors.darkPurple,
                   borderRadius: BorderRadius.circular(20),
                 ),
                 child: Padding(
@@ -194,13 +194,13 @@ class _TaskSetailsScreenState extends State<TaskSetailsScreen> {
                               height: 7.h,
                               backGround: AppColors.white,
                               fontSize: 17.sp,
-                              textColor: AppColors.lightBlue,
+                              textColor: AppColors.lightPurple,
                               width: 50.w,
                             ),
                             DefaultIconButton(
                                 width: 14.w,
                                 buttonColor: AppColors.white,
-                                iconColor: AppColors.darkBlue,
+                                iconColor: AppColors.darkPurple,
                                 icon: Icons.phone_rounded,
                                 onTap: () {})
                           ],

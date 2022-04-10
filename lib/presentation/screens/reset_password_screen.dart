@@ -34,7 +34,7 @@ class _ResetPasswordState extends State<ResetPassword> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: AppColors.darkBlue,
+      backgroundColor: AppColors.darkPurple,
       body: SingleChildScrollView(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -131,7 +131,7 @@ class _ResetPasswordState extends State<ResetPassword> {
                     ),
                     DefaultAppButton(
                       text: translate("reset"),
-                      backGround: AppColors.blue,
+                      backGround: AppColors.purple,
                       fontSize: 25,
                       height: 8.h,
                       width: 60.w,

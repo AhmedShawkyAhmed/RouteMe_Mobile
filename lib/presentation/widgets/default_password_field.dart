@@ -54,7 +54,7 @@ class DefaultPasswordField extends StatelessWidget {
             color: AppColors.black,
             fontSize: 18,
           ),
-          cursorColor: AppColors.blue,
+          cursorColor: AppColors.purple,
           maxLines: 1,
           decoration: InputDecoration(
             hintText: hintText,

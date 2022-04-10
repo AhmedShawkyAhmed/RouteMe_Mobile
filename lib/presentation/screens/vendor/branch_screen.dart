@@ -37,40 +37,18 @@ class _BranchScreenState extends State<BranchScreen> {
             appBar: PreferredSize(
               preferredSize: const Size.fromHeight(60),
               child: AppBar(
-                backgroundColor: AppColors.darkBlue,
-                leading: Padding(
-                  padding: const EdgeInsets.all(7.0),
-                  child: InkWell(
-                    onTap: () {
-                      LanguageCubit.get(context).onLanguageChange();
-                    },
-                    child: Container(
-                      decoration: BoxDecoration(
-                        color: AppColors.white,
-                        borderRadius: BorderRadius.circular(10),
-                      ),
-                      child: Center(
-                        child: Text(
-                          translate("lang"),
-                          style: const TextStyle(
-                            color: AppColors.darkBlue,
-                            fontWeight: FontWeight.bold,
-                            fontSize: 20,
-                          ),
-                        ),
-                      ),
-                    ),
-                  ),
-                ),
+                backgroundColor: AppColors.white,
+                automaticallyImplyLeading: false,
                 centerTitle: true,
-                title: const Padding(
-                  padding: EdgeInsets.only(
+                title: Padding(
+                  padding: const EdgeInsets.only(
                     top: 10,
                   ),
                   child: Text(
-                    'Reebok',
-                    style: TextStyle(
+                    translate("branches"),
+                    style: const TextStyle(
                       fontSize: 30,
+                      color: AppColors.darkGray,
                     ),
                   ),
                 ),
@@ -80,23 +58,12 @@ class _BranchScreenState extends State<BranchScreen> {
               width: double.infinity,
               child: Column(
                 children: [
-                  const Padding(
-                    padding: EdgeInsets.only(
-                      top: 50,
-                      left: 50,
-                      right: 50,
-                      bottom: 50,
-                    ),
-                    child: Image(
-                      height: 100,
-                      image: NetworkImage(
-                        'https://pngimg.com/uploads/nike/nike_PNG6.png',
-                      ),
-                    ),
+                  const SizedBox(
+                    height: 40,
                   ),
                   SizedBox(
                     width: 100.w,
-                    height: 45.h,
+                    height: 70.h,
                     child: ListView.builder(
                       itemCount: 4,
                       itemBuilder: (context, position) {
@@ -115,7 +82,7 @@ class _BranchScreenState extends State<BranchScreen> {
                   fabIcon,
                   size: 45,
                 ),
-                backgroundColor: AppColors.lightBlue,
+                backgroundColor: AppColors.purple,
                 onPressed: () {
                   if (isBottomSheetShown) {
                     setState(() {
@@ -168,7 +135,7 @@ class _BranchScreenState extends State<BranchScreen> {
                                               left: 7, bottom: 7),
                                           child: DefaultIconButton(
                                               width: 14.w,
-                                              buttonColor: AppColors.darkBlue,
+                                              buttonColor: AppColors.darkPurple,
                                               iconColor: AppColors.white,
                                               icon: Icons.location_on,
                                               onTap: () {

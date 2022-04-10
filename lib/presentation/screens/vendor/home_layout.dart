@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_translate/flutter_translate.dart';
 import 'package:mobile/presentation/screens/vendor/order_status_screen.dart';
+import 'package:mobile/presentation/screens/vendor/settings_screen.dart';
 import 'package:mobile/presentation/styles/colors.dart';
 import 'branch_screen.dart';
 import 'request_pick_up_screen.dart';
@@ -20,6 +21,7 @@ class _HomeLayoutState extends State<HomeLayout> {
     MyOrdersScreen(),
     RequestPickupScreen(),
     const BranchScreen(),
+    const Settings()
   ];
 
   void _onItemTapped(int index) {
@@ -34,6 +36,8 @@ class _HomeLayoutState extends State<HomeLayout> {
       key: scaffoldKey,
       body: children[currentIndex],
       bottomNavigationBar: BottomNavigationBar(
+        selectedItemColor: AppColors.purple,
+        unselectedItemColor: AppColors.navBar,
         type: BottomNavigationBarType.fixed,
         currentIndex: currentIndex,
         onTap: _onItemTapped,
@@ -43,21 +47,24 @@ class _HomeLayoutState extends State<HomeLayout> {
               Icons.pie_chart,
             ),
             label: translate("status"),
-            backgroundColor: AppColors.lightBlue,
           ),
            BottomNavigationBarItem(
             icon: const Icon(
               Icons.pin_drop,
             ),
             label: translate("pickup"),
-            backgroundColor: AppColors.lightBlue,
           ),
            BottomNavigationBarItem(
             icon: const Icon(
               Icons.store,
             ),
             label: translate("branches"),
-            backgroundColor: AppColors.lightBlue,
+          ),
+          BottomNavigationBarItem(
+            icon: const Icon(
+              Icons.settings,
+            ),
+            label: translate("settings"),
           ),
         ],
       ),

@@ -38,7 +38,7 @@ class _LoginScreenState extends State<LoginScreen> {
         listener: (context, state) {},
         builder: (context, state) {
           return Scaffold(
-            backgroundColor: AppColors.darkBlue,
+            backgroundColor: AppColors.darkPurple,
             body: SingleChildScrollView(
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -115,7 +115,7 @@ class _LoginScreenState extends State<LoginScreen> {
                           ),
                           DefaultAppButton(
                             text: translate("login"),
-                            backGround: AppColors.blue,
+                            backGround: AppColors.purple,
                             fontSize: 25,
                             height: 8.h,
                             width: 60.w,

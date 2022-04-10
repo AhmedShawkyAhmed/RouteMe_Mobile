@@ -30,12 +30,14 @@ class _RequestPickupScreenState extends State<RequestPickupScreen> {
     String dropdownValue = 'branch';
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: AppColors.darkBlue,
+        backgroundColor: AppColors.white,
+        automaticallyImplyLeading: false,
         title: Text(
           translate("requestPickup"),
           style: const TextStyle(
             fontWeight: FontWeight.bold,
             fontSize: 25,
+            color: AppColors.darkGray,
           ),
         ),
         centerTitle: true,
@@ -119,7 +121,7 @@ class _RequestPickupScreenState extends State<RequestPickupScreen> {
               ),
               child: DefaultAppButton(
                 text: translate("request"),
-                backGround: AppColors.darkBlue,
+                backGround: AppColors.darkPurple,
                 fontSize: 20,
                 height: 7.h,
                 onTap: () {},

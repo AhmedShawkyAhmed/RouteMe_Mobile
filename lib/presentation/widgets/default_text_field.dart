@@ -51,7 +51,7 @@ class DefaultTextField extends StatelessWidget {
             color: Colors.black,
             fontSize: 18,
           ),
-          cursorColor: AppColors.blue,
+          cursorColor: AppColors.purple,
           maxLines: maxLine ?? 1,
           decoration: InputDecoration(
             hintText: hintText,
