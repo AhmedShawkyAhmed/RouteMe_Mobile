@@ -5,8 +5,8 @@ import 'package:sizer/sizer.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 class Branches extends StatelessWidget {
-  final String branch;
-  final String phone;
+  final String? branch;
+  final String? phone;
 
   const Branches({
     required this.branch,
@@ -34,7 +34,7 @@ class Branches extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               Text(
-                branch,
+                branch!,
                 style: const TextStyle(
                   color: AppColors.white,
                   fontSize: 18,

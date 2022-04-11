@@ -8,6 +8,7 @@ import 'package:intl/intl.dart';
 import 'package:mobile/business_logic/app_cubit/app_cubit.dart';
 import 'package:mobile/business_logic/app_cubit/app_state.dart';
 import 'package:mobile/business_logic/bloc_observer.dart';
+import 'package:mobile/business_logic/branches_cubit/branches_cubit.dart';
 import 'package:mobile/business_logic/language_cubit/language_cubit.dart';
 import 'package:mobile/business_logic/login_cubit/login_cubit.dart';
 import 'package:mobile/data/remote/dio_helper.dart';
@@ -84,6 +85,9 @@ class _MyAppState extends State<MyApp> {
         ),
         BlocProvider(
           create: ((context) => LanguageCubit()),
+        ),
+        BlocProvider(
+          create: ((context) => BranchesCubit()),
         ),
       ],
       child: BlocConsumer<AppCubit, AppStates>(

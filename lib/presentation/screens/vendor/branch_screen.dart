@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_translate/flutter_translate.dart';
-import 'package:mobile/business_logic/language_cubit/language_cubit.dart';
+import 'package:mobile/business_logic/branches_cubit/branches_cubit.dart';
+import 'package:mobile/constants/end_points.dart';
+import 'package:mobile/data/local/cache_helper.dart';
 import 'package:sizer/sizer.dart';
 import '../../styles/colors.dart';
 import '../../widgets/branch_widget.dart';
@@ -24,12 +26,19 @@ class _BranchScreenState extends State<BranchScreen> {
   var locationContainer = TextEditingController();
   bool isBottomSheetShown = false;
   IconData fabIcon = Icons.add;
-
+@override
+  void initState() {
+    BranchesCubit.get(context).getBranches(
+        vendorId: CacheHelper.getDataFromSharedPreference(key: "userId"),
+        endPoint: branches,
+    );
+    super.initState();
+  }
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
-      create: ((context) => LanguageCubit()),
-      child: BlocConsumer<LanguageCubit, LanguageState>(
+      create: ((context) => BranchesCubit()),
+      child: BlocConsumer<BranchesCubit, BranchesState>(
         listener: (context, state) {},
         builder: (context, state) {
           return Scaffold(
@@ -61,16 +70,18 @@ class _BranchScreenState extends State<BranchScreen> {
                   const SizedBox(
                     height: 40,
                   ),
-                  SizedBox(
+                  BranchesCubit.get(context).getBranchesResponse!.branches == null?
+                      SizedBox()
+                  :SizedBox(
                     width: 100.w,
                     height: 70.h,
                     child: ListView.builder(
                       physics: BouncingScrollPhysics(),
-                      itemCount: 15,
+                      itemCount: BranchesCubit.get(context).getBranchesResponse!.branches!.length,
                       itemBuilder: (context, position) {
-                        return const Branches(
-                          branch: "Maddi",
-                          phone: "+201154338430",
+                        return Branches(
+                          branch: BranchesCubit.get(context).getBranchesResponse!.branches![0].branchName,
+                          phone: BranchesCubit.get(context).getBranchesResponse!.branches![0].phone,
                         );
                       },
                     ),
