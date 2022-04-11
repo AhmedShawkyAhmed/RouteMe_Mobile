@@ -50,25 +50,24 @@ class MyOrdersScreen extends StatelessWidget {
               ),
             ),
           )),
-      body: SingleChildScrollView(
-        child: Padding(
-          padding: const EdgeInsets.only(
-            top: 5,
-            right: 5,
-            left: 5,
-          ),
-          child: SizedBox(
-            width: 100.w,
-            height: 70.h,
-            child: ListView.builder(
-              itemCount: 8,
-              itemBuilder: (context, position) {
-                return OrderCard(
-                  order: '#625035',
-                  status: 'On it\'s way',
-                );
-              },
-            ),
+      body: Padding(
+        padding: const EdgeInsets.only(
+          top: 5,
+          right: 5,
+          left: 5,
+        ),
+        child: SizedBox(
+          width: 100.w,
+          height: 70.h,
+          child: ListView.builder(
+            physics: BouncingScrollPhysics(),
+            itemCount: 10,
+            itemBuilder: (context, position) {
+              return OrderCard(
+                order: '#625035',
+                status: 'On it\'s way',
+              );
+            },
           ),
         ),
       ),

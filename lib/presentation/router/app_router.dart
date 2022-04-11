@@ -28,7 +28,7 @@ class AppRouter {
             builder: (_) => MyTasks());
       case '/home':
         return MaterialPageRoute(
-            builder: (_) => const HomeLayout());
+            builder: (_) =>  HomeLayout());
       default:
         return null;
     }

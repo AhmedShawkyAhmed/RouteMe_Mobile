@@ -113,7 +113,7 @@ class _MyAppState extends State<MyApp> {
                       appBarTheme: const AppBarTheme(
                         elevation: 0.0,
                         systemOverlayStyle: SystemUiOverlayStyle(
-                          statusBarColor: AppColors.white,
+                          statusBarColor: AppColors.transparent,
                           statusBarIconBrightness: Brightness.dark,
                         ),
                       ),

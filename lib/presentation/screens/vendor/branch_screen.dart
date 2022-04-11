@@ -65,7 +65,8 @@ class _BranchScreenState extends State<BranchScreen> {
                     width: 100.w,
                     height: 70.h,
                     child: ListView.builder(
-                      itemCount: 4,
+                      physics: BouncingScrollPhysics(),
+                      itemCount: 15,
                       itemBuilder: (context, position) {
                         return const Branches(
                           branch: "Maddi",
