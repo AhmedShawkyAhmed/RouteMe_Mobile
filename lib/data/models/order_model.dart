@@ -37,7 +37,7 @@ class OrderModel {
     lon: json["lon"],
     lat: json["lat"],
     address: json["address"],
-    price: json["price"],
+    price: json['price'] == null ? 0.0 : json['price'].toDouble(),
     vendorId: json["vendorId"],
     branchId: json["branchId"],
     comment: json["comment"],

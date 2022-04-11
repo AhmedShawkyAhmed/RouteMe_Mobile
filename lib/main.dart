@@ -13,6 +13,7 @@ import 'package:mobile/business_logic/language_cubit/language_cubit.dart';
 import 'package:mobile/business_logic/login_cubit/login_cubit.dart';
 import 'package:mobile/data/remote/dio_helper.dart';
 import 'package:sizer/sizer.dart';
+import 'business_logic/order_cubit/order_cubit.dart';
 import 'data/local/cache_helper.dart';
 import 'presentation/router/app_router.dart';
 import 'presentation/styles/colors.dart';
@@ -87,7 +88,10 @@ class _MyAppState extends State<MyApp> {
           create: ((context) => LanguageCubit()),
         ),
         BlocProvider(
-          create: ((context) => BranchesCubit()),
+          create: ((context) => BranchesCubit()..myBranches),
+        ),
+        BlocProvider(
+          create: ((context) => OrderCubit()..myOrders),
         ),
       ],
       child: BlocConsumer<AppCubit, AppStates>(

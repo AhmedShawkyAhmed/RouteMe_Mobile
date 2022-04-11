@@ -1,10 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_translate/flutter_translate.dart';
 import 'package:mobile/presentation/styles/colors.dart';
 import 'package:sizer/sizer.dart';
 
 class OrderCard extends StatelessWidget {
-  final String order;
+  final int order;
   final String status;
 
   const OrderCard({
@@ -40,7 +39,7 @@ class OrderCard extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               Text(
-                order,
+                order.toString(),
                 style: const TextStyle(
                   fontSize: 18,
                   color: AppColors.white,

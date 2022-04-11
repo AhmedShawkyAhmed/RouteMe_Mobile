@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_translate/flutter_translate.dart';
+import 'package:mobile/business_logic/order_cubit/order_cubit.dart';
+import 'package:mobile/data/models/order_model.dart';
 import 'package:mobile/presentation/styles/colors.dart';
 import 'package:sizer/sizer.dart';
 import '../../widgets/default_search_field.dart';
@@ -50,26 +53,46 @@ class MyOrdersScreen extends StatelessWidget {
               ),
             ),
           )),
-      body: Padding(
-        padding: const EdgeInsets.only(
-          top: 5,
-          right: 5,
-          left: 5,
-        ),
-        child: SizedBox(
-          width: 100.w,
-          height: 70.h,
-          child: ListView.builder(
-            physics: BouncingScrollPhysics(),
-            itemCount: 10,
-            itemBuilder: (context, position) {
-              return OrderCard(
-                order: '#625035',
-                status: 'On it\'s way',
-              );
-            },
-          ),
-        ),
+      body: BlocBuilder<OrderCubit, List<OrderModel>>(
+        builder: (context, state) {
+          if (state.isEmpty) {
+            return const Center(
+              child: CircularProgressIndicator(),
+            );
+          }
+          return SizedBox(
+            width: double.infinity,
+            child: Column(
+              children: [
+                const SizedBox(
+                  height: 40,
+                ),
+                SizedBox(
+                  width: 100.w,
+                  height: 60.h,
+                  child: ListView.builder(
+                    physics: const BouncingScrollPhysics(),
+                    itemCount: OrderCubit.get(context)
+                        .orderResponse!
+                        .orders!
+                        .length,
+                    itemBuilder: (context, position) {
+                      return OrderCard(
+                          order: OrderCubit.get(context)
+                              .orderResponse!
+                              .orders![position]
+                              .id,
+                          status: OrderCubit.get(context)
+                              .orderResponse!
+                              .orders![position].state,
+                      );
+                    },
+                  ),
+                ),
+              ],
+            ),
+          );
+        },
       ),
     );
   }
