@@ -16,9 +16,11 @@ class LanguageCubit extends Cubit<LanguageState> {
     if(CacheHelper.getDataFromSharedPreference(key: 'language') == "ar"){
       CacheHelper.saveDataSharedPreference(key: 'language', value: "en");
       delegate.changeLocale(const Locale("en"));
+      emit(LanguageChangeState());
     }else{
       CacheHelper.saveDataSharedPreference(key: 'language', value: "ar");
       delegate.changeLocale(const Locale("ar"));
+      emit(LanguageChangeState());
     }
     emit(LanguageSuccessState("ar"));
   }

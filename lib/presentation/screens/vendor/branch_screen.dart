@@ -76,6 +76,7 @@ class _BranchScreenState extends State<BranchScreen> {
                     width: 100.w,
                     height: 70.h,
                     child: ListView.builder(
+                      physics: BouncingScrollPhysics(),
                       itemCount: BranchesCubit.get(context).getBranchesResponse!.branches!.length,
                       itemBuilder: (context, position) {
                         return Branches(

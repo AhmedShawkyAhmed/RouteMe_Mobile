@@ -7,6 +7,8 @@ class LanguageInitial extends LanguageState {}
 
 class LanguageLoadingState extends LanguageState {}
 
+class LanguageChangeState extends LanguageState {}
+
 class LanguageSuccessState extends LanguageState {
   final String local;
   LanguageSuccessState(this.local);
