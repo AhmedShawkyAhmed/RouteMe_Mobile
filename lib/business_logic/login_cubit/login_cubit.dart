@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:meta/meta.dart';
 import 'package:mobile/data/local/cache_helper.dart';
 import 'package:mobile/data/network/responses/login_response.dart';
 import 'package:mobile/data/remote/dio_helper.dart';
@@ -33,6 +32,8 @@ class LoginCubit extends Cubit<LoginState> {
       if (loginResponse!.status == 200) {
         emit(LoginSuccessState(loginResponse!));
         print(loginResponse!.user![0].name);
+        CacheHelper.saveDataSharedPreference(
+            key: 'userId', value: loginResponse!.user![0].id);
         CacheHelper.saveDataSharedPreference(
             key: 'type', value: loginResponse!.user![0].type);
         CacheHelper.saveDataSharedPreference(
