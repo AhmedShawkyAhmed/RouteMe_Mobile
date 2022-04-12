@@ -14,86 +14,111 @@ class MyOrdersScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: PreferredSize(
-          preferredSize: const Size.fromHeight(110),
-          child: AppBar(
-            backgroundColor: AppColors.white,
-            title: Padding(
-              padding: const EdgeInsets.only(
-                top: 100,
-              ),
-              child: SizedBox(
-                height: 17.h,
-                child: Text(
-                  translate("orders"),
-                  style: const TextStyle(
-                    fontWeight: FontWeight.bold,
-                    fontSize: 25,
-                    color: AppColors.darkGray,
+    return BlocConsumer<OrderCubit, List<OrderModel>>(
+      listener: (context, state) {},
+      builder: (context, state) {
+        return Scaffold(
+          appBar: PreferredSize(
+              preferredSize: const Size.fromHeight(110),
+              child: AppBar(
+                backgroundColor: AppColors.white,
+                title: Padding(
+                  padding: const EdgeInsets.only(
+                    top: 100,
+                  ),
+                  child: SizedBox(
+                    height: 17.h,
+                    child: Text(
+                      translate("orders"),
+                      style: const TextStyle(
+                        fontWeight: FontWeight.bold,
+                        fontSize: 25,
+                        color: AppColors.darkGray,
+                      ),
+                    ),
                   ),
                 ),
-              ),
-            ),
-            automaticallyImplyLeading: false,
-            centerTitle: true,
-            bottom: PreferredSize(
-              preferredSize: Size.fromHeight(2.h),
-              child: Padding(
-                padding: const EdgeInsets.only(
-                  bottom: 8,
-                ),
-                child: DefaultSearchField(
-                  controller: _searchContainer,
-                  hintText: translate("search"),
-                  onTap: () {},
-                  width: 90.w,
-                  height: 6.h,
-                ),
-              ),
-            ),
-          )),
-      body: BlocBuilder<OrderCubit, List<OrderModel>>(
-        builder: (context, state) {
-          if (state.isEmpty) {
-            return const Center(
-              child: CircularProgressIndicator(),
-            );
-          }
-          return SizedBox(
-            width: double.infinity,
-            child: Column(
-              children: [
-                const SizedBox(
-                  height: 40,
-                ),
-                SizedBox(
-                  width: 100.w,
-                  height: 60.h,
-                  child: ListView.builder(
-                    physics: const BouncingScrollPhysics(),
-                    itemCount: OrderCubit.get(context)
-                        .orderResponse!
-                        .orders!
-                        .length,
-                    itemBuilder: (context, position) {
-                      return OrderCard(
-                          order: OrderCubit.get(context)
-                              .orderResponse!
-                              .orders![position]
-                              .id,
-                          status: OrderCubit.get(context)
-                              .orderResponse!
-                              .orders![position].state,
-                      );
-                    },
+                automaticallyImplyLeading: false,
+                centerTitle: true,
+                bottom: PreferredSize(
+                  preferredSize: Size.fromHeight(2.h),
+                  child: Padding(
+                    padding: const EdgeInsets.only(
+                      bottom: 8,
+                    ),
+                    child: DefaultSearchField(
+                      controller: _searchContainer,
+                      hintText: translate("search"),
+                      onTap: () {
+                        OrderCubit.get(context)
+                            .searchOrders(
+                              orderId: _searchContainer.text,
+                            )
+                            .then(
+                              (value) =>
+                                  Navigator.pushNamed(context, "/orderDetails"),
+                            );
+                      },
+                      width: 90.w,
+                      height: 7.h,
+                    ),
                   ),
                 ),
-              ],
-            ),
-          );
-        },
-      ),
+              )),
+          body: state.isEmpty
+              ? const Center(
+                  child: CircularProgressIndicator(),
+                )
+              : SizedBox(
+                  width: double.infinity,
+                  child: SingleChildScrollView(
+                    child: Column(
+                      children: [
+                        const SizedBox(
+                          height: 40,
+                        ),
+                        SizedBox(
+                          width: 100.w,
+                          height: 60.h,
+                          child: ListView.builder(
+                            physics: const BouncingScrollPhysics(),
+                            itemCount: OrderCubit.get(context)
+                                .orderResponse!
+                                .orders!
+                                .length,
+                            itemBuilder: (context, position) {
+                              return OrderCard(
+                                order: OrderCubit.get(context)
+                                    .orderResponse!
+                                    .orders![position]
+                                    .id,
+                                status: OrderCubit.get(context)
+                                    .orderResponse!
+                                    .orders![position]
+                                    .state,
+                                onTap: (){
+                                  OrderCubit.get(context)
+                                      .searchOrders(
+                                    orderId: OrderCubit.get(context)
+                                        .orderResponse!
+                                        .orders![position]
+                                        .id.toString(),
+                                  )
+                                      .then(
+                                        (value) =>
+                                        Navigator.pushNamed(context, "/orderDetails"),
+                                  );
+                                },
+                              );
+                            },
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                ),
+        );
+      },
     );
   }
 }

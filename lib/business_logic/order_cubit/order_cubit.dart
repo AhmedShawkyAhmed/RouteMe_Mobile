@@ -12,7 +12,7 @@ class OrderCubit extends Cubit<List<OrderModel>> {
   OrderCubit() : super([]);
   static OrderCubit get(context) => BlocProvider.of(context);
 
-  OrderResponse? orderResponse;
+  OrderResponse? orderResponse,searchResponse;
 
   Future getOrders() async {
     await DioHelper.postData(
@@ -37,5 +37,28 @@ class OrderCubit extends Cubit<List<OrderModel>> {
     return orderResponse!.orders;
   }
 
+  Future searchOrders({String? orderId}) async {
+    await DioHelper.postData(
+      url: vendorOrders,
+      body: {
+        'vendorId': CacheHelper.getDataFromSharedPreference(key: "userId"),
+        'orderId': orderId,
+      },
+    ).then((value) {
+      //print(value.data);
+      final myData = Map<String, dynamic>.from(value.data);
+      searchResponse = OrderResponse.fromJson(myData);
+      if (searchResponse!.status == 200) {
+        print(searchResponse!.orders![0].clientName);
+        return searchResponse!.orders;
+      } else {
+        print(searchResponse!.message);
+        return searchResponse!.message;
+      }
+    }).catchError((error) {
+      print(error.toString());
+    });
+    return searchResponse!.orders;
+  }
   void get myOrders async => emit(await getOrders());
 }

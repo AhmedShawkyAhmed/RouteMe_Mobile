@@ -21,10 +21,13 @@
   "orders": "My Orders",
   "search": "Search",
   "client": "Client Name :",
+  "orderNo": "Order Number :",
   "phone": "Phone Number :",
   "branch": "Branch :",
   "items": "Items Count :",
   "state": "State :",
+  "price": "Price :",
+  "comment": "Comments :",
   "requestPickup": "Request Pickup",
   "hintClient": "Client Name",
   "hintPhone": "Phone Number",
@@ -35,5 +38,9 @@
   "request": "Request",
   "settings": "Settings",
   "logout": "Logout",
-  "about": "About App"
+  "about": "About App",
+  "yes": "Yes",
+  "no": "No",
+  "wantLogout": "Do you want to Logout",
+  "orderDetails": "Order Details"
 }

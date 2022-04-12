@@ -35,8 +35,8 @@ class DefaultSearchField extends StatelessWidget {
         child: TextFormField(
           controller: controller,
           style: const TextStyle(
-            color: Colors.black,
-            fontSize: 18,
+            color: AppColors.black,
+            fontSize: 25,
           ),
           cursorColor: AppColors.purple,
           maxLines: 1,

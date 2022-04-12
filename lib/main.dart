@@ -33,10 +33,8 @@ Future<void> main() async {
         supportedLocales: ['ar', 'en'],
       );
       await delegate.changeLocale(Locale(locale));
-      bool? isLogin = CacheHelper.getDataFromSharedPreference(key: 'login');
       runApp(MyApp(
         appRouter: AppRouter(),
-        isLogin: isLogin,
       ));
     },
     blocObserver: MyBlocObserver(),
@@ -45,11 +43,9 @@ Future<void> main() async {
 
 class MyApp extends StatefulWidget {
   final AppRouter appRouter;
-  final bool? isLogin;
 
   const MyApp({
     required this.appRouter,
-    required this.isLogin,
     Key? key,
   }) : super(key: key);
 
