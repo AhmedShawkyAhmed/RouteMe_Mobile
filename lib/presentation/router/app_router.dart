@@ -32,7 +32,9 @@ class AppRouter {
             builder: (_) =>  HomeLayout());
       case '/map':
         return MaterialPageRoute(
-            builder: (_) =>  const GoogleMapsScreen());
+            builder: (_) =>  GoogleMapsScreen(
+              data: settings.arguments,
+            ));
       case '/orderDetails':
         return MaterialPageRoute(
             builder: (_) => const OrderDetailsScreen());

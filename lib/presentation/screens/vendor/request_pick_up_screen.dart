@@ -139,6 +139,13 @@ class _RequestPickupScreenState extends State<RequestPickupScreen> {
                         Navigator.pushNamed(
                           context,
                           "/map",
+                          arguments: {
+                            'name': clientNameController.text,
+                            'phone': clientPhoneController.text,
+                            'count': itemsCountController.text,
+                            'price': totalPriceController.text,
+                            'branch': branch,
+                          },
                         );
                       },
                       width: 60.w,

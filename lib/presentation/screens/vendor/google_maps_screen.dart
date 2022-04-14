@@ -4,14 +4,16 @@ import 'package:flutter_translate/flutter_translate.dart';
 import 'package:geocode/geocode.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
+import 'package:mobile/business_logic/pickup_cubit/pickup_cubit.dart';
 import 'package:mobile/data/local/cache_helper.dart';
-import 'package:mobile/data/models/order_model.dart';
 import 'package:sizer/sizer.dart';
 import '../../styles/colors.dart';
 import '../../widgets/default_app_button.dart';
 
 class GoogleMapsScreen extends StatefulWidget {
-  const GoogleMapsScreen({Key? key}) : super(key: key);
+  final data;
+
+  const GoogleMapsScreen({this.data, Key? key}) : super(key: key);
 
   @override
   State<GoogleMapsScreen> createState() => _GoogleMapsScreenState();
@@ -92,6 +94,7 @@ class _GoogleMapsScreenState extends State<GoogleMapsScreen> {
 
   @override
   Widget build(BuildContext context) {
+    //Map arguments = ModalRoute.of(context)?.settings.arguments as Map;
     return Scaffold(
       body: Stack(
         children: [
@@ -146,16 +149,20 @@ class _GoogleMapsScreenState extends State<GoogleMapsScreen> {
                 fontSize: 25,
                 height: 8.h,
                 onTap: () {
-                  // PickupCubit.get(context).requestPickup(
-                  //   name: arguments['name'],
-                  //   phone: arguments['phone'],
-                  //   count: arguments['count'],
-                  //   price: arguments['price'],
-                  //   branch: arguments['branch'],
-                  //   address: myAddress,
-                  //   lon: lon,
-                  //   lat: lat,
-                  // );
+                  PickupCubit.get(context)
+                      .requestPickup(
+                        name: widget.data['name'],
+                        phone: widget.data['phone'],
+                        count: widget.data['count'],
+                        price: widget.data['price'],
+                        branch: widget.data['branch'],
+                        address: myAddress,
+                        lon: lon,
+                        lat: lat,
+                      )
+                      .then(
+                        (value) => Navigator.pushNamed(context, "/home"),
+                      );
                 },
                 width: 50.w,
                 textColor: AppColors.white,
