@@ -45,7 +45,7 @@ class OrderCubit extends Cubit<List<OrderModel>> {
         'orderId': orderId,
       },
     ).then((value) {
-      //print(value.data);
+      print(value.data);
       final myData = Map<String, dynamic>.from(value.data);
       searchResponse = OrderResponse.fromJson(myData);
       if (searchResponse!.status == 200) {

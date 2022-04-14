@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:sizer/sizer.dart';
 
 class DefaultIconButton extends StatelessWidget {
   final double width;
+  final double? size;
   final Color buttonColor;
   final Color iconColor;
   final IconData icon;
@@ -9,6 +11,7 @@ class DefaultIconButton extends StatelessWidget {
 
   const DefaultIconButton({
     required this.width,
+    this.size,
     required this.buttonColor,
     required this.iconColor,
     required this.icon,
@@ -20,18 +23,23 @@ class DefaultIconButton extends StatelessWidget {
   Widget build(BuildContext context) {
     return InkWell(
       onTap: onTap,
-      child: Container(
-        width: width,
-        height: width,
-        decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(10),
-          color: buttonColor,
+      child: Padding(
+        padding: EdgeInsets.only(
+          top: 1.h,
         ),
-        child: Center(
-          child: Icon(
+        child: Container(
+          width: width,
+          height: width,
+          decoration: BoxDecoration(
+            borderRadius: BorderRadius.circular(10),
+            color: buttonColor,
+          ),
+          child: Center(
+            child: Icon(
               icon,
-            color: iconColor,
-            size: width-10,
+              color: iconColor,
+              size: size ?? width - 10,
+            ),
           ),
         ),
       ),

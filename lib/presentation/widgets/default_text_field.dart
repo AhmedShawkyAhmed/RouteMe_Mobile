@@ -48,7 +48,7 @@ class DefaultTextField extends StatelessWidget {
           readOnly: readonly ?? true,
           controller: controller,
           style: const TextStyle(
-            color: Colors.black,
+            color: AppColors.black,
             fontSize: 18,
           ),
           cursorColor: AppColors.purple,

@@ -11,6 +11,8 @@ import 'package:mobile/business_logic/bloc_observer.dart';
 import 'package:mobile/business_logic/branches_cubit/branches_cubit.dart';
 import 'package:mobile/business_logic/language_cubit/language_cubit.dart';
 import 'package:mobile/business_logic/login_cubit/login_cubit.dart';
+import 'package:mobile/business_logic/map_cubit/map_cubit.dart';
+import 'package:mobile/business_logic/pickup_cubit/pickup_cubit.dart';
 import 'package:mobile/data/remote/dio_helper.dart';
 import 'package:sizer/sizer.dart';
 import 'business_logic/order_cubit/order_cubit.dart';
@@ -84,10 +86,16 @@ class _MyAppState extends State<MyApp> {
           create: ((context) => LanguageCubit()),
         ),
         BlocProvider(
+          create: ((context) => PickupCubit()..myBranches),
+        ),
+        BlocProvider(
           create: ((context) => BranchesCubit()..myBranches),
         ),
         BlocProvider(
           create: ((context) => OrderCubit()..myOrders),
+        ),
+        BlocProvider(
+          create: ((context) => MapCubit()..init),
         ),
       ],
       child: BlocConsumer<AppCubit, AppStates>(

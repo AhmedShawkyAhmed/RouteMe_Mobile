@@ -15,7 +15,6 @@
   "verify": "تحقق",
   "resetPassword": "إعادة تعيين كلمة المرور",
   "reset": "تعيين",
-  "status": "الحالات",
   "pickup": "طلب",
   "branches": "الفروع",
   "orders": "طلباتي",
@@ -42,5 +41,7 @@
   "yes":"نعم",
   "no": "لا",
   "wantLogout": "هل تريد تسجيل الخروج",
-  "orderDetails": "تفاصيل الطلب"
+  "orderDetails": "تفاصيل الطلب",
+  "confLocation": "تأكيد العنوان",
+  "orderLocation": "هل ترغب في إرسال الطلب إالي هذا العنوان ؟"
 }

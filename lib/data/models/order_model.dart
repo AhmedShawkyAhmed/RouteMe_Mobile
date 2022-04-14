@@ -4,28 +4,28 @@ class OrderModel {
   int itemCount;
   String clientName;
   String clientPhone;
-  String lon;
-  String lat;
+  double lon;
+  double lat;
   String address;
   double price;
   int vendorId;
-  int branchId;
+  String branch;
   String comment;
   String state;
 
   OrderModel({
-   required this.id,
-   required this.itemCount,
-   required this.clientName,
-   required this.clientPhone,
-   required this.lon,
-   required this.lat,
-   required this.address,
-   required this.price,
-   required this.vendorId,
-   required this.branchId,
-   required this.comment,
-   required this.state,
+    required this.id,
+    required this.itemCount,
+    required this.clientName,
+    required this.clientPhone,
+    required this.lon,
+    required this.lat,
+    required this.address,
+    required this.price,
+    required this.vendorId,
+    required this.branch,
+    required this.comment,
+    required this.state,
   });
 
 
@@ -34,12 +34,12 @@ class OrderModel {
     itemCount: json["itemCount"],
     clientName: json["clientName"],
     clientPhone: json["clientPhone"],
-    lon: json["lon"],
-    lat: json["lat"],
+    lon: json['lon'] == null ? 0.0 : json['lon'].toDouble(),
+    lat: json['lat'] == null ? 0.0 : json['lat'].toDouble(),
     address: json["address"],
     price: json['price'] == null ? 0.0 : json['price'].toDouble(),
     vendorId: json["vendorId"],
-    branchId: json["branchId"],
+    branch: json["branch"],
     comment: json["comment"],
     state: json["state"],
   );
@@ -54,7 +54,7 @@ class OrderModel {
     "address": address,
     "price": price,
     "vendorId": vendorId,
-    "branchId": branchId,
+    "branch": branch,
     "comment": comment,
     "state": state,
 

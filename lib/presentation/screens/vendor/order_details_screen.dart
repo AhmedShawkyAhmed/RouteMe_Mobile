@@ -183,6 +183,30 @@ class OrderDetailsScreen extends StatelessWidget {
                           Row(
                             children: [
                               Text(
+                                translate("branch"),
+                                style: const TextStyle(
+                                  color: AppColors.darkGray,
+                                  fontSize: 25,
+                                ),
+                              ),
+                              const SizedBox(
+                                width: 10,
+                              ),
+                              Text(
+                                OrderCubit.get(context)
+                                    .searchResponse!
+                                    .orders![0]
+                                    .branch,
+                                style: const TextStyle(
+                                  color: AppColors.darkGray,
+                                  fontSize: 25,
+                                ),
+                              ),
+                            ],
+                          ),
+                          Row(
+                            children: [
+                              Text(
                                 translate("state"),
                                 style: const TextStyle(
                                   color: AppColors.darkGray,

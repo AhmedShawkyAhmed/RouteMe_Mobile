@@ -8,7 +8,6 @@ import '../../styles/colors.dart';
 import '../../widgets/branch_widget.dart';
 import '../../widgets/default_icon_button.dart';
 import '../../widgets/default_text_field.dart';
-import 'google_maps_screen.dart';
 
 class BranchScreen extends StatefulWidget {
   const BranchScreen({Key? key}) : super(key: key);
@@ -64,29 +63,39 @@ class _BranchScreenState extends State<BranchScreen> {
                 const SizedBox(
                   height: 40,
                 ),
-                SizedBox(
-                  width: 100.w,
-                  height: 70.h,
-                  child: ListView.builder(
-                    physics: const BouncingScrollPhysics(),
-                    itemCount: BranchesCubit.get(context)
+                BranchesCubit.get(context)
                         .getBranchesResponse!
                         .branches!
-                        .length,
-                    itemBuilder: (context, position) {
-                      return Branches(
-                        branch: BranchesCubit.get(context)
-                            .getBranchesResponse!
-                            .branches![position]
-                            .branchName,
-                        phone: BranchesCubit.get(context)
-                            .getBranchesResponse!
-                            .branches![position]
-                            .phone,
-                      );
-                    },
-                  ),
-                ),
+                        .isEmpty
+                    ? Center(
+                        child: Image.asset(
+                          "assets/images/noStore.png",
+                          height: 150,
+                        ),
+                      )
+                    : SizedBox(
+                        width: 100.w,
+                        height: 70.h,
+                        child: ListView.builder(
+                          physics: const BouncingScrollPhysics(),
+                          itemCount: BranchesCubit.get(context)
+                              .getBranchesResponse!
+                              .branches!
+                              .length,
+                          itemBuilder: (context, position) {
+                            return Branches(
+                              branch: BranchesCubit.get(context)
+                                  .getBranchesResponse!
+                                  .branches![position]
+                                  .branchName,
+                              phone: BranchesCubit.get(context)
+                                  .getBranchesResponse!
+                                  .branches![position]
+                                  .phone,
+                            );
+                          },
+                        ),
+                      ),
               ],
             ),
           );
@@ -128,43 +137,31 @@ class _BranchScreenState extends State<BranchScreen> {
                               DefaultTextField(
                                 readonly: false,
                                 controller: branchContainer,
-                                hintText: 'Branch',
-                                validationText: 'branch must not be empty',
+                                hintText: translate("hintBranch"),
                               ),
                               DefaultTextField(
                                 readonly: false,
                                 controller: phoneContainer,
-                                hintText: 'Phone',
-                                validationText: 'phone must not be empty',
+                                hintText: translate("hintPhone"),
                               ),
                               Row(
-                                mainAxisAlignment:
-                                    MainAxisAlignment.spaceEvenly,
+                                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                crossAxisAlignment: CrossAxisAlignment.center,
                                 children: [
                                   DefaultTextField(
-                                      readonly: false,
-                                      controller: locationContainer,
-                                      hintText: 'Location',
-                                      validationText:
-                                          'location must not be empty',
-                                      width: 65.w),
-                                  Padding(
-                                    padding: const EdgeInsets.only(
-                                        left: 7, bottom: 7),
-                                    child: DefaultIconButton(
-                                        width: 14.w,
-                                        buttonColor: AppColors.darkPurple,
-                                        iconColor: AppColors.white,
-                                        icon: Icons.location_on,
-                                        onTap: () {
-                                          Navigator.push(
-                                            context,
-                                            MaterialPageRoute(
-                                                builder: (context) =>
-                                                    const GoogleMapsScreen()),
-                                          );
-                                        }),
-                                  )
+                                    readonly: false,
+                                    controller: locationContainer,
+                                    hintText: translate("address"),
+                                    width: 63.w,
+                                  ),
+                                  DefaultIconButton(
+                                    width: 14.w,
+                                    buttonColor: AppColors.darkPurple,
+                                    iconColor: AppColors.white,
+                                    icon: Icons.pin_drop,
+                                    onTap: () => Navigator.pushNamed(context, "/map"),
+                                    size: 35,
+                                  ),
                                 ],
                               ),
                             ],
