@@ -33,6 +33,7 @@ dependencies:
   dio: ^4.0.4
   flutter_polyline_points: ^1.0.0
   geolocator: ^8.2.0
+  geocode: ^1.0.1
   bloc: ^8.0.3
   flutter_bloc: ^8.0.1
   shared_preferences: ^2.0.13

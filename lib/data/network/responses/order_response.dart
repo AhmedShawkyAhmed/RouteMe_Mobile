@@ -1,4 +1,4 @@
-import 'package:mobile/data/models/account_model.dart';
+import 'package:mobile/data/models/order_model.dart';
 
 class OrderResponse {
   OrderResponse({
@@ -9,12 +9,12 @@ class OrderResponse {
 
   int? status;
   String? message;
-  List<AccountModel>? orders;
+  List<OrderModel>? orders;
 
   factory OrderResponse.fromJson(Map<String, dynamic> json) => OrderResponse(
     status: json["status"],
     message: json["message"],
-    orders: json["orders"] != null ? List<AccountModel>.from(json["orders"].map((x) => AccountModel.fromJson(x))) : json["orders"],
+    orders: json["orders"] != null ? List<OrderModel>.from(json["orders"].map((x) => OrderModel.fromJson(x))) : json["orders"],
   );
 
   Map<String, dynamic> toJson() => {

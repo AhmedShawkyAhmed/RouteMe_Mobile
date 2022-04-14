@@ -1,4 +1,3 @@
-
 import 'package:mobile/data/models/branch_model.dart';
 
 class GetBranchesResponse {

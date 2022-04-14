@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_translate/flutter_translate.dart';
 import 'package:mobile/presentation/styles/colors.dart';
 import 'package:mobile/presentation/widgets/lang_dialog.dart';
+import 'package:mobile/presentation/widgets/logout_dialog.dart';
 import 'package:sizer/sizer.dart';
 
 class Settings extends StatelessWidget {
@@ -45,10 +46,11 @@ class Settings extends StatelessWidget {
             ListTile(
               onTap: () {
                 showDialog(
-                    context: context,
-                    builder: (_) {
-                      return LangDialog();
-                    });
+                  context: context,
+                  builder: (_) {
+                    return const LangDialog();
+                  },
+                );
               },
               leading: const Icon(
                 Icons.language,
@@ -73,7 +75,14 @@ class Settings extends StatelessWidget {
               ),
             ),
             ListTile(
-              onTap: () {},
+              onTap: () {
+                showDialog(
+                  context: context,
+                  builder: (_) {
+                    return const LogoutDialog();
+                  },
+                );
+              },
               leading: const Icon(
                 Icons.logout,
               ),

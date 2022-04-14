@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:mobile/data/local/cache_helper.dart';
 import 'package:mobile/presentation/styles/colors.dart';
 import 'package:sizer/sizer.dart';
 
@@ -18,7 +19,12 @@ class _SplashScreenState extends State<SplashScreen> {
 
   navigate() async {
     await Future.delayed(const Duration(milliseconds: 1500), () {});
-    Navigator.of(context).pushNamed('/login');
+    //Navigator.of(context).pushNamed('/home');
+    CacheHelper.getDataFromSharedPreference(key: 'isLogin') ?? false
+        ? CacheHelper.getDataFromSharedPreference(key: "type") == "Driver"
+            ? Navigator.of(context).pushNamed('/tasks')
+            : Navigator.of(context).pushNamed('/home')
+        : Navigator.of(context).pushNamed('/login');
   }
 
   @override

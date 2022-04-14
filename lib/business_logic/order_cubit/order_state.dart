@@ -1,4 +1,4 @@
-part of 'order_cubit_cubit.dart';
+part of 'order_cubit.dart';
 
 @immutable
 abstract class OrderCubitState {}
