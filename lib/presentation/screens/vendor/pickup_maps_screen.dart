@@ -10,16 +10,16 @@ import 'package:sizer/sizer.dart';
 import '../../styles/colors.dart';
 import '../../widgets/default_app_button.dart';
 
-class GoogleMapsScreen extends StatefulWidget {
+class PickupMapsScreen extends StatefulWidget {
   final data;
 
-  const GoogleMapsScreen({this.data, Key? key}) : super(key: key);
+  const PickupMapsScreen({this.data, Key? key}) : super(key: key);
 
   @override
-  State<GoogleMapsScreen> createState() => _GoogleMapsScreenState();
+  State<PickupMapsScreen> createState() => _PickupMapsScreenState();
 }
 
-class _GoogleMapsScreenState extends State<GoogleMapsScreen> {
+class _PickupMapsScreenState extends State<PickupMapsScreen> {
   final Completer<GoogleMapController> _controller = Completer();
   final Map<String, Marker> _markers = {};
   String myAddress = "";
@@ -80,10 +80,6 @@ class _GoogleMapsScreenState extends State<GoogleMapsScreen> {
     myAddress =
         "${address.streetNumber}, ${address.streetAddress}, ${address.city}, ${address.region}, ${address.countryName}";
     print(myAddress);
-    // CacheHelper.saveDataSharedPreference(key: 'lat', value: position.latitude);
-    // CacheHelper.saveDataSharedPreference(key: 'lon', value: position.longitude);
-    // CacheHelper.saveDataSharedPreference(
-    //     key: 'orderLocation', value: myAddress);
   }
 
   @override
@@ -94,7 +90,6 @@ class _GoogleMapsScreenState extends State<GoogleMapsScreen> {
 
   @override
   Widget build(BuildContext context) {
-    //Map arguments = ModalRoute.of(context)?.settings.arguments as Map;
     return Scaffold(
       body: Stack(
         children: [

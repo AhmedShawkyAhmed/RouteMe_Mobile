@@ -138,7 +138,7 @@ class _RequestPickupScreenState extends State<RequestPickupScreen> {
                       onTap: () {
                         Navigator.pushNamed(
                           context,
-                          "/map",
+                          "/pickupMap",
                           arguments: {
                             'name': clientNameController.text,
                             'phone': clientPhoneController.text,

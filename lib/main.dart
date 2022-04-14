@@ -5,6 +5,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_translate/flutter_translate.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:intl/intl.dart';
+import 'package:mobile/business_logic/add_branch_cubit/add_branch_cubit.dart';
 import 'package:mobile/business_logic/app_cubit/app_cubit.dart';
 import 'package:mobile/business_logic/app_cubit/app_state.dart';
 import 'package:mobile/business_logic/bloc_observer.dart';
@@ -84,6 +85,9 @@ class _MyAppState extends State<MyApp> {
         ),
         BlocProvider(
           create: ((context) => LanguageCubit()),
+        ),
+        BlocProvider(
+          create: ((context) => AddBranchCubit()),
         ),
         BlocProvider(
           create: ((context) => PickupCubit()..myBranches),
