@@ -92,6 +92,24 @@ class _BranchScreenState extends State<BranchScreen> {
                                   .getBranchesResponse!
                                   .branches![position]
                                   .phone,
+                              onTap: (){
+                                branchContainer.text = BranchesCubit.get(context)
+                                    .getBranchesResponse!
+                                    .branches![position]
+                                    .branchName!;
+                                phoneContainer.text = BranchesCubit.get(context)
+                                    .getBranchesResponse!
+                                    .branches![position]
+                                    .phone!;
+                                locationContainer.text = BranchesCubit.get(context)
+                                    .getBranchesResponse!
+                                    .branches![position]
+                                    .address!;
+                                scaffoldKey.currentState!
+                                    .showBottomSheet(
+                                      (context) => showBranchForm(),
+                                );
+                              },
                             );
                           },
                         ),
@@ -102,87 +120,94 @@ class _BranchScreenState extends State<BranchScreen> {
         },
       ),
       floatingActionButton: FloatingActionButton(
-          child: Icon(
-            fabIcon,
-            size: 45,
-          ),
-          backgroundColor: AppColors.purple,
-          onPressed: () {
-            if (isBottomSheetShown) {
+        child: Icon(
+          fabIcon,
+          size: 45,
+        ),
+        backgroundColor: AppColors.purple,
+        onPressed: () {
+          if (isBottomSheetShown) {
+            setState(() {
+              fabIcon = Icons.add;
+            });
+
+            if (formKey.currentState!.validate()) {
+              print('no data');
+            }
+          } else {
+            scaffoldKey.currentState!
+                .showBottomSheet(
+                  (context) => showBranchForm(),
+                )
+                .closed
+                .then((value) {
+              isBottomSheetShown = false;
               setState(() {
                 fabIcon = Icons.add;
               });
-
-              if (formKey.currentState!.validate()) {
-                print('no data');
-              }
-            } else {
-              scaffoldKey.currentState!
-                  .showBottomSheet(
-                    (context) => Container(
-                      height: 45.h,
-                      width: double.infinity,
-                      padding: const EdgeInsets.all(20),
-                      child: Padding(
-                        padding: const EdgeInsets.only(
-                          top: 20,
-                          right: 20,
-                          left: 15,
-                        ),
-                        child: Form(
-                          key: formKey,
-                          child: Column(
-                            mainAxisSize: MainAxisSize.min,
-                            children: [
-                              DefaultTextField(
-                                readonly: false,
-                                controller: branchContainer,
-                                hintText: translate("hintBranch"),
-                              ),
-                              DefaultTextField(
-                                readonly: false,
-                                controller: phoneContainer,
-                                hintText: translate("hintPhone"),
-                              ),
-                              Row(
-                                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                                crossAxisAlignment: CrossAxisAlignment.center,
-                                children: [
-                                  DefaultTextField(
-                                    readonly: false,
-                                    controller: locationContainer,
-                                    hintText: translate("address"),
-                                    width: 63.w,
-                                  ),
-                                  DefaultIconButton(
-                                    width: 14.w,
-                                    buttonColor: AppColors.darkPurple,
-                                    iconColor: AppColors.white,
-                                    icon: Icons.pin_drop,
-                                    onTap: () => Navigator.pushNamed(context, "/map"),
-                                    size: 35,
-                                  ),
-                                ],
-                              ),
-                            ],
-                          ),
-                        ),
-                      ),
-                    ),
-                  )
-                  .closed
-                  .then((value) {
-                isBottomSheetShown = false;
-                setState(() {
-                  fabIcon = Icons.add;
-                });
-              });
-              isBottomSheetShown = true;
-              setState(() {
+            });
+            isBottomSheetShown = true;
+            setState(
+              () {
                 fabIcon = Icons.check;
-              });
-            }
-          }),
+              },
+            );
+          }
+        },
+      ),
+    );
+  }
+
+  Widget showBranchForm() {
+    return Container(
+      height: 45.h,
+      width: double.infinity,
+      padding: const EdgeInsets.all(20),
+      child: Padding(
+        padding: const EdgeInsets.only(
+          top: 20,
+          right: 20,
+          left: 15,
+        ),
+        child: Form(
+          key: formKey,
+          child: Column(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              DefaultTextField(
+                readonly: false,
+                controller: branchContainer,
+                hintText: translate("hintBranch"),
+              ),
+              DefaultTextField(
+                readonly: false,
+                controller: phoneContainer,
+                hintText: translate("hintPhone"),
+              ),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: [
+                  DefaultTextField(
+                    readonly: false,
+                    controller: locationContainer,
+                    hintText: translate("address"),
+                    width: 63.w,
+                  ),
+                  DefaultIconButton(
+                    width: 14.w,
+                    buttonColor: AppColors.darkPurple,
+                    iconColor: AppColors.white,
+                    icon: Icons.pin_drop,
+                    onTap: () => Navigator.pushNamed(context, "/map"),
+                    size: 35,
+                  ),
+                ],
+              ),
+            ],
+          ),
+        ),
+      ),
     );
   }
 }

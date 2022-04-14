@@ -33,10 +33,8 @@ class LogoutDialog extends StatelessWidget {
               children: [
                 Text(
                   translate("wantLogout"),
-                  style: const TextStyle(
-                    color: AppColors.darkGray,
-                    fontSize: 20
-                  ),
+                  style:
+                      const TextStyle(color: AppColors.darkGray, fontSize: 20),
                 ),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceAround,
@@ -49,7 +47,9 @@ class LogoutDialog extends StatelessWidget {
                       onTap: () {
                         Navigator.pushNamed(context, "/login");
                         CacheHelper.saveDataSharedPreference(
-                            key: 'isLogin', value: false);
+                          key: 'isLogin',
+                          value: false,
+                        );
                       },
                       width: 25.w,
                       textColor: AppColors.white,
