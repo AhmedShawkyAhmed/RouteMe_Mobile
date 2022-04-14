@@ -4,14 +4,14 @@ import 'package:mobile/presentation/widgets/default_app_button.dart';
 import 'package:sizer/sizer.dart';
 
 class TaskCard extends StatelessWidget {
-  String task;
+  int id;
   String client;
   String order;
   String start;
   String end;
 
   TaskCard({
-    required this.task,
+    required this.id,
     required this.client,
     required this.end,
     required this.order,
@@ -36,7 +36,7 @@ class TaskCard extends StatelessWidget {
           child: Column(
             children: [
               Text(
-                task,
+                id.toString(),
                 style: TextStyle(
                   fontSize: 18.sp,
                   color: AppColors.white,
