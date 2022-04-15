@@ -16,7 +16,6 @@ class BranchScreen extends StatefulWidget {
 }
 
 class _BranchScreenState extends State<BranchScreen> {
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -47,57 +46,45 @@ class _BranchScreenState extends State<BranchScreen> {
               child: CircularProgressIndicator(),
             );
           }
-          return SizedBox(
-            width: double.infinity,
-            child: SingleChildScrollView(
-              child: Column(
-                children: [
-                  const SizedBox(
-                    height: 40,
+          return BranchesCubit.get(context)
+                  .getBranchesResponse!
+                  .branches!
+                  .isEmpty
+              ? Center(
+                  child: Image.asset(
+                    "assets/images/noStore.png",
+                    height: 150,
                   ),
-                  BranchesCubit.get(context)
-                          .getBranchesResponse!
-                          .branches!
-                          .isEmpty
-                      ? Center(
-                          child: Image.asset(
-                            "assets/images/noStore.png",
-                            height: 150,
-                          ),
-                        )
-                      : SizedBox(
-                          width: 100.w,
-                          height: 70.h,
-                          child: ListView.builder(
-                            physics: const BouncingScrollPhysics(),
-                            itemCount: BranchesCubit.get(context)
-                                .getBranchesResponse!
-                                .branches!
-                                .length,
-                            itemBuilder: (context, position) {
-                              return Branches(
-                                branch: BranchesCubit.get(context)
-                                    .getBranchesResponse!
-                                    .branches![position]
-                                    .branchName,
-                                phone: BranchesCubit.get(context)
-                                    .getBranchesResponse!
-                                    .branches![position]
-                                    .phone,
-                                // onTap: () => showDialog(
-                                //   context: context,
-                                //   builder: (_) {
-                                //     return BranchDialog();
-                                //   },
-                                // ),
-                              );
-                            },
-                          ),
-                        ),
-                ],
-              ),
-            ),
-          );
+                )
+              : SizedBox(
+                  width: 100.w,
+                  height: 70.h,
+                  child: ListView.builder(
+                    physics: const BouncingScrollPhysics(),
+                    itemCount: BranchesCubit.get(context)
+                        .getBranchesResponse!
+                        .branches!
+                        .length,
+                    itemBuilder: (context, position) {
+                      return Branches(
+                        branch: BranchesCubit.get(context)
+                            .getBranchesResponse!
+                            .branches![position]
+                            .branchName,
+                        phone: BranchesCubit.get(context)
+                            .getBranchesResponse!
+                            .branches![position]
+                            .phone,
+                        // onTap: () => showDialog(
+                        //   context: context,
+                        //   builder: (_) {
+                        //     return BranchDialog();
+                        //   },
+                        // ),
+                      );
+                    },
+                  ),
+                );
         },
       ),
       floatingActionButton: FloatingActionButton(

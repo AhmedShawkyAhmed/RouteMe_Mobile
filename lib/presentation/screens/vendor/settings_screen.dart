@@ -48,7 +48,7 @@ class Settings extends StatelessWidget {
                 showDialog(
                   context: context,
                   builder: (_) {
-                    return const LangDialog();
+                    return LangDialog();
                   },
                 );
               },

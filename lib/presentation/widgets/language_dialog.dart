@@ -20,9 +20,7 @@ class LangDialog extends StatelessWidget {
               color: AppColors.black,
             ),
             color: AppColors.white,
-            borderRadius: BorderRadius.circular(
-              10,
-            ),
+            borderRadius: BorderRadius.circular(10),
           ),
           child: Padding(
             padding: const EdgeInsets.all(8.0),
