@@ -12,14 +12,17 @@ class LoginResponse {
   List<AccountModel>? user;
 
   factory LoginResponse.fromJson(Map<String, dynamic> json) => LoginResponse(
-    status: json["status"],
-    message: json["message"],
-    user: json["user"] != null ? List<AccountModel>.from(json["user"].map((x) => AccountModel.fromJson(x))) : json["user"],
-  );
+        status: json["status"],
+        message: json["message"],
+        user: json["user"] != null
+            ? List<AccountModel>.from(
+                json["user"].map((x) => AccountModel.fromJson(x)))
+            : json["user"],
+      );
 
   Map<String, dynamic> toJson() => {
-    "status": status,
-    "message": message,
-    "user": List<dynamic>.from(user!.map((x) => x.toJson())),
-  };
+        "status": status,
+        "message": message,
+        "user": List<dynamic>.from(user!.map((x) => x.toJson())),
+      };
 }

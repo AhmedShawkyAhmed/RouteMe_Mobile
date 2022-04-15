@@ -1,22 +1,24 @@
 import 'package:flutter/material.dart';
 
 class DefaultAppButton extends StatelessWidget {
-  VoidCallback onTap;
-  String text;
-  double width;
-  double height;
-  Color backGround;
-  Color textColor;
-  double fontSize;
-   DefaultAppButton({
+  final VoidCallback onTap;
+  final String text;
+  final double width;
+  final double height;
+  final Color backGround;
+  final Color textColor;
+  final double fontSize;
+
+  const DefaultAppButton({
     required this.text,
     required this.backGround,
     required this.fontSize,
     required this.height,
     required this.onTap,
-     required this.width,
+    required this.width,
     required this.textColor,
-  Key? key,}) : super(key: key);
+    Key? key,
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {

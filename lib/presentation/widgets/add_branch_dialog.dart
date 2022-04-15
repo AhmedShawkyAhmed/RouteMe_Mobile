@@ -8,8 +8,8 @@ import 'package:sizer/sizer.dart';
 class BranchDialog extends StatelessWidget {
   BranchDialog({Key? key}) : super(key: key);
 
-  TextEditingController branchContainer = TextEditingController();
-  TextEditingController phoneContainer = TextEditingController();
+  final TextEditingController branchContainer = TextEditingController();
+  final TextEditingController phoneContainer = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -24,9 +24,7 @@ class BranchDialog extends StatelessWidget {
               color: AppColors.black,
             ),
             color: AppColors.white,
-            borderRadius: BorderRadius.circular(
-              10,
-            ),
+            borderRadius: BorderRadius.circular(10),
           ),
           child: Padding(
             padding: const EdgeInsets.all(8.0),

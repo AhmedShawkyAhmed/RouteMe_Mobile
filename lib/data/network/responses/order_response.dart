@@ -12,14 +12,17 @@ class OrderResponse {
   List<OrderModel>? orders;
 
   factory OrderResponse.fromJson(Map<String, dynamic> json) => OrderResponse(
-    status: json["status"],
-    message: json["message"],
-    orders: json["orders"] != null ? List<OrderModel>.from(json["orders"].map((x) => OrderModel.fromJson(x))) : json["orders"],
-  );
+        status: json["status"],
+        message: json["message"],
+        orders: json["orders"] != null
+            ? List<OrderModel>.from(
+                json["orders"].map((x) => OrderModel.fromJson(x)))
+            : json["orders"],
+      );
 
   Map<String, dynamic> toJson() => {
-    "status": status,
-    "message": message,
-    "orders": List<dynamic>.from(orders!.map((x) => x.toJson())),
-  };
+        "status": status,
+        "message": message,
+        "orders": List<dynamic>.from(orders!.map((x) => x.toJson())),
+      };
 }

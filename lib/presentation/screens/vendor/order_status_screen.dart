@@ -70,62 +70,46 @@ class MyOrdersScreen extends StatelessWidget {
               ? const Center(
                   child: CircularProgressIndicator(),
                 )
-              : SizedBox(
-                  width: double.infinity,
-                  child: SingleChildScrollView(
-                    child: Column(
-                      children: [
-                        const SizedBox(
-                          height: 40,
-                        ),
-                        OrderCubit.get(context).orderResponse!.orders!.isEmpty
-                            ? Center(
-                                child: Image.asset(
-                                  "assets/images/noOrder.png",
-                                  height: 150,
-                                ),
+              : OrderCubit.get(context).orderResponse!.orders!.isEmpty
+                  ? Center(
+                      child: Image.asset(
+                        "assets/images/noOrder.png",
+                        height: 150,
+                      ),
+                    )
+                  : ListView.builder(
+                    physics: const BouncingScrollPhysics(),
+                    itemCount: OrderCubit.get(context)
+                        .orderResponse!
+                        .orders!
+                        .length,
+                    itemBuilder: (context, position) {
+                      return OrderCard(
+                        order: OrderCubit.get(context)
+                            .orderResponse!
+                            .orders![position]
+                            .id,
+                        status: OrderCubit.get(context)
+                            .orderResponse!
+                            .orders![position]
+                            .state,
+                        onTap: () {
+                          OrderCubit.get(context)
+                              .searchOrders(
+                                orderId: OrderCubit.get(context)
+                                    .orderResponse!
+                                    .orders![position]
+                                    .id
+                                    .toString(),
                               )
-                            : SizedBox(
-                                width: 100.w,
-                                height: 60.h,
-                                child: ListView.builder(
-                                  physics: const BouncingScrollPhysics(),
-                                  itemCount: OrderCubit.get(context)
-                                      .orderResponse!
-                                      .orders!
-                                      .length,
-                                  itemBuilder: (context, position) {
-                                    return OrderCard(
-                                      order: OrderCubit.get(context)
-                                          .orderResponse!
-                                          .orders![position]
-                                          .id,
-                                      status: OrderCubit.get(context)
-                                          .orderResponse!
-                                          .orders![position]
-                                          .state,
-                                      onTap: () {
-                                        OrderCubit.get(context)
-                                            .searchOrders(
-                                              orderId: OrderCubit.get(context)
-                                                  .orderResponse!
-                                                  .orders![position]
-                                                  .id
-                                                  .toString(),
-                                            )
-                                            .then(
-                                              (value) => Navigator.pushNamed(
-                                                  context, "/orderDetails"),
-                                            );
-                                      },
-                                    );
-                                  },
-                                ),
-                              ),
-                      ],
-                    ),
+                              .then(
+                                (value) => Navigator.pushNamed(
+                                    context, "/orderDetails"),
+                              );
+                        },
+                      );
+                    },
                   ),
-                ),
         );
       },
     );

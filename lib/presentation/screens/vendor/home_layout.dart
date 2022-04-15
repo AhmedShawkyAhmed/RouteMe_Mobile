@@ -7,8 +7,10 @@ import 'package:mobile/business_logic/app_cubit/app_state.dart';
 import 'package:mobile/presentation/styles/colors.dart';
 
 class HomeLayout extends StatelessWidget {
-  var scaffoldKey = GlobalKey<ScaffoldState>();
-  var formKey = GlobalKey<FormState>();
+  final scaffoldKey = GlobalKey<ScaffoldState>();
+  final  formKey = GlobalKey<FormState>();
+
+  HomeLayout({Key? key}) : super(key: key);
 
   Future<void> permissionLocation(BuildContext context) async {
     bool serviceEnabled;

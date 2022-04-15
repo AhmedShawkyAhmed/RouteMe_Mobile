@@ -76,10 +76,8 @@ class _BranchMapsScreenState extends State<BranchMapsScreen> {
     );
     lat = position.latitude;
     lon = position.longitude;
-    print(LatLng(position.latitude, position.longitude));
     myAddress =
-    "${address.streetNumber}, ${address.streetAddress}, ${address.city}, ${address.region}, ${address.countryName}";
-    print(myAddress);
+        "${address.streetNumber}, ${address.streetAddress}, ${address.city}, ${address.region}, ${address.countryName}";
   }
 
   @override
@@ -121,8 +119,8 @@ class _BranchMapsScreenState extends State<BranchMapsScreen> {
                 ),
                 child: Padding(
                   padding: CacheHelper.getDataFromSharedPreference(
-                      key: 'language') ==
-                      "ar"
+                              key: 'language') ==
+                          "ar"
                       ? const EdgeInsets.only(left: 2, right: 11)
                       : const EdgeInsets.only(left: 11, right: 2),
                   child: const Icon(
@@ -146,15 +144,15 @@ class _BranchMapsScreenState extends State<BranchMapsScreen> {
                 onTap: () {
                   AddBranchCubit.get(context)
                       .addNewBranch(
-                    name: widget.data['name'],
-                    phone: widget.data['phone'],
-                    lon: lon,
-                    lat: lat,
-                    address: myAddress,
-                  )
+                        name: widget.data['name'],
+                        phone: widget.data['phone'],
+                        lon: lon,
+                        lat: lat,
+                        address: myAddress,
+                      )
                       .then(
                         (value) => Navigator.pushNamed(context, "/home"),
-                  );
+                      );
                 },
                 width: 50.w,
                 textColor: AppColors.white,

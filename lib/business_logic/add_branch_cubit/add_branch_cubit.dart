@@ -3,7 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:meta/meta.dart';
 import 'package:mobile/constants/end_points.dart';
 import 'package:mobile/data/local/cache_helper.dart';
-import 'package:mobile/data/network/responses/requestPickup_response.dart';
+import 'package:mobile/data/network/responses/successful_response.dart';
 import 'package:mobile/data/remote/dio_helper.dart';
 
 part 'add_branch_state.dart';

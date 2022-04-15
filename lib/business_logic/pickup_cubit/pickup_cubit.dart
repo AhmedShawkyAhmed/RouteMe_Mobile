@@ -5,7 +5,7 @@ import 'package:meta/meta.dart';
 import 'package:mobile/constants/end_points.dart';
 import 'package:mobile/data/local/cache_helper.dart';
 import 'package:mobile/data/network/responses/getBranches_response.dart';
-import 'package:mobile/data/network/responses/requestPickup_response.dart';
+import 'package:mobile/data/network/responses/successful_response.dart';
 import 'package:mobile/data/remote/dio_helper.dart';
 
 part 'pickup_state.dart';

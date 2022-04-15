@@ -18,8 +18,8 @@ class DefaultPasswordField extends StatelessWidget {
     this.validationText,
     this.submit,
     this.suffix,
-     this.onTap,
-     this.icon,
+    this.onTap,
+    this.icon,
     required this.password,
     Key? key,
   }) : super(key: key);
@@ -37,9 +37,7 @@ class DefaultPasswordField extends StatelessWidget {
           vertical: 0.8.h,
         ),
         decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(
-            10,
-          ),
+          borderRadius: BorderRadius.circular(10),
         ),
         child: TextFormField(
           validator: (value) {
@@ -59,15 +57,10 @@ class DefaultPasswordField extends StatelessWidget {
           decoration: InputDecoration(
             hintText: hintText,
             suffixIcon: Padding(
-              padding: const EdgeInsets.only(
-                right: 10,
-              ),
-               child: icon
-               //IconButton(
-              //   icon: Icon(password ? Icons.visibility_off : Icons.visibility),
-              //   onPressed: onTap,
-              // ),
-            ),
+                padding: const EdgeInsets.only(
+                  right: 10,
+                ),
+                child: icon),
             alignLabelWithHint: true,
             hintStyle: const TextStyle(
               fontSize: 15,
@@ -99,4 +92,3 @@ class DefaultPasswordField extends StatelessWidget {
     );
   }
 }
-

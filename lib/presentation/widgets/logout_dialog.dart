@@ -33,8 +33,10 @@ class LogoutDialog extends StatelessWidget {
               children: [
                 Text(
                   translate("wantLogout"),
-                  style:
-                      const TextStyle(color: AppColors.darkGray, fontSize: 20),
+                  style: const TextStyle(
+                    color: AppColors.darkGray,
+                    fontSize: 20,
+                  ),
                 ),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceAround,

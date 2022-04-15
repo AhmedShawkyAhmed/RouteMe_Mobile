@@ -20,7 +20,7 @@ class AppCubit extends Cubit<AppStates>
 
   final List<Widget> children = [
     MyOrdersScreen(),
-    RequestPickupScreen(),
+    const RequestPickupScreen(),
     const BranchScreen(),
     const Settings()
   ];

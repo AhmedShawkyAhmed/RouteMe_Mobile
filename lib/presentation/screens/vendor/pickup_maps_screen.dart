@@ -76,10 +76,8 @@ class _PickupMapsScreenState extends State<PickupMapsScreen> {
     );
     lat = position.latitude;
     lon = position.longitude;
-    print(LatLng(position.latitude, position.longitude));
     myAddress =
         "${address.streetNumber}, ${address.streetAddress}, ${address.city}, ${address.region}, ${address.countryName}";
-    print(myAddress);
   }
 
   @override

@@ -84,12 +84,12 @@ class _BranchScreenState extends State<BranchScreen> {
                                     .getBranchesResponse!
                                     .branches![position]
                                     .phone,
-                                onTap: () => showDialog(
-                                  context: context,
-                                  builder: (_) {
-                                    return BranchDialog();
-                                  },
-                                ),
+                                // onTap: () => showDialog(
+                                //   context: context,
+                                //   builder: (_) {
+                                //     return BranchDialog();
+                                //   },
+                                // ),
                               );
                             },
                           ),

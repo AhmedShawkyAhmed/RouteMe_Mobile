@@ -128,17 +128,14 @@ class _LoginScreenState extends State<LoginScreen> {
                                   password: password.text,
                                   endPoint: login,
                                   afterSuccess: () {
-                                    print("Done Here");
                                     if (CacheHelper.getDataFromSharedPreference(
                                             key: "type") ==
                                         "Driver") {
-                                      print("Done Here 222");
                                       Navigator.of(context).pushNamed('/tasks');
                                     } else if (CacheHelper
                                             .getDataFromSharedPreference(
                                                 key: "type") ==
                                         "Vendor") {
-                                      print("Done Here 444");
                                       Navigator.of(context).pushNamed('/home');
                                     } else {
                                       print("Can't Login With this User");
