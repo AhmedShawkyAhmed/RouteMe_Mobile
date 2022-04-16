@@ -4,7 +4,7 @@ import 'package:mobile/presentation/screens/login_screen.dart';
 import 'package:mobile/presentation/screens/reset_password_screen.dart';
 import 'package:mobile/presentation/screens/splash_screen.dart';
 import 'package:mobile/presentation/screens/vendor/branch_map_screen.dart';
-import 'package:mobile/presentation/screens/vendor/pickup_maps_screen.dart';
+import 'package:mobile/presentation/screens/vendor/pickup_map_screen.dart';
 import 'package:mobile/presentation/screens/vendor/home_layout.dart';
 import 'package:mobile/presentation/screens/vendor/order_details_screen.dart';
 import 'package:mobile/presentation/screens/verify_screen.dart';
@@ -26,7 +26,7 @@ class AppRouter {
         return MaterialPageRoute(builder: (_) => HomeLayout());
       case '/pickupMap':
         return MaterialPageRoute(
-            builder: (_) => PickupMapsScreen(
+            builder: (_) => PickupMapScreen(
                   data: settings.arguments,
                 ));
       case '/branchMap':

@@ -117,16 +117,9 @@ class _BranchMapsScreenState extends State<BranchMapsScreen> {
                   color: AppColors.darkPurple,
                   borderRadius: BorderRadius.circular(50),
                 ),
-                child: Padding(
-                  padding: CacheHelper.getDataFromSharedPreference(
-                              key: 'language') ==
-                          "ar"
-                      ? const EdgeInsets.only(left: 2, right: 11)
-                      : const EdgeInsets.only(left: 11, right: 2),
-                  child: const Icon(
-                    Icons.arrow_back_ios,
-                    color: AppColors.white,
-                  ),
+                child: const Icon(
+                  Icons.arrow_back_ios_outlined,
+                  color: AppColors.white,
                 ),
               ),
             ),

@@ -19,25 +19,18 @@ class _BranchScreenState extends State<BranchScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: PreferredSize(
-        preferredSize: const Size.fromHeight(60),
-        child: AppBar(
-          backgroundColor: AppColors.white,
-          automaticallyImplyLeading: false,
-          centerTitle: true,
-          title: Padding(
-            padding: const EdgeInsets.only(
-              top: 10,
-            ),
-            child: Text(
-              translate("branches"),
-              style: const TextStyle(
-                fontSize: 30,
-                color: AppColors.darkGray,
-              ),
-            ),
+      appBar: AppBar(
+        backgroundColor: AppColors.white,
+        automaticallyImplyLeading: false,
+        title: Text(
+          translate("branches"),
+          style: const TextStyle(
+            fontWeight: FontWeight.bold,
+            fontSize: 25,
+            color: AppColors.darkGray,
           ),
         ),
+        centerTitle: true,
       ),
       body: BlocBuilder<BranchesCubit, List<BranchModel>>(
         builder: (context, state) {

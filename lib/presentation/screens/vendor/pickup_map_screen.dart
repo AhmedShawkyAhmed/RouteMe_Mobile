@@ -5,31 +5,30 @@ import 'package:geocode/geocode.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:mobile/business_logic/pickup_cubit/pickup_cubit.dart';
-import 'package:mobile/data/local/cache_helper.dart';
 import 'package:sizer/sizer.dart';
 import '../../styles/colors.dart';
 import '../../widgets/default_app_button.dart';
 
-class PickupMapsScreen extends StatefulWidget {
+class PickupMapScreen extends StatefulWidget {
   final data;
 
-  const PickupMapsScreen({this.data, Key? key}) : super(key: key);
+  const PickupMapScreen({this.data, Key? key}) : super(key: key);
 
   @override
-  State<PickupMapsScreen> createState() => _PickupMapsScreenState();
+  State<PickupMapScreen> createState() => _PickupMapScreenState();
 }
 
-class _PickupMapsScreenState extends State<PickupMapsScreen> {
+class _PickupMapScreenState extends State<PickupMapScreen> {
   final Completer<GoogleMapController> _controller = Completer();
   final Map<String, Marker> _markers = {};
   String myAddress = "";
   double lon = 0, lat = 0;
   GeoCode geoCode = GeoCode();
 
-  static const CameraPosition _kGooglePlex = CameraPosition(
+  static const CameraPosition _initialLocation = CameraPosition(
     target: LatLng(
-      37.42796133580664,
-      -122.085749655962,
+      30.049960701609457,
+      31.23683759550562,
     ),
     zoom: 18,
   );
@@ -97,7 +96,7 @@ class _PickupMapsScreenState extends State<PickupMapsScreen> {
             mapType: MapType.normal,
             markers: _markers.values.toSet(),
             onTap: addMarker,
-            initialCameraPosition: _kGooglePlex,
+            initialCameraPosition: _initialLocation,
             onMapCreated: (GoogleMapController controller) {
               _controller.complete(controller);
             },
@@ -117,16 +116,9 @@ class _PickupMapsScreenState extends State<PickupMapsScreen> {
                   color: AppColors.darkPurple,
                   borderRadius: BorderRadius.circular(50),
                 ),
-                child: Padding(
-                  padding: CacheHelper.getDataFromSharedPreference(
-                              key: 'language') ==
-                          "ar"
-                      ? const EdgeInsets.only(left: 2, right: 11)
-                      : const EdgeInsets.only(left: 11, right: 2),
-                  child: const Icon(
-                    Icons.arrow_back_ios,
-                    color: AppColors.white,
-                  ),
+                child: const Icon(
+                  Icons.arrow_back_ios_outlined,
+                  color: AppColors.white,
                 ),
               ),
             ),

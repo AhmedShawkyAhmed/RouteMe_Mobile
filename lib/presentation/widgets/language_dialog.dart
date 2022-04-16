@@ -4,8 +4,8 @@ import 'package:mobile/business_logic/language_cubit/language_cubit.dart';
 import 'package:mobile/presentation/styles/colors.dart';
 import 'package:sizer/sizer.dart';
 
-class LangDialog extends StatelessWidget {
-  const LangDialog({Key? key}) : super(key: key);
+class LanguageDialog extends StatelessWidget {
+  const LanguageDialog({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {

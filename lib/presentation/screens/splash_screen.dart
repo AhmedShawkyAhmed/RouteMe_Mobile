@@ -19,7 +19,6 @@ class _SplashScreenState extends State<SplashScreen> {
 
   navigate() async {
     await Future.delayed(const Duration(milliseconds: 1500), () {});
-    //Navigator.of(context).pushNamed('/home');
     CacheHelper.getDataFromSharedPreference(key: 'isLogin') ?? false
         ? CacheHelper.getDataFromSharedPreference(key: "type") == "Driver"
             ? Navigator.of(context).pushNamed('/tasks')
