@@ -10,6 +10,7 @@ import '../../styles/colors.dart';
 import '../../widgets/default_app_button.dart';
 
 class PickupMapScreen extends StatefulWidget {
+  // ignore: prefer_typing_uninitialized_variables
   final data;
 
   const PickupMapScreen({this.data, Key? key}) : super(key: key);

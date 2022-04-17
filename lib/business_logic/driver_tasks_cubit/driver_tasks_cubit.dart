@@ -1,4 +1,3 @@
-import 'package:bloc/bloc.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:meta/meta.dart';
 import 'package:mobile/constants/end_points.dart';
@@ -35,7 +34,7 @@ class DriverTasksCubit extends Cubit<List<MyTasksModel>> {
         return myTasksResponse!.message;
       }
     }).catchError((error) {
-      showToast(error.toString());
+      //showToast(error.toString());
     });
     return myTasksResponse!.tasks;
   }

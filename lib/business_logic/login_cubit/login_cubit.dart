@@ -29,7 +29,6 @@ class LoginCubit extends Cubit<LoginState> {
       'email': email,
       'password': password,
     }).then((value) {
-      print(value.data);
       final myData = Map<String, dynamic>.from(value.data);
       loginResponse = LoginResponse.fromJson(myData);
       if (loginResponse!.status == 200) {
@@ -54,7 +53,7 @@ class LoginCubit extends Cubit<LoginState> {
       }
     }).catchError((error) {
       emit(LoginErrorState(error.toString()));
-      showToast(error.toString());
+      //showToast(error.toString());
     });
   }
 }

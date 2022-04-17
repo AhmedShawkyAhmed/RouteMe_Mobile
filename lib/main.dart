@@ -15,6 +15,7 @@ import 'package:mobile/business_logic/language_cubit/language_cubit.dart';
 import 'package:mobile/business_logic/login_cubit/login_cubit.dart';
 import 'package:mobile/business_logic/pickup_cubit/pickup_cubit.dart';
 import 'package:mobile/data/remote/dio_helper.dart';
+import 'package:mobile/presentation/widgets/toast.dart';
 import 'package:sizer/sizer.dart';
 import 'business_logic/order_cubit/order_cubit.dart';
 import 'data/local/cache_helper.dart';
@@ -68,7 +69,7 @@ class _MyAppState extends State<MyApp> {
           Intl.defaultLocale = value.languageCode;
         });
       } catch (e) {
-        print(e);
+        showToast(e.toString());
       }
     };
   }

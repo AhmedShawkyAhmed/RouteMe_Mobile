@@ -1,4 +1,3 @@
-import 'package:bloc/bloc.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:meta/meta.dart';
@@ -28,21 +27,19 @@ class PickupCubit extends Cubit<List<dynamic>> {
         'vendorId': CacheHelper.getDataFromSharedPreference(key: "userId"),
       },
     ).then((value) {
-      print(value.data);
       final myData = Map<String, dynamic>.from(value.data);
       getBranchesResponse = GetBranchesResponse.fromJson(myData);
       if (getBranchesResponse!.status == 200) {
-        print(getBranchesResponse!.branches![0].branchName);
         for (int y = 0; y <= getBranchesResponse!.branches!.length; y++) {
           branchesName.add(getBranchesResponse!.branches![y].branchName);
         }
         return branchesName;
       } else {
-        print(getBranchesResponse!.message);
+        showToast(getBranchesResponse!.message);
         return getBranchesResponse!.message;
       }
     }).catchError((error) {
-      print(error.toString());
+      //showToast(error.toString());
     });
     return branchesName;
   }
@@ -76,7 +73,7 @@ class PickupCubit extends Cubit<List<dynamic>> {
       successfulResponse = SuccessfulResponse.fromJson(myData);
       showToast(successfulResponse!.message);
     }).catchError((error) {
-      showToast(error.toString());
+      //showToast(error.toString());
     });
     return successfulResponse!.message;
   }

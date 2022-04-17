@@ -74,7 +74,6 @@ class MyTasksModel {
         "branchId": branchId,
         "start": start,
         "end": end,
-        "comment": comment,
         "status": status,
       };
 }

@@ -1,4 +1,3 @@
-import 'package:bloc/bloc.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:mobile/constants/end_points.dart';
@@ -33,7 +32,7 @@ class BranchesCubit extends Cubit<List<BranchModel>> {
         return getBranchesResponse!.message;
       }
     }).catchError((error) {
-      showToast(error.toString());
+      //showToast(error.toString());
     });
     return getBranchesResponse!.branches;
   }

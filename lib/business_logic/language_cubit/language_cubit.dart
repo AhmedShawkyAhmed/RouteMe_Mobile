@@ -1,4 +1,3 @@
-import 'package:bloc/bloc.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:mobile/data/local/cache_helper.dart';
 import 'package:mobile/main.dart';

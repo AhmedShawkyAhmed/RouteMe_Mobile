@@ -5,12 +5,12 @@ import 'package:geocode/geocode.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:mobile/business_logic/add_branch_cubit/add_branch_cubit.dart';
-import 'package:mobile/data/local/cache_helper.dart';
 import 'package:sizer/sizer.dart';
 import '../../styles/colors.dart';
 import '../../widgets/default_app_button.dart';
 
 class BranchMapsScreen extends StatefulWidget {
+  // ignore: prefer_typing_uninitialized_variables
   final data;
 
   const BranchMapsScreen({this.data, Key? key}) : super(key: key);

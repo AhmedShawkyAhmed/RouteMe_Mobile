@@ -6,7 +6,7 @@ class AppChangeBottomNavBarState extends AppStates{}
 
 class AppChangeBottomSheetState extends AppStates{}
 
-class AppGetBranchLodingState extends AppStates{}
+class AppGetBranchLoadingState extends AppStates{}
 
 class AppGetBranchSuccessState extends AppStates{}
 
