@@ -52,22 +52,18 @@ class _RequestPickupScreenState extends State<RequestPickupScreen> {
               child: Column(
                 children: [
                   DefaultTextField(
-                    readonly: false,
                     controller: clientNameController,
                     hintText: translate("hintClient"),
                   ),
                   DefaultTextField(
-                    readonly: false,
                     controller: clientPhoneController,
                     hintText: translate("hintPhone"),
                   ),
                   DefaultTextField(
-                    readonly: false,
                     controller: itemsCountController,
                     hintText: translate("hintItems"),
                   ),
                   DefaultTextField(
-                    readonly: false,
                     controller: totalPriceController,
                     hintText: translate("total"),
                   ),

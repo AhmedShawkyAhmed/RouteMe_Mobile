@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_translate/flutter_translate.dart';
 import 'package:mobile/business_logic/language_cubit/language_cubit.dart';
 import 'package:mobile/presentation/styles/colors.dart';
+import 'package:mobile/presentation/widgets/default_app_button.dart';
 import 'package:sizer/sizer.dart';
 
 class LanguageDialog extends StatelessWidget {
@@ -13,8 +14,8 @@ class LanguageDialog extends StatelessWidget {
       backgroundColor: AppColors.transparent,
       body: Center(
         child: Container(
-          height: 15.h,
-          width: 40.w,
+          height: 30.h,
+          width: 65.w,
           decoration: BoxDecoration(
             border: Border.all(
               color: AppColors.black,
@@ -26,6 +27,7 @@ class LanguageDialog extends StatelessWidget {
             padding: const EdgeInsets.all(8.0),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 InkWell(
                   child: const Icon(
@@ -34,20 +36,49 @@ class LanguageDialog extends StatelessWidget {
                   onTap: () => Navigator.pop(context),
                 ),
                 Center(
-                  child: TextButton(
-                    onPressed: () {
-                      LanguageCubit.get(context).onLanguageChange();
-                      Navigator.pop(context);
-                    },
-                    child: Text(
-                      translate("lang"),
-                      style: const TextStyle(
-                        fontSize: 25,
-                        fontWeight: FontWeight.bold,
-                        color: AppColors.darkPurple,
-                      ),
+                  child: Text(
+                    translate('languages'),
+                    style: const TextStyle(
+                      fontSize: 25,
+                      color: AppColors.darkGray,
                     ),
                   ),
+                ),
+                Center(
+                  child: DefaultAppButton(
+                    text: "العربية",
+                    backGround: AppColors.darkPurple,
+                    fontSize: 20,
+                    height: 40,
+                    onTap: () {
+                      LanguageCubit.get(context).toArabic(
+                        afterSuccess: () => Navigator.pop(context)
+                      );
+                    },
+                    width: 40.w,
+                    textColor: AppColors.white,
+                  ),
+                ),
+                const SizedBox(
+                  height: 5,
+                ),
+                Center(
+                  child: DefaultAppButton(
+                    text: "English",
+                    backGround: AppColors.darkPurple,
+                    fontSize: 20,
+                    height: 40,
+                    onTap: () {
+                      LanguageCubit.get(context).toEnglish(
+                          afterSuccess: () => Navigator.pop(context)
+                      );
+                    },
+                    width: 40.w,
+                    textColor: AppColors.white,
+                  ),
+                ),
+                const SizedBox(
+                  height: 10,
                 ),
               ],
             ),

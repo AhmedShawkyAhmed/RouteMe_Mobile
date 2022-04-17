@@ -88,20 +88,15 @@ class _LoginScreenState extends State<LoginScreen> {
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [
                             DefaultTextField(
-                              validationText: translate("serverValidate"),
-                              readonly: false,
                               controller: server,
                               hintText: translate("server"),
                             ),
                             DefaultTextField(
-                              validationText: translate("emailValidate"),
-                              readonly: false,
                               controller: email,
                               hintText: translate("email"),
                             ),
                             DefaultPasswordField(
                               password: pass,
-                              validationText: translate("passwordValidate"),
                               controller: password,
                               icon: IconButton(
                                 icon: Icon(

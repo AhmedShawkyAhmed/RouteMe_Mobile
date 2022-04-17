@@ -3,6 +3,7 @@ import 'package:flutter_translate/flutter_translate.dart';
 import 'package:mobile/presentation/styles/colors.dart';
 import 'package:mobile/presentation/widgets/default_app_button.dart';
 import 'package:mobile/presentation/widgets/default_text_field.dart';
+import 'package:mobile/presentation/widgets/toast.dart';
 import 'package:sizer/sizer.dart';
 
 class BranchDialog extends StatelessWidget {
@@ -13,6 +14,7 @@ class BranchDialog extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    fToast.init(context);
     return Scaffold(
       backgroundColor: AppColors.transparent,
       body: Center(
@@ -33,13 +35,11 @@ class BranchDialog extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.spaceAround,
               children: [
                 DefaultTextField(
-                  readonly: false,
                   controller: branchContainer,
                   hintText: translate("hintBranch"),
                   width: 70.w,
                 ),
                 DefaultTextField(
-                  readonly: false,
                   controller: phoneContainer,
                   hintText: translate("hintPhone"),
                   width: 70.w,
@@ -52,7 +52,13 @@ class BranchDialog extends StatelessWidget {
                       backGround: AppColors.darkPurple,
                       fontSize: 20,
                       height: 7.h,
+                      width: 35.w,
+                      textColor: AppColors.white,
                       onTap: () {
+                        branchContainer.text == ''?
+                        showToast(translate('branchValidate')):
+                        phoneContainer.text == ''?
+                        showToast(translate('phoneValidate')):
                         Navigator.pushNamed(
                           context,
                           "/branchMap",
@@ -62,8 +68,6 @@ class BranchDialog extends StatelessWidget {
                           },
                         );
                       },
-                      width: 35.w,
-                      textColor: AppColors.white,
                     ),
                     DefaultAppButton(
                       text: translate("cancel"),

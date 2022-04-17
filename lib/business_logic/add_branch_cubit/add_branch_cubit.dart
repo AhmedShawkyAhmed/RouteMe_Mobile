@@ -5,6 +5,7 @@ import 'package:mobile/constants/end_points.dart';
 import 'package:mobile/data/local/cache_helper.dart';
 import 'package:mobile/data/network/responses/successful_response.dart';
 import 'package:mobile/data/remote/dio_helper.dart';
+import 'package:mobile/presentation/widgets/toast.dart';
 
 part 'add_branch_state.dart';
 
@@ -33,11 +34,11 @@ class AddBranchCubit extends Cubit<AddBranchState> {
         'address': address,
       },
     ).then((value) {
-      print(value.data);
       final myData = Map<String, dynamic>.from(value.data);
       successfulResponse = SuccessfulResponse.fromJson(myData);
+      showToast(successfulResponse!.message);
     }).catchError((error) {
-      print(error.toString());
+      showToast(error.toString());
     });
     return successfulResponse!.message;
   }

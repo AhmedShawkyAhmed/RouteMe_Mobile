@@ -29,16 +29,6 @@ class AppCubit extends Cubit<AppStates>
   void changeIndex(int index){
     currentIndex = index;
     emit(AppChangeBottomNavBarState());
-
-  }
-
-  void changeBottomSheetState({
-    required bool isShow,
-    required IconData icon,
-  }){
-    isBottomSheetShown = isShow;
-    fabIcon = icon;
-    emit(AppChangeBottomSheetState());
   }
 
   Future determinePosition() async {

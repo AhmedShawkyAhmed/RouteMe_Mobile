@@ -3,6 +3,7 @@ import 'package:flutter_translate/flutter_translate.dart';
 import 'package:mobile/presentation/styles/colors.dart';
 import 'package:mobile/presentation/widgets/language_dialog.dart';
 import 'package:mobile/presentation/widgets/logout_dialog.dart';
+import 'package:mobile/presentation/widgets/toast.dart';
 import 'package:sizer/sizer.dart';
 
 class Settings extends StatelessWidget {
@@ -10,6 +11,7 @@ class Settings extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    fToast.init(context);
     return Scaffold(
       appBar: AppBar(
         backgroundColor: AppColors.white,
@@ -63,12 +65,28 @@ class Settings extends StatelessWidget {
               ),
             ),
             ListTile(
-              onTap: () {},
+              onTap: () {
+                showToast(translate('soon'));
+              },
               leading: const Icon(
                 Icons.article_outlined,
               ),
               title: Text(
                 translate("about"),
+              ),
+              trailing: const Icon(
+                Icons.arrow_forward_ios,
+              ),
+            ),
+            ListTile(
+              onTap: () {
+                showToast(translate('soon'));
+              },
+              leading: const Icon(
+                Icons.article_outlined,
+              ),
+              title: Text(
+                translate("terms"),
               ),
               trailing: const Icon(
                 Icons.arrow_forward_ios,
