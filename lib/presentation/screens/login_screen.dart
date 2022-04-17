@@ -140,18 +140,9 @@ class _LoginScreenState extends State<LoginScreen> {
                                     password: password.text,
                                     endPoint: login,
                                     afterSuccess: (){
-                                      CacheHelper.getDataFromSharedPreference(
-                                          key: "type") ==
-                                          "Driver"
-                                          ? Navigator.of(context)
-                                          .pushNamed('/tasks')
-                                          : CacheHelper
-                                          .getDataFromSharedPreference(
-                                          key: "type") ==
-                                          "Vendor"
-                                          ? Navigator.of(context)
-                                          .pushNamed('/home')
-                                          : showToast(translate('passwordValidate'));
+                                      CacheHelper.getDataFromSharedPreference(key: "type") == "Driver"
+                                          ? Navigator.of(context).pushNamed('/tasks')
+                                          : Navigator.of(context).pushNamed('/home');
                                     },
                                     afterFail: (){
                                       Navigator.pop(context);
@@ -172,7 +163,7 @@ class _LoginScreenState extends State<LoginScreen> {
                                   translate("forget"),
                                 ),
                               ),
-                            )
+                            ),
                           ],
                         ),
                       ),
