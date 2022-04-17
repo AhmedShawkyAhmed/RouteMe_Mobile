@@ -30,6 +30,10 @@ class AppCubit extends Cubit<AppStates>
     currentIndex = index;
     emit(AppChangeBottomNavBarState());
   }
+  Future navigate({VoidCallback? afterSuccess}) async {
+    await Future.delayed(const Duration(milliseconds: 1500), () {});
+    afterSuccess!();
+  }
 
   Future determinePosition() async {
     bool serviceEnabled;
