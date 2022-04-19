@@ -8,13 +8,9 @@ class DefaultTextField extends StatelessWidget {
   final double? width;
   final double? height;
   final int? maxLine;
-  final String? validationText;
-  final bool? readonly;
   const DefaultTextField({
     required this.controller,
     required this.hintText,
-    required this.readonly,
-    this.validationText,
     this.width,
     this.height,
     this.maxLine,
@@ -39,13 +35,6 @@ class DefaultTextField extends StatelessWidget {
           ),
         ),
         child: TextFormField(
-          validator: (value) {
-            if (value!.isEmpty) {
-              return validationText;
-            }
-            return null;
-          },
-          readOnly: readonly ?? true,
           controller: controller,
           style: const TextStyle(
             color: AppColors.black,

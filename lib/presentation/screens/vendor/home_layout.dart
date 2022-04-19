@@ -1,38 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_translate/flutter_translate.dart';
-import 'package:geolocator/geolocator.dart';
 import 'package:mobile/business_logic/app_cubit/app_cubit.dart';
 import 'package:mobile/business_logic/app_cubit/app_state.dart';
 import 'package:mobile/presentation/styles/colors.dart';
 
 class HomeLayout extends StatelessWidget {
-  var scaffoldKey = GlobalKey<ScaffoldState>();
-  var formKey = GlobalKey<FormState>();
+  final scaffoldKey = GlobalKey<ScaffoldState>();
 
-  Future<void> permissionLocation(BuildContext context) async {
-    bool serviceEnabled;
-    LocationPermission permission;
-    permission = await Geolocator.checkPermission();
-    if (permission == LocationPermission.denied) {
-      permission = await Geolocator.requestPermission();
-      if (permission == LocationPermission.always) {
-        permissionLocation(context);
-        return;
-      }
-    } else if (permission == LocationPermission.deniedForever) {
-      const snackBar = SnackBar(
-        content: Text("acceptLocationPermission"),
-      );
-      // ignore: deprecated_member_use
-      scaffoldKey.currentState!.showSnackBar(snackBar);
-      return;
-    }
-    serviceEnabled = await Geolocator.isLocationServiceEnabled();
-    if (!serviceEnabled) {
-      return Future.error('Location services are disabled.');
-    }
-  }
+  HomeLayout({Key? key}) : super(key: key);
+
 
   @override
   Widget build(BuildContext context) {

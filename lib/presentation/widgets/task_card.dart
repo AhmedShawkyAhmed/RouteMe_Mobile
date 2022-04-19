@@ -5,6 +5,7 @@ import 'package:mobile/presentation/widgets/default_app_button.dart';
 import 'package:sizer/sizer.dart';
 
 class TaskCard extends StatelessWidget {
+
   int id;
   String client;
   String order;
@@ -12,7 +13,14 @@ class TaskCard extends StatelessWidget {
   String end;
   VoidCallback onTap; 
 
-  TaskCard({
+  final int id;
+  final String client;
+  final String order;
+  final String start;
+  final String end;
+
+
+  const TaskCard({
     required this.id,
     required this.client,
     required this.end,
@@ -25,7 +33,12 @@ class TaskCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.only(left: 10, right: 10, top: 15, bottom: 10),
+      padding: const EdgeInsets.only(
+        left: 10,
+        right: 10,
+        top: 15,
+        bottom: 10,
+      ),
       child: Container(
         width: 100.w,
         height: 29.h,
@@ -34,8 +47,13 @@ class TaskCard extends StatelessWidget {
           borderRadius: BorderRadius.circular(20),
         ),
         child: Padding(
-          padding:
-          const EdgeInsets.only(top: 5, bottom: 5, left: 15, right: 15),
+
+          padding: const EdgeInsets.only(
+            top: 8,
+            bottom: 5,
+            left: 15,
+            right: 15,
+          ),
           child: Column(
             children: [
               Text(
@@ -46,7 +64,12 @@ class TaskCard extends StatelessWidget {
                 ),
               ),
               Padding(
-                padding: const EdgeInsets.only(top: 5, left: 8, right: 8),
+
+                padding: const EdgeInsets.only(
+                  top: 8,
+                  left: 8,
+                  right: 8,
+                ),
                 child: Row(
                   children: [
                     Text(
@@ -70,7 +93,11 @@ class TaskCard extends StatelessWidget {
                 ),
               ),
               Padding(
-                padding: const EdgeInsets.only(top: 5, left: 8, right: 8),
+                padding: const EdgeInsets.only(
+                  top: 8,
+                  left: 8,
+                  right: 8,
+                ),
                 child: Row(
                   children: [
                     Text(
@@ -94,7 +121,13 @@ class TaskCard extends StatelessWidget {
                 ),
               ),
               Padding(
-                padding: const EdgeInsets.only(top: 5, left: 8, right: 8),
+
+                padding: const EdgeInsets.only(
+                  top: 8,
+                  left: 8,
+                  right: 8,
+                ),
+
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
@@ -115,7 +148,6 @@ class TaskCard extends StatelessWidget {
                         color: AppColors.white,
                       ),
                     ),
-
                     SizedBox(
                       width: 8.w,
                     ),
@@ -140,10 +172,12 @@ class TaskCard extends StatelessWidget {
                 ),
               ),
               Padding(
+
                 padding: const EdgeInsets.only(top: 20,bottom: 3),
                 child: DefaultAppButton(
                   onTap: () => onTap(),
                   text: translate("startTask"),
+
                   height: 7.h,
                   backGround: AppColors.white,
                   fontSize: 18,

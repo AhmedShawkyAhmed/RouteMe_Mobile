@@ -38,17 +38,14 @@ class _EndTaskScreenState extends State<EndTaskScreen> {
           child: Column(
             children: [
               DefaultTextField(
-                readonly: true,
                 controller: orderContainer,
                 hintText: "Order Number",
               ),
               DefaultTextField(
-                readonly: true,
                 controller: orderContainer,
                 hintText: "Total",
               ),
               DefaultTextField(
-                readonly: false,
                 controller: orderContainer,
                 hintText: "Comment",
                 height: 30.h,
@@ -60,7 +57,6 @@ class _EndTaskScreenState extends State<EndTaskScreen> {
                   Stack(
                     children: [
                       DefaultTextField(
-                        readonly: true,
                         controller: orderContainer,
                         hintText: "Attach Image",
                         width: 82.w,

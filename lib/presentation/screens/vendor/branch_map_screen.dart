@@ -4,20 +4,22 @@ import 'package:flutter_translate/flutter_translate.dart';
 import 'package:geocode/geocode.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
-import 'package:mobile/data/local/cache_helper.dart';
-import 'package:mobile/data/models/order_model.dart';
+import 'package:mobile/business_logic/add_branch_cubit/add_branch_cubit.dart';
 import 'package:sizer/sizer.dart';
 import '../../styles/colors.dart';
 import '../../widgets/default_app_button.dart';
 
-class GoogleMapsScreen extends StatefulWidget {
-  const GoogleMapsScreen({Key? key}) : super(key: key);
+class BranchMapsScreen extends StatefulWidget {
+  // ignore: prefer_typing_uninitialized_variables
+  final data;
+
+  const BranchMapsScreen({this.data, Key? key}) : super(key: key);
 
   @override
-  State<GoogleMapsScreen> createState() => _GoogleMapsScreenState();
+  State<BranchMapsScreen> createState() => _BranchMapsScreenState();
 }
 
-class _GoogleMapsScreenState extends State<GoogleMapsScreen> {
+class _BranchMapsScreenState extends State<BranchMapsScreen> {
   final Completer<GoogleMapController> _controller = Completer();
   final Map<String, Marker> _markers = {};
   String myAddress = "";
@@ -56,13 +58,13 @@ class _GoogleMapsScreenState extends State<GoogleMapsScreen> {
     setState(() {
       _markers.clear();
       final marker = Marker(
-        markerId: const MarkerId("orderLocation"),
+        markerId: const MarkerId("branchLocation"),
         icon: BitmapDescriptor.defaultMarkerWithHue(
           BitmapDescriptor.hueViolet,
         ),
         position: position,
       );
-      _markers["orderLocation"] = marker;
+      _markers["branchLocation"] = marker;
     });
     getAddress(LatLng(position.latitude, position.longitude));
   }
@@ -74,14 +76,8 @@ class _GoogleMapsScreenState extends State<GoogleMapsScreen> {
     );
     lat = position.latitude;
     lon = position.longitude;
-    print(LatLng(position.latitude, position.longitude));
     myAddress =
         "${address.streetNumber}, ${address.streetAddress}, ${address.city}, ${address.region}, ${address.countryName}";
-    print(myAddress);
-    // CacheHelper.saveDataSharedPreference(key: 'lat', value: position.latitude);
-    // CacheHelper.saveDataSharedPreference(key: 'lon', value: position.longitude);
-    // CacheHelper.saveDataSharedPreference(
-    //     key: 'orderLocation', value: myAddress);
   }
 
   @override
@@ -121,16 +117,9 @@ class _GoogleMapsScreenState extends State<GoogleMapsScreen> {
                   color: AppColors.darkPurple,
                   borderRadius: BorderRadius.circular(50),
                 ),
-                child: Padding(
-                  padding: CacheHelper.getDataFromSharedPreference(
-                              key: 'language') ==
-                          "ar"
-                      ? const EdgeInsets.only(left: 2, right: 11)
-                      : const EdgeInsets.only(left: 11, right: 2),
-                  child: const Icon(
-                    Icons.arrow_back_ios,
-                    color: AppColors.white,
-                  ),
+                child: const Icon(
+                  Icons.arrow_back_ios_outlined,
+                  color: AppColors.white,
                 ),
               ),
             ),
@@ -146,16 +135,17 @@ class _GoogleMapsScreenState extends State<GoogleMapsScreen> {
                 fontSize: 25,
                 height: 8.h,
                 onTap: () {
-                  // PickupCubit.get(context).requestPickup(
-                  //   name: arguments['name'],
-                  //   phone: arguments['phone'],
-                  //   count: arguments['count'],
-                  //   price: arguments['price'],
-                  //   branch: arguments['branch'],
-                  //   address: myAddress,
-                  //   lon: lon,
-                  //   lat: lat,
-                  // );
+                  AddBranchCubit.get(context)
+                      .addNewBranch(
+                        name: widget.data['name'],
+                        phone: widget.data['phone'],
+                        lon: lon,
+                        lat: lat,
+                        address: myAddress,
+                      )
+                      .then(
+                        (value) => Navigator.pushNamed(context, "/home"),
+                      );
                 },
                 width: 50.w,
                 textColor: AppColors.white,

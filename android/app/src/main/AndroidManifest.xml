@@ -32,5 +32,5 @@
              android:value="AIzaSyC9Q7-_X0Gh_YqAxNjfY5XEjQax2Z73xzI"/>
     </application>
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
-    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />    
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
 </manifest>

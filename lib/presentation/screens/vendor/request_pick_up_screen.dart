@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_translate/flutter_translate.dart';
 import 'package:mobile/business_logic/pickup_cubit/pickup_cubit.dart';
 import 'package:mobile/presentation/styles/colors.dart';
+import 'package:mobile/presentation/widgets/toast.dart';
 import 'package:sizer/sizer.dart';
 import '../../widgets/default_app_button.dart';
 import '../../widgets/default_text_field.dart';
@@ -23,6 +24,7 @@ class _RequestPickupScreenState extends State<RequestPickupScreen> {
 
   @override
   Widget build(BuildContext context) {
+    fToast.init(context);
     return BlocConsumer<PickupCubit, List<dynamic>>(
       listener: (context, state) {},
       builder: (context, state) {
@@ -50,22 +52,18 @@ class _RequestPickupScreenState extends State<RequestPickupScreen> {
               child: Column(
                 children: [
                   DefaultTextField(
-                    readonly: false,
                     controller: clientNameController,
                     hintText: translate("hintClient"),
                   ),
                   DefaultTextField(
-                    readonly: false,
                     controller: clientPhoneController,
                     hintText: translate("hintPhone"),
                   ),
                   DefaultTextField(
-                    readonly: false,
                     controller: itemsCountController,
                     hintText: translate("hintItems"),
                   ),
                   DefaultTextField(
-                    readonly: false,
                     controller: totalPriceController,
                     hintText: translate("total"),
                   ),
@@ -136,9 +134,26 @@ class _RequestPickupScreenState extends State<RequestPickupScreen> {
                       fontSize: 20,
                       height: 7.h,
                       onTap: () {
+                        clientNameController.text == ''?
+                        showToast(translate('clientNameValidate')):
+                        clientPhoneController.text == ''?
+                        showToast(translate('phoneValidate')):
+                        itemsCountController.text == ''?
+                        showToast(translate('countValidate')):
+                        totalPriceController.text == ''?
+                        showToast(translate('priceValidate')):
+                        branch == null?
+                        showToast(translate('branchValidate')):
                         Navigator.pushNamed(
                           context,
-                          "/map",
+                          "/pickupMap",
+                          arguments: {
+                            'name': clientNameController.text,
+                            'phone': clientPhoneController.text,
+                            'count': itemsCountController.text,
+                            'price': totalPriceController.text,
+                            'branch': branch,
+                          },
                         );
                       },
                       width: 60.w,

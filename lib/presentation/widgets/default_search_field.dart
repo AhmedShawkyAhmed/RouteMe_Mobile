@@ -28,9 +28,7 @@ class DefaultSearchField extends StatelessWidget {
         width: width,
         height: height,
         decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(
-            10,
-          ),
+          borderRadius: BorderRadius.circular(10),
         ),
         child: TextFormField(
           controller: controller,
