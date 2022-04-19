@@ -36,6 +36,8 @@ class LoginCubit extends Cubit<LoginState> {
         CacheHelper.saveDataSharedPreference(
             key: 'userId', value: loginResponse!.user![0].id);
         CacheHelper.saveDataSharedPreference(
+            key: 'vendor', value: loginResponse!.user![0].name);
+        CacheHelper.saveDataSharedPreference(
             key: 'type', value: loginResponse!.user![0].type);
         CacheHelper.saveDataSharedPreference(
             key: 'server', value: loginResponse!.user![0].server);

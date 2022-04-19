@@ -62,6 +62,7 @@ class PickupCubit extends Cubit<List<dynamic>> {
         'itemCount': count,
         'price': price,
         'branch': branch,
+        'vendor': CacheHelper.getDataFromSharedPreference(key: "vendor"),
         'vendorId': CacheHelper.getDataFromSharedPreference(key: "userId"),
         'lon': lon,
         'lat': lat,
