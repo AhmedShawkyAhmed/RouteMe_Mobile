@@ -10,6 +10,7 @@ class TaskCard extends StatelessWidget {
   String order;
   String start;
   String end;
+  VoidCallback onTap; 
 
   TaskCard({
     required this.id,
@@ -17,6 +18,7 @@ class TaskCard extends StatelessWidget {
     required this.end,
     required this.order,
     required this.start,
+    required this.onTap,
     Key? key,
   }) : super(key: key);
 
@@ -140,7 +142,7 @@ class TaskCard extends StatelessWidget {
               Padding(
                 padding: const EdgeInsets.only(top: 20,bottom: 3),
                 child: DefaultAppButton(
-                  onTap: (){},
+                  onTap: () => onTap(),
                   text: translate("startTask"),
                   height: 7.h,
                   backGround: AppColors.white,

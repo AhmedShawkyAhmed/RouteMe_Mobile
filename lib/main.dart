@@ -112,7 +112,7 @@ class _MyAppState extends State<MyApp> {
                     localizationsDelegates: [
                       GlobalCupertinoLocalizations.delegate,
                       DefaultCupertinoLocalizations.delegate,
-                      GlobalMaterialLocalizations.delegate,
+                      GlobalMaterialLocalizations.delegate,  
                       GlobalWidgetsLocalizations.delegate,
                       delegate,
                     ],
@@ -135,7 +135,7 @@ class _MyAppState extends State<MyApp> {
               );
             },
           );
-        },
+        }, 
       ),
     );
   }

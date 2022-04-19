@@ -1,6 +1,11 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
+import 'package:geocode/geocode.dart';
+import 'package:geolocator/geolocator.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:sizer/sizer.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 import '../../styles/colors.dart';
 import '../../widgets/default_app_button.dart';
@@ -8,15 +13,98 @@ import '../../widgets/default_icon_button.dart';
 import '../../widgets/task_card.dart';
 
 class TaskSetailsScreen extends StatefulWidget {
+  final data;
+
+  const TaskSetailsScreen({this.data,Key? key}) : super(key: key);
   @override
   State<TaskSetailsScreen> createState() => _TaskSetailsScreenState();
 }
 
+
+
+
 class _TaskSetailsScreenState extends State<TaskSetailsScreen> {
+  Future<void> getMyLocation() async {
+    Position position = await Geolocator.getCurrentPosition(
+      desiredAccuracy: LocationAccuracy.high,
+    );
+    final GoogleMapController controller = await _controller.future;
+    controller.animateCamera(
+      CameraUpdate.newCameraPosition(
+        CameraPosition(
+          target: LatLng(
+            position.latitude,
+            position.longitude,
+          ),
+          zoom: 18,
+        ),
+      ),
+    );
+    getAddress(LatLng(position.latitude, position.longitude));
+    addMarker(LatLng(position.latitude, position.longitude));
+  }
+
+  void addMarker(LatLng position) async {
+    setState(() {
+      _markers.clear();
+      final marker = Marker(
+        markerId: const MarkerId("orderLocation"),
+        icon: BitmapDescriptor.defaultMarkerWithHue(
+          BitmapDescriptor.hueViolet,
+        ),
+        position: position,
+      );
+      _markers["orderLocation"] = marker;
+    });
+    getAddress(LatLng(position.latitude, position.longitude));
+  }
+
+  void getAddress(LatLng position) async {
+    Address address = await geoCode.reverseGeocoding(
+      latitude: position.latitude,
+      longitude: position.longitude,
+    );
+    lat = position.latitude;
+    lon = position.longitude;
+    print(LatLng(position.latitude, position.longitude));
+    myAddress =
+        "${address.streetNumber}, ${address.streetAddress}, ${address.city}, ${address.region}, ${address.countryName}";
+    print(myAddress);
+    // CacheHelper.saveDataSharedPreference(key: 'lat', value: position.latitude);
+    // CacheHelper.saveDataSharedPreference(key: 'lon', value: position.longitude);
+    // CacheHelper.saveDataSharedPreference(
+    //     key: 'orderLocation', value: myAddress);
+  }
+  
+
+
+
+
+
+  static const CameraPosition _kGooglePlex = CameraPosition(
+    target: LatLng(
+      37.42796133580664,
+      -122.085749655962,
+    ),
+    zoom: 18,
+  );
+
+  final Completer<GoogleMapController> _controller = Completer();
+  final Map<String, Marker> _markers = {};
+  String myAddress = "";
+  double lon = 0, lat = 0;
+  GeoCode geoCode = GeoCode();
   static const _initialCameraPosition = CameraPosition(
     target: LatLng(30.033333, 31.233334),
     zoom: 11.5,
   );
+
+  @override
+  void initState() {
+    getMyLocation();
+    super.initState();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -24,13 +112,15 @@ class _TaskSetailsScreenState extends State<TaskSetailsScreen> {
         preferredSize: const Size.fromHeight(60),
         child: AppBar(
           backgroundColor: AppColors.darkPurple,
-          title: const Text(
-            'Task #7823',
+          title: Text(
+            widget.data['id'].toString(),
             style: TextStyle(fontSize: 30),
           ),
           centerTitle: true,
           leading: IconButton(
-            onPressed: () {},
+            onPressed: () {
+              Navigator.pop(context);
+            },
             icon: const Icon(
               Icons.arrow_back_ios,
               size: 30,
@@ -40,10 +130,16 @@ class _TaskSetailsScreenState extends State<TaskSetailsScreen> {
       ),
       body: Stack(
         children: [
-          const GoogleMap(
+          GoogleMap(
             myLocationButtonEnabled: false,
             zoomControlsEnabled: false,
-            initialCameraPosition: _initialCameraPosition,
+            mapType: MapType.normal,
+            markers: _markers.values.toSet(),
+            onTap: addMarker,
+            initialCameraPosition: _kGooglePlex,
+            onMapCreated: (GoogleMapController controller) {
+              _controller.complete(controller);
+            },
           ),
           Padding(
             padding:
@@ -82,7 +178,7 @@ class _TaskSetailsScreenState extends State<TaskSetailsScreen> {
                               width: 2.w,
                             ),
                             Text(
-                              'Khaled Mostafa',
+                              widget.data['name'],
                               style: TextStyle(
                                 fontSize: 15.sp,
                                 color: AppColors.white,
@@ -108,7 +204,7 @@ class _TaskSetailsScreenState extends State<TaskSetailsScreen> {
                               width: 2.w,
                             ),
                             Text(
-                              '7',
+                              widget.data['items'].toString(),
                               style: TextStyle(
                                 fontSize: 15.sp,
                                 color: AppColors.white,
@@ -128,7 +224,7 @@ class _TaskSetailsScreenState extends State<TaskSetailsScreen> {
                               width: 1.w,
                             ),
                             Text(
-                              '850 EGP',
+                              widget.data['total'].toString(),
                               style: TextStyle(
                                 fontSize: 15.sp,
                                 color: AppColors.white,
@@ -154,7 +250,7 @@ class _TaskSetailsScreenState extends State<TaskSetailsScreen> {
                               width: 2.w,
                             ),
                             Text(
-                              '1:30 PM',
+                              widget.data['start'],
                               style: TextStyle(
                                 fontSize: 15.sp,
                                 color: AppColors.white,
@@ -174,7 +270,7 @@ class _TaskSetailsScreenState extends State<TaskSetailsScreen> {
                               width: 2.w,
                             ),
                             Text(
-                              '3:00 PM',
+                              widget.data['end'],
                               style: TextStyle(
                                 fontSize: 15.sp,
                                 color: AppColors.white,
@@ -202,7 +298,9 @@ class _TaskSetailsScreenState extends State<TaskSetailsScreen> {
                                 buttonColor: AppColors.white,
                                 iconColor: AppColors.darkPurple,
                                 icon: Icons.phone_rounded,
-                                onTap: () {})
+                                onTap: () {
+                                  launch('tel://${widget.data['phone']}');
+                                })
                           ],
                         ),
                       ),
@@ -212,4 +310,5 @@ class _TaskSetailsScreenState extends State<TaskSetailsScreen> {
       ),
     );
   }
+
 }

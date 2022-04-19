@@ -34,6 +34,20 @@ class MyTasks extends StatelessWidget {
                            .length,
                        itemBuilder: (context, position) {
                          return TaskCard(
+                           onTap: () {
+                             Navigator.pushNamed(context, "/startTask",arguments: {
+                               'id': DriverTasksCubit.get(context).myTasksResponse!.tasks![position].id,
+                               'name': DriverTasksCubit.get(context).myTasksResponse!.tasks![position].clientName,
+                               'items': DriverTasksCubit.get(context).myTasksResponse!.tasks![position].itemCount,
+                               'total': DriverTasksCubit.get(context).myTasksResponse!.tasks![position].price,
+                               'start': DriverTasksCubit.get(context).myTasksResponse!.tasks![position].start,
+                               'end': DriverTasksCubit.get(context).myTasksResponse!.tasks![position].end,
+                               'lon': DriverTasksCubit.get(context).myTasksResponse!.tasks![position].lon,
+                               'lat': DriverTasksCubit.get(context).myTasksResponse!.tasks![position].lat,
+                               'phone': DriverTasksCubit.get(context).myTasksResponse!.tasks![position].clientPhone,
+                             });
+
+                           },
                            id: DriverTasksCubit.get(context)
                                .myTasksResponse!
                                .tasks![position]

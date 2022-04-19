@@ -164,14 +164,6 @@ class _GoogleMapsScreenState extends State<GoogleMapsScreen> {
           ),
         ],
       ),
-      floatingActionButton: FloatingActionButton(
-        backgroundColor: AppColors.darkPurple,
-        foregroundColor: AppColors.white,
-        onPressed: getMyLocation,
-        child: const Icon(
-          Icons.my_location,
-        ),
-      ),
     );
   }
 }
