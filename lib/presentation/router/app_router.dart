@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:mobile/presentation/screens/Driver/end_task_screen.dart';
 import 'package:mobile/presentation/screens/Driver/my_tasks.dart';
+import 'package:mobile/presentation/screens/Driver/task_details_screen.dart';
 import 'package:mobile/presentation/screens/login_screen.dart';
 import 'package:mobile/presentation/screens/reset_password_screen.dart';
 import 'package:mobile/presentation/screens/splash_screen.dart';
@@ -35,7 +37,13 @@ class AppRouter {
                   data: settings.arguments,
                 ));
       case '/orderDetails':
-        return MaterialPageRoute(builder: (_) => const OrderDetailsScreen());
+        return MaterialPageRoute(
+            builder: (_) => const OrderDetailsScreen());
+      case '/startTask':
+        return MaterialPageRoute(
+          builder: (_) =>  TaskSetailsScreen(
+            data: settings.arguments,
+          ));
       default:
         return null;
     }

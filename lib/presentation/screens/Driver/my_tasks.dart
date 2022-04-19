@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_translate/flutter_translate.dart';
 import 'package:mobile/business_logic/driver_tasks_cubit/driver_tasks_cubit.dart';
 import 'package:mobile/data/models/get_driver_tasks_model.dart';
+import 'package:mobile/presentation/widgets/drawer_widget.dart';
 import '../../styles/colors.dart';
 import '../../widgets/task_card.dart';
 
@@ -12,15 +14,12 @@ class MyTasks extends StatelessWidget {
       listener: (context, state) {},
       builder: (context, state) {
         return Scaffold(
+          drawer: NavigationDrawerWidget(),
           appBar: AppBar(
         backgroundColor: AppColors.darkPurple,
-        leading: const Icon(
-          Icons.settings,
-          size: 32,
-        ),
         centerTitle: true,
-        title: const Text(
-          'My Tasks',
+        title:  Text(
+          translate("mytaska"),
           style: TextStyle(fontWeight: FontWeight.bold, fontSize: 25),
         ),
       ) ,
@@ -35,6 +34,20 @@ class MyTasks extends StatelessWidget {
                            .length,
                        itemBuilder: (context, position) {
                          return TaskCard(
+                           onTap: () {
+                             Navigator.pushNamed(context, "/startTask",arguments: {
+                               'id': DriverTasksCubit.get(context).myTasksResponse!.tasks![position].id,
+                               'name': DriverTasksCubit.get(context).myTasksResponse!.tasks![position].clientName,
+                               'items': DriverTasksCubit.get(context).myTasksResponse!.tasks![position].itemCount,
+                               'total': DriverTasksCubit.get(context).myTasksResponse!.tasks![position].price,
+                               'start': DriverTasksCubit.get(context).myTasksResponse!.tasks![position].start,
+                               'end': DriverTasksCubit.get(context).myTasksResponse!.tasks![position].end,
+                               'lon': DriverTasksCubit.get(context).myTasksResponse!.tasks![position].lon,
+                               'lat': DriverTasksCubit.get(context).myTasksResponse!.tasks![position].lat,
+                               'phone': DriverTasksCubit.get(context).myTasksResponse!.tasks![position].clientPhone,
+                             });
+
+                           },
                            id: DriverTasksCubit.get(context)
                                .myTasksResponse!
                                .tasks![position]

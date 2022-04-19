@@ -1,4 +1,4 @@
-const String baseURL = "https://route-me2022.herokuapp.com/api/";
+const String baseURL = "https://routeme-2022.herokuapp.com/api/";
 const String login = "loginMobile";
 const String verify = "verifyCode";
 const String resetPassword = "resetPassword";

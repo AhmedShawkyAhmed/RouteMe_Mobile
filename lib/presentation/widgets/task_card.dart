@@ -1,14 +1,24 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_translate/flutter_translate.dart';
 import 'package:mobile/presentation/styles/colors.dart';
 import 'package:mobile/presentation/widgets/default_app_button.dart';
 import 'package:sizer/sizer.dart';
 
 class TaskCard extends StatelessWidget {
+
+  int id;
+  String client;
+  String order;
+  String start;
+  String end;
+  VoidCallback onTap; 
+
   final int id;
   final String client;
   final String order;
   final String start;
   final String end;
+
 
   const TaskCard({
     required this.id,
@@ -16,6 +26,7 @@ class TaskCard extends StatelessWidget {
     required this.end,
     required this.order,
     required this.start,
+    required this.onTap,
     Key? key,
   }) : super(key: key);
 
@@ -30,12 +41,13 @@ class TaskCard extends StatelessWidget {
       ),
       child: Container(
         width: 100.w,
-        height: 28.h,
+        height: 29.h,
         decoration: BoxDecoration(
           color: AppColors.darkPurple,
           borderRadius: BorderRadius.circular(20),
         ),
         child: Padding(
+
           padding: const EdgeInsets.only(
             top: 8,
             bottom: 5,
@@ -47,11 +59,12 @@ class TaskCard extends StatelessWidget {
               Text(
                 id.toString(),
                 style: TextStyle(
-                  fontSize: 18.sp,
+                  fontSize: 18,
                   color: AppColors.white,
                 ),
               ),
               Padding(
+
                 padding: const EdgeInsets.only(
                   top: 8,
                   left: 8,
@@ -60,9 +73,9 @@ class TaskCard extends StatelessWidget {
                 child: Row(
                   children: [
                     Text(
-                      'Client : ',
+                      translate("Client"),
                       style: TextStyle(
-                        fontSize: 15.sp,
+                        fontSize: 18,
                         color: AppColors.white,
                       ),
                     ),
@@ -72,7 +85,7 @@ class TaskCard extends StatelessWidget {
                     Text(
                       client,
                       style: TextStyle(
-                        fontSize: 15.sp,
+                        fontSize: 18,
                         color: AppColors.white,
                       ),
                     ),
@@ -88,9 +101,9 @@ class TaskCard extends StatelessWidget {
                 child: Row(
                   children: [
                     Text(
-                      'Order : ',
+                      translate("order"),
                       style: TextStyle(
-                        fontSize: 15.sp,
+                        fontSize: 18,
                         color: AppColors.white,
                       ),
                     ),
@@ -100,7 +113,7 @@ class TaskCard extends StatelessWidget {
                     Text(
                       order,
                       style: TextStyle(
-                        fontSize: 15.sp,
+                        fontSize: 18,
                         color: AppColors.white,
                       ),
                     ),
@@ -108,18 +121,20 @@ class TaskCard extends StatelessWidget {
                 ),
               ),
               Padding(
+
                 padding: const EdgeInsets.only(
                   top: 8,
                   left: 8,
                   right: 8,
                 ),
+
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     Text(
-                      'Start : ',
+                      translate("start"),
                       style: TextStyle(
-                        fontSize: 15.sp,
+                        fontSize: 18,
                         color: AppColors.white,
                       ),
                     ),
@@ -129,7 +144,7 @@ class TaskCard extends StatelessWidget {
                     Text(
                       start,
                       style: TextStyle(
-                        fontSize: 15.sp,
+                        fontSize: 18,
                         color: AppColors.white,
                       ),
                     ),
@@ -137,9 +152,9 @@ class TaskCard extends StatelessWidget {
                       width: 8.w,
                     ),
                     Text(
-                      'End : ',
+                      translate("end"),
                       style: TextStyle(
-                        fontSize: 15.sp,
+                        fontSize: 18,
                         color: AppColors.white,
                       ),
                     ),
@@ -149,7 +164,7 @@ class TaskCard extends StatelessWidget {
                     Text(
                       end,
                       style: TextStyle(
-                        fontSize: 15.sp,
+                        fontSize: 18,
                         color: AppColors.white,
                       ),
                     ),
@@ -157,16 +172,15 @@ class TaskCard extends StatelessWidget {
                 ),
               ),
               Padding(
-                padding: const EdgeInsets.only(
-                  top: 15,
-                  bottom: 5,
-                ),
+
+                padding: const EdgeInsets.only(top: 20,bottom: 3),
                 child: DefaultAppButton(
-                  onTap: () {},
-                  text: 'Start Task',
+                  onTap: () => onTap(),
+                  text: translate("startTask"),
+
                   height: 7.h,
                   backGround: AppColors.white,
-                  fontSize: 17.sp,
+                  fontSize: 18,
                   textColor: AppColors.lightPurple,
                   width: 50.w,
                 ),

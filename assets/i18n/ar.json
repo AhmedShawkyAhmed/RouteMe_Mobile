@@ -55,5 +55,11 @@
   "orderDetails": "تفاصيل الطلب",
   "confLocation": "تأكيد العنوان",
   "orderLocation": "هل ترغب في إرسال الطلب إالي هذا العنوان ؟",
+  "mytaska":"مهامي",
+  "Client":"زبون:",
+  "order":"طلب:",
+  "start":"يبدأ:",
+  "end":"ينتهي:",
+  "startTask":"ابدأ المهمة"
   "soon": "قريبا"
 }
