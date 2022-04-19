@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_translate/flutter_translate.dart';
 import 'package:mobile/presentation/styles/colors.dart';
-import 'package:mobile/presentation/widgets/lang_dialog.dart';
+import 'package:mobile/presentation/widgets/language_dialog.dart';
 import 'package:mobile/presentation/widgets/logout_dialog.dart';
 import 'package:sizer/sizer.dart';
 
@@ -33,7 +33,7 @@ class NavigationDrawerWidget extends StatelessWidget {
                 showDialog(
                   context: context,
                   builder: (_) {
-                    return const LangDialog();
+                    return const LanguageDialog();
                   },
                 );
               },

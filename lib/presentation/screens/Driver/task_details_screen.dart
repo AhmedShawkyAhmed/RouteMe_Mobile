@@ -24,6 +24,7 @@ class TaskSetailsScreen extends StatefulWidget {
 
 
 class _TaskSetailsScreenState extends State<TaskSetailsScreen> {
+  
   Future<void> getMyLocation() async {
     Position position = await Geolocator.getCurrentPosition(
       desiredAccuracy: LocationAccuracy.high,
