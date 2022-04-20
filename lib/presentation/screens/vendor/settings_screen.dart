@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_translate/flutter_translate.dart';
+import 'package:mobile/data/local/cache_helper.dart';
 import 'package:mobile/presentation/styles/colors.dart';
 import 'package:mobile/presentation/widgets/language_dialog.dart';
 import 'package:mobile/presentation/widgets/logout_dialog.dart';
@@ -15,7 +16,10 @@ class Settings extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         backgroundColor: AppColors.white,
-        automaticallyImplyLeading: false,
+        automaticallyImplyLeading:
+            CacheHelper.getDataFromSharedPreference(key: "type") == "Driver"
+                ? true
+                : false,
         title: Text(
           translate("settings"),
           style: const TextStyle(
@@ -25,6 +29,13 @@ class Settings extends StatelessWidget {
           ),
         ),
         centerTitle: true,
+        leading: InkWell(
+          onTap: () => Navigator.pushNamed(context, "/tasks"),
+          child: const Icon(
+            Icons.arrow_back_ios,
+            color: AppColors.darkGray,
+          ),
+        ),
       ),
       body: SizedBox(
         width: 100.w,
