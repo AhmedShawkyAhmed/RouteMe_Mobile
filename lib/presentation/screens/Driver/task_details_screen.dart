@@ -42,20 +42,41 @@ class _TaskSetailsScreenState extends State<TaskSetailsScreen> {
       ),
     );
     getAddress(LatLng(position.latitude, position.longitude));
-    addMarker(LatLng(position.latitude, position.longitude));
+    addMarker(LatLng(position.latitude, position.longitude),markerId:"driverLocation");
+    orderLocation(LatLng(29.84671751626389, 31.159779749768894));
   }
 
-  void addMarker(LatLng position) async {
+  Future<void> orderLocation(LatLng position1) async {
+    Position position = await Geolocator.getCurrentPosition(
+      desiredAccuracy: LocationAccuracy.high,
+    );
+    final GoogleMapController controller = await _controller.future;
+    controller.animateCamera(
+      CameraUpdate.newCameraPosition(
+        CameraPosition(
+          target: LatLng(
+            position1.latitude,
+            position1.longitude,
+          ),
+          zoom: 18,
+        ),
+      ),
+    );
+    getAddress(LatLng(position.latitude, position.longitude));
+    addMarker(LatLng(position.latitude, position.longitude),markerId: "orderLocation");
+  }
+
+  Future addMarker(LatLng position, {String? markerId}) async {
     setState(() {
-      _markers.clear();
+      // _markers.clear();
       final marker = Marker(
-        markerId: const MarkerId("orderLocation"),
+        markerId: MarkerId(markerId!),
         icon: BitmapDescriptor.defaultMarkerWithHue(
           BitmapDescriptor.hueViolet,
         ),
         position: position,
       );
-      _markers["orderLocation"] = marker;
+      _markers[markerId] = marker;
     });
     getAddress(LatLng(position.latitude, position.longitude));
   }
@@ -84,8 +105,7 @@ class _TaskSetailsScreenState extends State<TaskSetailsScreen> {
 
   static const CameraPosition _kGooglePlex = CameraPosition(
     target: LatLng(
-      37.42796133580664,
-      -122.085749655962,
+      30.036074702034966, 31.237643441318134
     ),
     zoom: 18,
   );
@@ -95,10 +115,10 @@ class _TaskSetailsScreenState extends State<TaskSetailsScreen> {
   String myAddress = "";
   double lon = 0, lat = 0;
   GeoCode geoCode = GeoCode();
-  static const _initialCameraPosition = CameraPosition(
-    target: LatLng(30.033333, 31.233334),
-    zoom: 11.5,
-  );
+  // static const _initialCameraPosition = CameraPosition(
+  //   target: LatLng(30.033333, 31.233334),
+  //   zoom: 11.5,
+  // );
 
   @override
   void initState() {
@@ -286,7 +306,9 @@ class _TaskSetailsScreenState extends State<TaskSetailsScreen> {
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
                             DefaultAppButton(
-                              onTap: () {},
+                              onTap: () {
+                                getMyLocation();
+                              },
                               text: 'End Task',
                               height: 7.h,
                               backGround: AppColors.white,
