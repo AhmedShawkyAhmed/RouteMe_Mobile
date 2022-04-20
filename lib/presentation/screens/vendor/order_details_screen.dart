@@ -16,35 +16,36 @@ class OrderDetailsScreen extends StatelessWidget {
       builder: (context, state) {
         return Scaffold(
           appBar: PreferredSize(
-              preferredSize: const Size.fromHeight(110),
-              child: AppBar(
-                backgroundColor: AppColors.white,
-                title: Padding(
-                  padding: const EdgeInsets.only(
-                    top: 100,
-                  ),
-                  child: SizedBox(
-                    height: 17.h,
-                    child: Text(
-                      translate("orderDetails"),
-                      style: const TextStyle(
-                        fontWeight: FontWeight.bold,
-                        fontSize: 25,
-                        color: AppColors.darkGray,
-                      ),
+            preferredSize: const Size.fromHeight(110),
+            child: AppBar(
+              backgroundColor: AppColors.white,
+              title: Padding(
+                padding: const EdgeInsets.only(
+                  top: 100,
+                ),
+                child: SizedBox(
+                  height: 17.h,
+                  child: Text(
+                    translate("orderDetails"),
+                    style: const TextStyle(
+                      fontWeight: FontWeight.bold,
+                      fontSize: 25,
+                      color: AppColors.darkGray,
                     ),
                   ),
                 ),
-                automaticallyImplyLeading: false,
-                centerTitle: true,
-                leading: InkWell(
-                  onTap: () => Navigator.pop(context),
-                  child: const Icon(
-                    Icons.arrow_back_ios,
-                    color: AppColors.darkGray,
-                  ),
+              ),
+              automaticallyImplyLeading: false,
+              centerTitle: true,
+              leading: InkWell(
+                onTap: () => Navigator.pop(context),
+                child: const Icon(
+                  Icons.arrow_back_ios,
+                  color: AppColors.darkGray,
                 ),
-              )),
+              ),
+            ),
+          ),
           body: state.isEmpty
               ? const Center(
                   child: CircularProgressIndicator(),

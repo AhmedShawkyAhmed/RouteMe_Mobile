@@ -5,29 +5,39 @@ import 'package:mobile/presentation/widgets/language_dialog.dart';
 import 'package:mobile/presentation/widgets/logout_dialog.dart';
 import 'package:sizer/sizer.dart';
 
-class NavigationDrawerWidget extends StatelessWidget {
-  const NavigationDrawerWidget({ Key? key }) : super(key: key);
+class DriverDrawer extends StatelessWidget {
+  const DriverDrawer({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return Drawer(
       child: Container(
-        color: AppColors.darkPurple,
+        color: AppColors.white,
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
-            const Padding(
-              padding: EdgeInsets.only(
-                top: 50,
-                left: 50,
-                right: 50,
-                bottom: 50,
+            Container(
+              width: 100.w,
+              height: 30.h,
+              decoration: const BoxDecoration(
+                color: AppColors.darkPurple
               ),
-              child: Image(
-                height: 200,
-                image: AssetImage('assets/images/Group_10.png'), 
+              child: const Padding(
+                padding: EdgeInsets.only(
+                  top: 30,
+                  bottom: 10,
+                ),
+                child: Image(
+                  height: 200,
+                  image: AssetImage(
+                    'assets/images/Group_10.png',
+                  ),
                 ),
               ),
+            ),
+            SizedBox(
+              height: 2.h,
+            ),
             ListTile(
               onTap: () {
                 showDialog(
@@ -39,30 +49,34 @@ class NavigationDrawerWidget extends StatelessWidget {
               },
               leading: const Icon(
                 Icons.language,
-                color: AppColors.white,
+                color: AppColors.darkGray,
               ),
               title: Text(
                 translate("language"),
-                style: TextStyle(color: AppColors.white),
+                style: const TextStyle(
+                  color: AppColors.darkGray,
+                ),
               ),
               trailing: const Icon(
                 Icons.arrow_forward_ios,
-                color: AppColors.white,
+                color: AppColors.darkGray,
               ),
             ),
             ListTile(
               onTap: () {},
               leading: const Icon(
                 Icons.article_outlined,
-                color: AppColors.white,
+                color: AppColors.darkGray,
               ),
               title: Text(
                 translate("about"),
-                style: TextStyle(color: AppColors.white),
+                style: const TextStyle(
+                  color: AppColors.darkGray,
+                ),
               ),
               trailing: const Icon(
                 Icons.arrow_forward_ios,
-                color: AppColors.white,
+                color: AppColors.darkGray,
               ),
             ),
             ListTile(
@@ -76,15 +90,17 @@ class NavigationDrawerWidget extends StatelessWidget {
               },
               leading: const Icon(
                 Icons.logout,
-                color: AppColors.white,
+                color: AppColors.darkGray,
               ),
               title: Text(
                 translate("logout"),
-                style: TextStyle(color: AppColors.white),
+                style: const TextStyle(
+                  color: AppColors.darkGray,
+                ),
               ),
               trailing: const Icon(
                 Icons.arrow_forward_ios,
-                color: AppColors.white,
+                color: AppColors.darkGray,
               ),
             ),
           ],

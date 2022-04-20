@@ -54,11 +54,12 @@
   "orderDetails": "Order Details",
   "confLocation": "Confirm Location",
   "orderLocation": "Would you like to send the Order to this Address ?",
-  "mytaska":"My Tasks",
+  "myTasks":"My Tasks",
   "Client":"Client:",
-  "order":"Order:",
+  "count":"Items Count:",
   "start":"Start:",
   "end":"End:",
   "startTask":"Start Task",
+  "endTask":"End Task",
   "soon": "Coming Soon"
 }
