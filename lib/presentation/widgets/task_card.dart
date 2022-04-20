@@ -6,19 +6,12 @@ import 'package:sizer/sizer.dart';
 
 class TaskCard extends StatelessWidget {
 
-  int id;
-  String client;
-  String order;
-  String start;
-  String end;
-  VoidCallback onTap; 
-
-  final int id;
-  final String client;
-  final String order;
-  final String start;
-  final String end;
-
+ final int id;
+ final String client;
+ final String order;
+ final String start;
+ final String end;
+ final VoidCallback onTap; 
 
   const TaskCard({
     required this.id,
