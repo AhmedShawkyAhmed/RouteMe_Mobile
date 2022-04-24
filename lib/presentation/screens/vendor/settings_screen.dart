@@ -16,10 +16,6 @@ class Settings extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         backgroundColor: AppColors.white,
-        automaticallyImplyLeading:
-            CacheHelper.getDataFromSharedPreference(key: "type") == "Driver"
-                ? true
-                : false,
         title: Text(
           translate("settings"),
           style: const TextStyle(
@@ -29,13 +25,16 @@ class Settings extends StatelessWidget {
           ),
         ),
         centerTitle: true,
-        leading: InkWell(
-          onTap: () => Navigator.pushNamed(context, "/tasks"),
-          child: const Icon(
-            Icons.arrow_back_ios,
-            color: AppColors.darkGray,
-          ),
-        ),
+        leading:
+            CacheHelper.getDataFromSharedPreference(key: "type") == "Driver"
+                ? InkWell(
+                    onTap: () => Navigator.pushNamed(context, "/tasks"),
+                    child: const Icon(
+                      Icons.arrow_back_ios,
+                      color: AppColors.darkGray,
+                    ),
+                  )
+                : const SizedBox(),
       ),
       body: SizedBox(
         width: 100.w,
