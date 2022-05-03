@@ -120,7 +120,12 @@ class _VerifyScreenState extends State<VerifyScreen> {
                                 height: 10.h,
                                 onTap: () {
                                   code.text == widget.data['code']?
-                                  Navigator.pushNamed(context, '/reset'):
+                                  Navigator.pushNamed(context, '/reset',
+                                    arguments: {
+                                      'type': widget.data['type'],
+                                      'userId': widget.data['userId'],
+                                    },
+                                  ):
                                       showToast(translate('codeValidate'));
                                 },
                                 width: 48.w,

@@ -63,23 +63,25 @@ class EmailDialog extends StatelessWidget {
                                     return const LoadingDialog();
                                   },
                                 ),
-                                VerifyCubit.get(context)
-                                    .verifyCode(
-                                      email: email.text,
-                                      code: code.toString(),
-                                    )
-                                    .then(
-                                      (value) => {
-                                        Navigator.pushNamed(
-                                          context,
-                                          "/verify",
-                                          arguments: {
-                                            'email': email.text,
-                                            'code': code.toString(),
-                                          },
-                                        )
-                                      },
-                                    ),
+                                VerifyCubit.get(context).verifyCode(
+                                  email: email.text,
+                                  code: code.toString(),
+                                  afterSuccess: () => Navigator.pushNamed(
+                                    context,
+                                    "/verify",
+                                    arguments: {
+                                      'email': email.text,
+                                      'code': code.toString(),
+                                      'type': VerifyCubit.get(context)
+                                          .verifyResponse!
+                                          .type,
+                                      'userId': VerifyCubit.get(context)
+                                          .verifyResponse!
+                                          .id,
+                                    },
+                                  ),
+                                  afterFail: () => Navigator.pop(context),
+                                ),
                               };
                       },
                     ),

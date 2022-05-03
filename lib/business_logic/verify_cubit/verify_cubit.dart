@@ -1,8 +1,7 @@
-import 'package:bloc/bloc.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:meta/meta.dart';
 import 'package:mobile/constants/end_points.dart';
-import 'package:mobile/data/network/responses/successful_response.dart';
+import 'package:mobile/data/network/responses/verify_response.dart';
 import 'package:mobile/data/remote/dio_helper.dart';
 import 'package:mobile/presentation/widgets/toast.dart';
 
@@ -13,11 +12,13 @@ class VerifyCubit extends Cubit<VerifyState> {
 
   static VerifyCubit get(context) => BlocProvider.of(context);
 
-  SuccessfulResponse? successfulResponse;
+  VerifyResponse? verifyResponse;
 
   Future verifyCode({
     required String email,
     required String code,
+    required VoidCallback afterSuccess,
+    required VoidCallback afterFail,
   }) async {
     await DioHelper.postData(
       url: verify,
@@ -27,11 +28,17 @@ class VerifyCubit extends Cubit<VerifyState> {
       },
     ).then((value) {
       final myData = Map<String, dynamic>.from(value.data);
-      successfulResponse = SuccessfulResponse.fromJson(myData);
-      showToast(successfulResponse!.message);
+      verifyResponse = VerifyResponse.fromJson(myData);
+      if(verifyResponse!.status == 200) {
+        afterSuccess();
+        showToast(verifyResponse!.message);
+      }else{
+        afterFail();
+        showToast(verifyResponse!.message);
+      }
     }).catchError((error) {
       //showToast(error.toString());
     });
-    return successfulResponse!.message;
+    return verifyResponse!.message;
   }
 }

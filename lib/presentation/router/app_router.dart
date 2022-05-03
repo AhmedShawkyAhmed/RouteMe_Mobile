@@ -25,7 +25,9 @@ class AppRouter {
           data: settings.arguments,
         ));
       case '/reset':
-        return MaterialPageRoute(builder: (_) => const ResetPassword());
+        return MaterialPageRoute(builder: (_) => ResetPassword(
+          data: settings.arguments,
+        ));
       case '/tasks':
         return MaterialPageRoute(builder: (_) => const MyTasksScreen());
       case '/previous':

@@ -12,6 +12,7 @@
   "serverValidate": "من فضلك ادخل إسم السيرفر",
   "emailValidate": "من فضلك ادخل البريد الإلكتروني",
   "passwordValidate": "من فضلك ادخل كلمة المرور",
+  "matchPassword": "كلمة المرور غير مطابقة",
   "clientNameValidate": "من فضلك ادخل إسم العميل",
   "phoneValidate": "من فضلك ادخل رقم الهاتف",
   "countValidate": "من فضلك ادخل عدد المنتجات",
