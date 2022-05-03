@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_translate/flutter_translate.dart';
 import 'package:mobile/data/local/cache_helper.dart';
 import 'package:mobile/presentation/styles/colors.dart';
-import 'package:mobile/presentation/widgets/language_dialog.dart';
-import 'package:mobile/presentation/widgets/logout_dialog.dart';
+import 'package:mobile/presentation/view/language_dialog.dart';
+import 'package:mobile/presentation/view/logout_dialog.dart';
 import 'package:mobile/presentation/widgets/toast.dart';
 import 'package:sizer/sizer.dart';
 
@@ -55,6 +55,32 @@ class Settings extends StatelessWidget {
                 ),
               ),
             ),
+            CacheHelper.getDataFromSharedPreference(key: "type") == "Driver"?
+            ListTile(
+              onTap: () => Navigator.pushNamed(context, "/tasks"),
+              leading: const Icon(
+                Icons.backup_table_sharp,
+              ),
+              title: Text(
+                translate("myTasks"),
+              ),
+              trailing: const Icon(
+                Icons.arrow_forward_ios,
+              ),
+            ):const SizedBox(),
+            CacheHelper.getDataFromSharedPreference(key: "type") == "Driver"?
+            ListTile(
+              onTap: () => Navigator.pushNamed(context, "/previous"),
+              leading: const Icon(
+                Icons.task_outlined,
+              ),
+              title: Text(
+                translate("finished"),
+              ),
+              trailing: const Icon(
+                Icons.arrow_forward_ios,
+              ),
+            ):const SizedBox(),
             ListTile(
               onTap: () {
                 showDialog(

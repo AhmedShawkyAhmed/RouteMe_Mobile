@@ -1,14 +1,18 @@
+import 'dart:math';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_translate/flutter_translate.dart';
 import 'package:mobile/business_logic/login_cubit/login_cubit.dart';
+import 'package:mobile/business_logic/verify_cubit/verify_cubit.dart';
 import 'package:mobile/constants/end_points.dart';
 import 'package:mobile/data/local/cache_helper.dart';
 import 'package:mobile/presentation/styles/colors.dart';
+import 'package:mobile/presentation/view/email_dialog.dart';
 import 'package:mobile/presentation/widgets/default_app_button.dart';
 import 'package:mobile/presentation/widgets/default_password_field.dart';
 import 'package:mobile/presentation/widgets/default_text_field.dart';
-import 'package:mobile/presentation/widgets/loading_dialog.dart';
+import 'package:mobile/presentation/view/loading_dialog.dart';
 import 'package:mobile/presentation/widgets/toast.dart';
 import 'package:sizer/sizer.dart';
 
@@ -120,35 +124,40 @@ class _LoginScreenState extends State<LoginScreen> {
                               width: 60.w,
                               textColor: AppColors.white,
                               onTap: () {
-                                server.text == ''?
-                                showToast(translate('serverValidate')):
-                                email.text == ''?
-                                showToast(translate('emailValidate')):
-                                password.text == ''?
-                                showToast(translate('passwordValidate')):
-                                {
-                                  showDialog(
-                                    context: context,
-                                    builder: (_) {
-                                      return const LoadingDialog();
-                                    },
-                                  ),
-                                  LoginCubit.get(context)
-                                      .userLogin(
-                                    server: server.text,
-                                    email: email.text,
-                                    password: password.text,
-                                    endPoint: login,
-                                    afterSuccess: (){
-                                      CacheHelper.getDataFromSharedPreference(key: "type") == "Driver"
-                                          ? Navigator.of(context).pushNamed('/tasks')
-                                          : Navigator.of(context).pushNamed('/home');
-                                    },
-                                    afterFail: (){
-                                      Navigator.pop(context);
-                                    },
-                                  )
-                                };
+                                server.text == ''
+                                    ? showToast(translate('serverValidate'))
+                                    : email.text == ''
+                                        ? showToast(translate('emailValidate'))
+                                        : password.text == ''
+                                            ? showToast(
+                                                translate('passwordValidate'))
+                                            : {
+                                                showDialog(
+                                                  context: context,
+                                                  builder: (_) {
+                                                    return const LoadingDialog();
+                                                  },
+                                                ),
+                                                LoginCubit.get(context)
+                                                    .userLogin(
+                                                  server: server.text,
+                                                  email: email.text,
+                                                  password: password.text,
+                                                  endPoint: login,
+                                                  afterSuccess: () {
+                                                    CacheHelper.getDataFromSharedPreference(
+                                                                key: "type") ==
+                                                            "Driver"
+                                                        ? Navigator.of(context)
+                                                            .pushNamed('/tasks')
+                                                        : Navigator.of(context)
+                                                            .pushNamed('/home');
+                                                  },
+                                                  afterFail: () {
+                                                    Navigator.pop(context);
+                                                  },
+                                                )
+                                              };
                               },
                             ),
                             Padding(
@@ -157,7 +166,40 @@ class _LoginScreenState extends State<LoginScreen> {
                               ),
                               child: TextButton(
                                 onPressed: () {
-                                  Navigator.of(context).pushNamed('/verify');
+                                  Random random = Random();
+                                  int code = random.nextInt(999999) + 100000;
+                                  email.text == ''
+                                      ? showDialog(
+                                          context: context,
+                                          builder: (_) {
+                                            return EmailDialog();
+                                          },
+                                        )
+                                      : {
+                                          showDialog(
+                                            context: context,
+                                            builder: (_) {
+                                              return const LoadingDialog();
+                                            },
+                                          ),
+                                          VerifyCubit.get(context)
+                                              .verifyCode(
+                                                email: email.text,
+                                                code: code.toString(),
+                                              )
+                                              .then(
+                                                (value) => {
+                                                  Navigator.pushNamed(
+                                                    context,
+                                                    "/verify",
+                                                    arguments: {
+                                                      'email': email.text,
+                                                      'code': code.toString(),
+                                                    },
+                                                  )
+                                                },
+                                              ),
+                                        };
                                 },
                                 child: Text(
                                   translate("forget"),

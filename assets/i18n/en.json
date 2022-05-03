@@ -19,6 +19,7 @@
   "searchValidate": "Please Enter Order ID for Search",
   "enterCode": "Please Enter the Verification Code that was sent via",
   "code": "Verification Code",
+  "codeValidate": "Verification Code isn't Matched",
   "verify": "Verify",
   "resetPassword": "Reset Your Password",
   "reset": "Reset",
@@ -61,5 +62,17 @@
   "end":"End:",
   "startTask":"Start Task",
   "endTask":"End Task",
-  "soon": "Coming Soon"
+  "finish": "Finish",
+  "soon": "Coming Soon",
+  "totalPrice": "Total Price :",
+  "addComment": "Add Comment",
+  "taskState": "Task State",
+  "delivered": "Delivered",
+  "rejected": "Rejected",
+  "cancelled": "Cancelled",
+  "refund": "Refund",
+  "partial": "Partial Refund",
+  "onWay": "On It's Way",
+  "finished": "Finished Tasks",
+  "noComment": "No Comment"
 }

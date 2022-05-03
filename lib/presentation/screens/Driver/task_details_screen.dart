@@ -5,7 +5,6 @@ import 'package:flutter_translate/flutter_translate.dart';
 import 'package:geocode/geocode.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
-import 'package:mobile/data/local/cache_helper.dart';
 import 'package:sizer/sizer.dart';
 import 'package:url_launcher/url_launcher.dart';
 import '../../styles/colors.dart';
@@ -25,7 +24,7 @@ class TaskDetailsScreen extends StatefulWidget {
 class _TaskDetailsScreenState extends State<TaskDetailsScreen> {
   final Completer<GoogleMapController> _controller = Completer();
   final Map<String, Marker> _markers = {};
-  Set<Polyline> polyline = Set<Polyline>();
+  Set<Polyline> polyline = <Polyline>{};
   List<LatLng> polylineCoordinates = [];
   PolylinePoints polylinePoints = PolylinePoints();
   String myAddress = "";
@@ -117,22 +116,19 @@ class _TaskDetailsScreenState extends State<TaskDetailsScreen> {
       PointLatLng(widget.data['lat'], widget.data['lon']),
     );
     if (result.status == 'OK') {
-      result.points.forEach((PointLatLng point) {
+      for (var point in result.points) {
         polylineCoordinates.add(LatLng(point.latitude, point.longitude));
-      });
+      }
 
       setState(() {
         polyline.add(Polyline(
-          polylineId: PolylineId('polyline'),
+          polylineId: const PolylineId('polyline'),
           width: 10,
           color: AppColors.red,
           points: polylineCoordinates,
         ));
       });
-    } else {
-      print(result.errorMessage);
-      print("Routes are still Null");
-    }
+    } else {}
   }
 
   @override
@@ -165,7 +161,7 @@ class _TaskDetailsScreenState extends State<TaskDetailsScreen> {
           color: AppColors.darkGray,
         ),
         leading: InkWell(
-          onTap: () => Navigator.pushNamed(context, "/tasks"),
+          onTap: () => Navigator.pop(context),
           child: const Icon(
             Icons.arrow_back_ios,
             color: AppColors.darkGray,
@@ -186,158 +182,181 @@ class _TaskDetailsScreenState extends State<TaskDetailsScreen> {
             },
           ),
           Padding(
-            padding: EdgeInsets.only(
-              top: CacheHelper.getDataFromSharedPreference(key: "language") == "ar"
-                  ?440:470,
+            padding: const EdgeInsets.only(
+              top: 470,
               left: 30,
               right: 25,
             ),
             child: Container(
               width: 100.w,
-              height: CacheHelper.getDataFromSharedPreference(key: "language") == "ar"
-                  ? 26.h
-                  : 23.h,
+              height: 23.h,
               decoration: BoxDecoration(
                 color: AppColors.darkPurple,
                 borderRadius: BorderRadius.circular(20),
               ),
               child: Padding(
                 padding: const EdgeInsets.only(
-                  bottom: 0,
+                  bottom: 1,
                   left: 15,
                   right: 15,
                 ),
                 child: Column(
                   children: [
-                    Padding(
-                      padding: const EdgeInsets.only(
-                        top: 8,
-                        left: 8,
-                        right: 8,
-                      ),
-                      child: Row(
-                        children: [
-                          Text(
-                            translate("Client"),
-                            style: TextStyle(
-                              fontSize: 15.sp,
-                              color: AppColors.white,
+                    Expanded(
+                      flex: 1,
+                      child: Padding(
+                        padding: const EdgeInsets.only(
+                          top: 5,
+                          left: 8,
+                          right: 8,
+                        ),
+                        child: Row(
+                          children: [
+                            Text(
+                              translate("Client"),
+                              style: TextStyle(
+                                fontSize: 15.sp,
+                                color: AppColors.white,
+                              ),
                             ),
-                          ),
-                          SizedBox(
-                            width: 2.w,
-                          ),
-                          Text(
-                            widget.data['name'],
-                            style: TextStyle(
-                              fontSize: 15.sp,
-                              color: AppColors.white,
+                            SizedBox(
+                              width: 2.w,
                             ),
-                          ),
-                        ],
-                      ),
-                    ),
-                    Padding(
-                      padding: const EdgeInsets.only(top: 8, left: 8, right: 8),
-                      child: Row(
-                        children: [
-                          Text(
-                            translate("total"),
-                            style: TextStyle(
-                              fontSize: 15.sp,
-                              color: AppColors.white,
+                            Text(
+                              widget.data['name'],
+                              style: TextStyle(
+                                fontSize: 15.sp,
+                                color: AppColors.white,
+                              ),
                             ),
-                          ),
-                          SizedBox(
-                            width: 2.w,
-                          ),
-                          Text(
-                            widget.data['total'].toString(),
-                            style: TextStyle(
-                              fontSize: 15.sp,
-                              color: AppColors.white,
-                            ),
-                          ),
-                        ],
+                          ],
+                        ),
                       ),
                     ),
-                    Padding(
-                      padding: const EdgeInsets.only(
-                        top: 8,
-                        left: 8,
-                        right: 8,
-                      ),
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceAround,
-                        children: [
-                          Text(
-                            translate("start"),
-                            style: TextStyle(
-                              fontSize: 15.sp,
-                              color: AppColors.white,
+                    Expanded(
+                      flex: 1,
+                      child: Padding(
+                        padding: const EdgeInsets.only(
+                          left: 8,
+                          right: 8,
+                        ),
+                        child: Row(
+                          children: [
+                            Text(
+                              translate("total"),
+                              style: TextStyle(
+                                fontSize: 15.sp,
+                                color: AppColors.white,
+                              ),
                             ),
-                          ),
-                          SizedBox(
-                            width: 2.w,
-                          ),
-                          Text(
-                            widget.data['start'],
-                            style: TextStyle(
-                              fontSize: 15.sp,
-                              color: AppColors.white,
+                            SizedBox(
+                              width: 2.w,
                             ),
-                          ),
-                          SizedBox(
-                            width: 5.w,
-                          ),
-                          Text(
-                            translate("end"),
-                            style: TextStyle(
-                              fontSize: 15.sp,
-                              color: AppColors.white,
+                            Text(
+                              widget.data['total'].toString(),
+                              style: TextStyle(
+                                fontSize: 15.sp,
+                                color: AppColors.white,
+                              ),
                             ),
-                          ),
-                          SizedBox(
-                            width: 2.w,
-                          ),
-                          Text(
-                            widget.data['end'],
-                            style: TextStyle(
-                              fontSize: 15.sp,
-                              color: AppColors.white,
-                            ),
-                          ),
-                        ],
+                          ],
+                        ),
                       ),
                     ),
-                    Padding(
-                      padding: const EdgeInsets.only(
-                        top: 15,
-                        bottom: 5,
-                        right: 6,
-                        left: 6,
+                    Expanded(
+                      flex: 1,
+                      child: Padding(
+                        padding: const EdgeInsets.only(
+                          left: 8,
+                          right: 8,
+                        ),
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceAround,
+                          children: [
+                            Text(
+                              translate("start"),
+                              style: TextStyle(
+                                fontSize: 15.sp,
+                                color: AppColors.white,
+                              ),
+                            ),
+                            SizedBox(
+                              width: 2.w,
+                            ),
+                            Text(
+                              widget.data['start'],
+                              style: TextStyle(
+                                fontSize: 15.sp,
+                                color: AppColors.white,
+                              ),
+                            ),
+                            SizedBox(
+                              width: 5.w,
+                            ),
+                            Text(
+                              translate("end"),
+                              style: TextStyle(
+                                fontSize: 15.sp,
+                                color: AppColors.white,
+                              ),
+                            ),
+                            SizedBox(
+                              width: 2.w,
+                            ),
+                            Text(
+                              widget.data['end'],
+                              style: TextStyle(
+                                fontSize: 15.sp,
+                                color: AppColors.white,
+                              ),
+                            ),
+                          ],
+                        ),
                       ),
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceAround,
-                        children: [
-                          DefaultAppButton(
-                            onTap: () {},
-                            text: translate('endTask'),
-                            height: 6.h,
-                            backGround: AppColors.white,
-                            fontSize: 18,
-                            textColor: AppColors.darkPurple,
-                            width: 40.w,
-                          ),
-                          DefaultIconButton(
+                    ),
+                    Expanded(
+                      flex: 2,
+                      child: Padding(
+                        padding: const EdgeInsets.only(
+                          right: 6,
+                          left: 6,
+                        ),
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceAround,
+                          children: [
+                            DefaultAppButton(
+                              onTap: () {
+                                Navigator.pushNamed(context, "/endTask", arguments: {
+                                  'taskId': widget.data['taskId'],
+                                  'id': widget.data['id'],
+                                  'name': widget.data['name'],
+                                  'items': widget.data['items'],
+                                  'total': widget.data['total'],
+                                  'start': widget.data['start'],
+                                  'end': widget.data['end'],
+                                  'lat': widget.data['lat'],
+                                  'lon': widget.data['lon'],
+                                  'phone': widget.data['phone'],
+                                });
+                              },
+                              text: translate('endTask'),
+                              height: 6.h,
+                              backGround: AppColors.white,
+                              fontSize: 18,
+                              textColor: AppColors.darkPurple,
+                              width: 40.w,
+                            ),
+                            DefaultIconButton(
                               width: 12.w,
                               buttonColor: AppColors.white,
                               iconColor: AppColors.darkPurple,
                               icon: Icons.phone_rounded,
                               onTap: () {
                                 launch('tel://${widget.data['phone']}');
-                              })
-                        ],
+                              },
+                            ),
+                          ],
+                        ),
                       ),
                     ),
                   ],

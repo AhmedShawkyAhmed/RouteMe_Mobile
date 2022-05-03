@@ -4,7 +4,7 @@ import 'package:geolocator/geolocator.dart';
 import 'package:mobile/presentation/screens/vendor/branch_screen.dart';
 import 'package:mobile/presentation/screens/vendor/order_status_screen.dart';
 import 'package:mobile/presentation/screens/vendor/request_pick_up_screen.dart';
-import 'package:mobile/presentation/screens/vendor/settings_screen.dart';
+import 'package:mobile/presentation/screens/shared/settings_screen.dart';
 
 import 'app_state.dart';
 
@@ -29,6 +29,7 @@ class AppCubit extends Cubit<AppStates>
     currentIndex = index;
     emit(AppChangeBottomNavBarState());
   }
+
   Future navigate({VoidCallback? afterSuccess}) async {
     await Future.delayed(const Duration(milliseconds: 1500), () {});
     afterSuccess!();

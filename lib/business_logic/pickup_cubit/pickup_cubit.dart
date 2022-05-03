@@ -67,7 +67,7 @@ class PickupCubit extends Cubit<List<dynamic>> {
         'lon': lon,
         'lat': lat,
         'address': address,
-        'state': 'Pick Up',
+        'state': 'pickup',
       },
     ).then((value) {
       final myData = Map<String, dynamic>.from(value.data);
