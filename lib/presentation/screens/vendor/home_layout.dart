@@ -21,7 +21,9 @@ class HomeLayout extends StatelessWidget {
           body: AppCubit.get(context)
               .children[AppCubit.get(context).currentIndex],
           bottomNavigationBar: BottomNavigationBar(
-            selectedItemColor: AppColors.purple,
+            elevation: 0.0,
+            backgroundColor: AppColors.white,
+            selectedItemColor: AppColors.midPurple,
             unselectedItemColor: AppColors.navBar,
             type: BottomNavigationBarType.fixed,
             currentIndex: AppCubit.get(context).currentIndex,
