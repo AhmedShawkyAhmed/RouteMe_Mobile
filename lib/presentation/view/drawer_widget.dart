@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_translate/flutter_translate.dart';
 import 'package:mobile/presentation/styles/colors.dart';
-import 'package:mobile/presentation/widgets/language_dialog.dart';
-import 'package:mobile/presentation/widgets/logout_dialog.dart';
+import 'package:mobile/presentation/view/language_dialog.dart';
+import 'package:mobile/presentation/view/logout_dialog.dart';
 import 'package:sizer/sizer.dart';
 
 class DriverDrawer extends StatelessWidget {

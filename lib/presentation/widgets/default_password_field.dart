@@ -6,7 +6,6 @@ class DefaultPasswordField extends StatelessWidget {
   final TextEditingController controller;
   final String hintText;
   final VoidCallback? onTap;
-  final String? validationText;
   final bool password;
   final IconData? suffix;
   final ValueChanged? submit;
@@ -15,7 +14,6 @@ class DefaultPasswordField extends StatelessWidget {
   const DefaultPasswordField({
     required this.controller,
     required this.hintText,
-    this.validationText,
     this.submit,
     this.suffix,
     this.onTap,
@@ -40,12 +38,6 @@ class DefaultPasswordField extends StatelessWidget {
           borderRadius: BorderRadius.circular(10),
         ),
         child: TextFormField(
-          validator: (value) {
-            if (value!.isEmpty) {
-              return validationText;
-            }
-            return null;
-          },
           controller: controller,
           onFieldSubmitted: submit,
           style: const TextStyle(

@@ -11,9 +11,13 @@ import 'package:mobile/business_logic/app_cubit/app_state.dart';
 import 'package:mobile/business_logic/bloc_observer.dart';
 import 'package:mobile/business_logic/branches_cubit/branches_cubit.dart';
 import 'package:mobile/business_logic/driver_tasks_cubit/driver_tasks_cubit.dart';
+import 'package:mobile/business_logic/finish_task_cubit/finish_task_cubit.dart';
 import 'package:mobile/business_logic/language_cubit/language_cubit.dart';
 import 'package:mobile/business_logic/login_cubit/login_cubit.dart';
 import 'package:mobile/business_logic/pickup_cubit/pickup_cubit.dart';
+import 'package:mobile/business_logic/previous_tasks_cubit/previous_tasks_cubit.dart';
+import 'package:mobile/business_logic/reset_password_cubit/reset_password_cubit.dart';
+import 'package:mobile/business_logic/verify_cubit/verify_cubit.dart';
 import 'package:mobile/data/remote/dio_helper.dart';
 import 'package:mobile/presentation/widgets/toast.dart';
 import 'package:sizer/sizer.dart';
@@ -85,6 +89,12 @@ class _MyAppState extends State<MyApp> {
           create: ((context) => LoginCubit()),
         ),
         BlocProvider(
+          create: ((context) => VerifyCubit()),
+        ),
+        BlocProvider(
+          create: ((context) => ResetPasswordCubit()),
+        ),
+        BlocProvider(
           create: ((context) => LanguageCubit()),
         ),
         BlocProvider(
@@ -101,6 +111,12 @@ class _MyAppState extends State<MyApp> {
         ),
         BlocProvider(
           create: ((context) => DriverTasksCubit()..myTasks),
+        ),
+        BlocProvider(
+          create: ((context) => PreviousTasksCubit()..myTasks),
+        ),
+        BlocProvider(
+          create: ((context) => FinishTaskCubit()),
         ),
       ],
       child: BlocConsumer<AppCubit, AppStates>(

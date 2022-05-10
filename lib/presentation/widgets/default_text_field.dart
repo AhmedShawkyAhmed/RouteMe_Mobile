@@ -4,13 +4,15 @@ import 'package:sizer/sizer.dart';
 
 class DefaultTextField extends StatelessWidget {
   final TextEditingController controller;
-  final String hintText;
+  final String? hintText;
   final double? width;
   final double? height;
   final int? maxLine;
+  final bool? readOnly;
   const DefaultTextField({
     required this.controller,
-    required this.hintText,
+    this.hintText,
+    this.readOnly,
     this.width,
     this.height,
     this.maxLine,
@@ -35,10 +37,11 @@ class DefaultTextField extends StatelessWidget {
           ),
         ),
         child: TextFormField(
+          readOnly: readOnly ?? false,
           controller: controller,
           style: const TextStyle(
             color: AppColors.black,
-            fontSize: 18,
+            fontSize: 15,
           ),
           cursorColor: AppColors.purple,
           maxLines: maxLine ?? 1,

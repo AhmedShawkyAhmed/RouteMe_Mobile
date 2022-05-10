@@ -3,10 +3,10 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_translate/flutter_translate.dart';
 import 'package:mobile/business_logic/branches_cubit/branches_cubit.dart';
 import 'package:mobile/data/models/branch_model.dart';
-import 'package:mobile/presentation/widgets/add_branch_dialog.dart';
+import 'package:mobile/presentation/view/add_branch_dialog.dart';
 import 'package:sizer/sizer.dart';
 import '../../styles/colors.dart';
-import '../../widgets/branch_widget.dart';
+import '../../view/branch_widget.dart';
 
 class BranchScreen extends StatefulWidget {
   const BranchScreen({Key? key}) : super(key: key);

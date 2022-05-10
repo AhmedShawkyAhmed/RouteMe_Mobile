@@ -7,5 +7,6 @@ const String pickup = "requestPickup";
 const String branches = "getBranches";
 const String addBranch = "addBranch";
 const String tasks = "getDriverTasks";
+const String getPreviousTasks = "getPreviousTasks";
 const String taskStatus = "taskStatus";
 const String updateUserStatus = "updateUserStatus";

@@ -7,7 +7,7 @@ import 'package:mobile/presentation/styles/colors.dart';
 import 'package:mobile/presentation/widgets/toast.dart';
 import 'package:sizer/sizer.dart';
 import '../../widgets/default_search_field.dart';
-import '../../widgets/order_card.dart';
+import '../../view/order_card.dart';
 
 class MyOrdersScreen extends StatelessWidget {
   MyOrdersScreen({Key? key}) : super(key: key);
@@ -85,10 +85,10 @@ class MyOrdersScreen extends StatelessWidget {
                               .orderResponse!
                               .orders![position]
                               .id,
-                          status: OrderCubit.get(context)
+                          status: translate(OrderCubit.get(context)
                               .orderResponse!
                               .orders![position]
-                              .state,
+                              .state),
                           onTap: () {
                             OrderCubit.get(context)
                                 .searchOrders(

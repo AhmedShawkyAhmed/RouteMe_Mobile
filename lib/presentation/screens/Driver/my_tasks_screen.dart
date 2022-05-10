@@ -4,10 +4,10 @@ import 'package:flutter_translate/flutter_translate.dart';
 import 'package:mobile/business_logic/driver_tasks_cubit/driver_tasks_cubit.dart';
 import 'package:mobile/data/models/get_driver_tasks_model.dart';
 import '../../styles/colors.dart';
-import '../../widgets/task_card.dart';
+import '../../view/task_card.dart';
 
-class MyTasks extends StatelessWidget {
-  const MyTasks({Key? key}) : super(key: key);
+class MyTasksScreen extends StatelessWidget {
+  const MyTasksScreen({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -51,10 +51,14 @@ class MyTasks extends StatelessWidget {
                     return TaskCard(
                       onTap: () {
                         Navigator.pushNamed(context, "/startTask", arguments: {
-                          'id': DriverTasksCubit.get(context)
+                          'taskId': DriverTasksCubit.get(context)
                               .myTasksResponse!
                               .tasks![position]
                               .id,
+                          'id': DriverTasksCubit.get(context)
+                              .myTasksResponse!
+                              .tasks![position]
+                              .orderNumber,
                           'name': DriverTasksCubit.get(context)
                               .myTasksResponse!
                               .tasks![position]
@@ -92,7 +96,7 @@ class MyTasks extends StatelessWidget {
                       id: DriverTasksCubit.get(context)
                           .myTasksResponse!
                           .tasks![position]
-                          .id,
+                          .orderNumber,
                       client: DriverTasksCubit.get(context)
                           .myTasksResponse!
                           .tasks![position]
