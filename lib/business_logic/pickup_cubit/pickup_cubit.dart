@@ -57,6 +57,7 @@ class PickupCubit extends Cubit<List<dynamic>> {
     await DioHelper.postData(
       url: pickup,
       body: {
+        'server': CacheHelper.getDataFromSharedPreference(key: "server"),
         'clientName': name,
         'clientPhone': phone,
         'itemCount': count,

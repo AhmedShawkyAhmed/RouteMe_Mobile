@@ -1,5 +1,6 @@
 class MyTasksModel {
   int id;
+  String server;
   String orderNumber;
   int dispatcherId;
   int driverId;
@@ -19,6 +20,7 @@ class MyTasksModel {
 
   MyTasksModel({
     required this.id,
+    required this.server,
     required this.orderNumber,
     required this.dispatcherId,
     required this.driverId,
@@ -39,6 +41,7 @@ class MyTasksModel {
 
   factory MyTasksModel.fromJson(Map<String, dynamic> json) => MyTasksModel(
         id: json["id"],
+        server: json["server"],
         orderNumber: json["orderNumber"],
         dispatcherId: json["dispatcherId"],
         driverId: json["driverId"],
@@ -59,6 +62,7 @@ class MyTasksModel {
 
   Map<String, dynamic> toJson() => {
         "id": id,
+        "server": server,
         "orderNumber": orderNumber,
         "dispatcherId": dispatcherId,
         "driverId": driverId,
