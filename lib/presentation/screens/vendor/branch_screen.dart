@@ -4,6 +4,7 @@ import 'package:flutter_translate/flutter_translate.dart';
 import 'package:mobile/business_logic/branches_cubit/branches_cubit.dart';
 import 'package:mobile/data/models/branch_model.dart';
 import 'package:mobile/presentation/view/add_branch_dialog.dart';
+import 'package:mobile/presentation/widgets/refresh_widget.dart';
 import 'package:sizer/sizer.dart';
 import '../../styles/colors.dart';
 import '../../view/branch_widget.dart';
@@ -52,30 +53,33 @@ class _BranchScreenState extends State<BranchScreen> {
               : SizedBox(
                   width: 100.w,
                   height: 70.h,
-                  child: ListView.builder(
-                    physics: const BouncingScrollPhysics(),
-                    itemCount: BranchesCubit.get(context)
-                        .getBranchesResponse!
-                        .branches!
-                        .length,
-                    itemBuilder: (context, position) {
-                      return Branches(
-                        branch: BranchesCubit.get(context)
-                            .getBranchesResponse!
-                            .branches![position]
-                            .branchName,
-                        phone: BranchesCubit.get(context)
-                            .getBranchesResponse!
-                            .branches![position]
-                            .phone,
-                        // onTap: () => showDialog(
-                        //   context: context,
-                        //   builder: (_) {
-                        //     return BranchDialog();
-                        //   },
-                        // ),
-                      );
-                    },
+                  child: RefreshWidget(
+                    onRefresh: BranchesCubit.get(context).getBranches,
+                    child: ListView.builder(
+                      physics: const BouncingScrollPhysics(),
+                      itemCount: BranchesCubit.get(context)
+                          .getBranchesResponse!
+                          .branches!
+                          .length,
+                      itemBuilder: (context, position) {
+                        return Branches(
+                          branch: BranchesCubit.get(context)
+                              .getBranchesResponse!
+                              .branches![position]
+                              .branchName,
+                          phone: BranchesCubit.get(context)
+                              .getBranchesResponse!
+                              .branches![position]
+                              .phone,
+                          // onTap: () => showDialog(
+                          //   context: context,
+                          //   builder: (_) {
+                          //     return BranchDialog();
+                          //   },
+                          // ),
+                        );
+                      },
+                    ),
                   ),
                 );
         },

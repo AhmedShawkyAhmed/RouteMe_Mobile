@@ -4,6 +4,7 @@ import 'package:flutter_translate/flutter_translate.dart';
 import 'package:mobile/business_logic/order_cubit/order_cubit.dart';
 import 'package:mobile/data/models/order_model.dart';
 import 'package:mobile/presentation/styles/colors.dart';
+import 'package:mobile/presentation/widgets/refresh_widget.dart';
 import 'package:mobile/presentation/widgets/toast.dart';
 import 'package:sizer/sizer.dart';
 import '../../widgets/default_search_field.dart';
@@ -75,37 +76,40 @@ class MyOrdersScreen extends StatelessWidget {
                         height: 150,
                       ),
                     )
-                  : ListView.builder(
-                      physics: const BouncingScrollPhysics(),
-                      itemCount:
-                          OrderCubit.get(context).orderResponse!.orders!.length,
-                      itemBuilder: (context, position) {
-                        return OrderCard(
-                          order: OrderCubit.get(context)
-                              .orderResponse!
-                              .orders![position]
-                              .id,
-                          status: translate(OrderCubit.get(context)
-                              .orderResponse!
-                              .orders![position]
-                              .state),
-                          onTap: () {
-                            OrderCubit.get(context)
-                                .searchOrders(
-                                  orderId: OrderCubit.get(context)
-                                      .orderResponse!
-                                      .orders![position]
-                                      .id
-                                      .toString(),
-                                )
-                                .then(
-                                  (value) => Navigator.pushNamed(
-                                      context, "/orderDetails"),
-                                );
-                          },
-                        );
-                      },
-                    ),
+                  : RefreshWidget(
+                    onRefresh: OrderCubit.get(context).getOrders,
+                    child: ListView.builder(
+                        physics: const BouncingScrollPhysics(),
+                        itemCount:
+                            OrderCubit.get(context).orderResponse!.orders!.length,
+                        itemBuilder: (context, position) {
+                          return OrderCard(
+                            order: OrderCubit.get(context)
+                                .orderResponse!
+                                .orders![position]
+                                .id,
+                            status: translate(OrderCubit.get(context)
+                                .orderResponse!
+                                .orders![position]
+                                .state),
+                            onTap: () {
+                              OrderCubit.get(context)
+                                  .searchOrders(
+                                    orderId: OrderCubit.get(context)
+                                        .orderResponse!
+                                        .orders![position]
+                                        .id
+                                        .toString(),
+                                  )
+                                  .then(
+                                    (value) => Navigator.pushNamed(
+                                        context, "/orderDetails"),
+                                  );
+                            },
+                          );
+                        },
+                      ),
+                  ),
         );
       },
     );

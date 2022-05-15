@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_translate/flutter_translate.dart';
 import 'package:mobile/business_logic/driver_tasks_cubit/driver_tasks_cubit.dart';
 import 'package:mobile/data/models/get_driver_tasks_model.dart';
+import 'package:mobile/presentation/widgets/refresh_widget.dart';
 import '../../styles/colors.dart';
 import '../../view/task_card.dart';
 
@@ -41,81 +42,84 @@ class MyTasksScreen extends StatelessWidget {
               ? const Center(
                   child: CircularProgressIndicator(),
                 )
-              : ListView.builder(
-                  physics: const BouncingScrollPhysics(),
-                  itemCount: DriverTasksCubit.get(context)
-                      .myTasksResponse!
-                      .tasks!
-                      .length,
-                  itemBuilder: (context, position) {
-                    return TaskCard(
-                      onTap: () {
-                        Navigator.pushNamed(context, "/startTask", arguments: {
-                          'taskId': DriverTasksCubit.get(context)
-                              .myTasksResponse!
-                              .tasks![position]
-                              .id,
-                          'id': DriverTasksCubit.get(context)
-                              .myTasksResponse!
-                              .tasks![position]
-                              .orderNumber,
-                          'name': DriverTasksCubit.get(context)
-                              .myTasksResponse!
-                              .tasks![position]
-                              .clientName,
-                          'items': DriverTasksCubit.get(context)
-                              .myTasksResponse!
-                              .tasks![position]
-                              .itemCount,
-                          'total': DriverTasksCubit.get(context)
-                              .myTasksResponse!
-                              .tasks![position]
-                              .price,
-                          'start': DriverTasksCubit.get(context)
-                              .myTasksResponse!
-                              .tasks![position]
-                              .start,
-                          'end': DriverTasksCubit.get(context)
-                              .myTasksResponse!
-                              .tasks![position]
-                              .end,
-                          'lat': DriverTasksCubit.get(context)
-                              .myTasksResponse!
-                              .tasks![position]
-                              .lat,
-                          'lon': DriverTasksCubit.get(context)
-                              .myTasksResponse!
-                              .tasks![position]
-                              .lon,
-                          'phone': DriverTasksCubit.get(context)
-                              .myTasksResponse!
-                              .tasks![position]
-                              .clientPhone,
-                        });
-                      },
-                      id: DriverTasksCubit.get(context)
-                          .myTasksResponse!
-                          .tasks![position]
-                          .id.toString(),
-                      client: DriverTasksCubit.get(context)
-                          .myTasksResponse!
-                          .tasks![position]
-                          .clientName,
-                      order: DriverTasksCubit.get(context)
-                          .myTasksResponse!
-                          .tasks![position]
-                          .orderNumber.toString(),
-                      start: DriverTasksCubit.get(context)
-                          .myTasksResponse!
-                          .tasks![position]
-                          .start,
-                      end: DriverTasksCubit.get(context)
-                          .myTasksResponse!
-                          .tasks![position]
-                          .end,
-                    );
-                  },
-                ),
+              : RefreshWidget(
+                onRefresh: DriverTasksCubit.get(context).getDriverTasks,
+                child: ListView.builder(
+                    physics: const BouncingScrollPhysics(),
+                    itemCount: DriverTasksCubit.get(context)
+                        .myTasksResponse!
+                        .tasks!
+                        .length,
+                    itemBuilder: (context, position) {
+                      return TaskCard(
+                        onTap: () {
+                          Navigator.pushNamed(context, "/startTask", arguments: {
+                            'taskId': DriverTasksCubit.get(context)
+                                .myTasksResponse!
+                                .tasks![position]
+                                .id,
+                            'id': DriverTasksCubit.get(context)
+                                .myTasksResponse!
+                                .tasks![position]
+                                .orderNumber,
+                            'name': DriverTasksCubit.get(context)
+                                .myTasksResponse!
+                                .tasks![position]
+                                .clientName,
+                            'items': DriverTasksCubit.get(context)
+                                .myTasksResponse!
+                                .tasks![position]
+                                .itemCount,
+                            'total': DriverTasksCubit.get(context)
+                                .myTasksResponse!
+                                .tasks![position]
+                                .price,
+                            'start': DriverTasksCubit.get(context)
+                                .myTasksResponse!
+                                .tasks![position]
+                                .start,
+                            'end': DriverTasksCubit.get(context)
+                                .myTasksResponse!
+                                .tasks![position]
+                                .end,
+                            'lat': DriverTasksCubit.get(context)
+                                .myTasksResponse!
+                                .tasks![position]
+                                .lat,
+                            'lon': DriverTasksCubit.get(context)
+                                .myTasksResponse!
+                                .tasks![position]
+                                .lon,
+                            'phone': DriverTasksCubit.get(context)
+                                .myTasksResponse!
+                                .tasks![position]
+                                .clientPhone,
+                          });
+                        },
+                        id: DriverTasksCubit.get(context)
+                            .myTasksResponse!
+                            .tasks![position]
+                            .id.toString(),
+                        client: DriverTasksCubit.get(context)
+                            .myTasksResponse!
+                            .tasks![position]
+                            .clientName,
+                        order: DriverTasksCubit.get(context)
+                            .myTasksResponse!
+                            .tasks![position]
+                            .orderNumber.toString(),
+                        start: DriverTasksCubit.get(context)
+                            .myTasksResponse!
+                            .tasks![position]
+                            .start,
+                        end: DriverTasksCubit.get(context)
+                            .myTasksResponse!
+                            .tasks![position]
+                            .end,
+                      );
+                    },
+                  ),
+              ),
         );
       },
     );
