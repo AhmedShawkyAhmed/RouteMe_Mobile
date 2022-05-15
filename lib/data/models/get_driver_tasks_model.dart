@@ -1,16 +1,19 @@
 class MyTasksModel {
   int id;
-  String orderNumber;
+  String server;
+  int orderNumber;
   int dispatcherId;
   int driverId;
+  String driver;
   String clientName;
   String clientPhone;
   int itemCount;
   double price;
   int vendorId;
-  int branchId;
+  String branch;
   double lon;
   double lat;
+  String vendor;
   String address;
   String start;
   String end;
@@ -19,6 +22,7 @@ class MyTasksModel {
 
   MyTasksModel({
     required this.id,
+    required this.server,
     required this.orderNumber,
     required this.dispatcherId,
     required this.driverId,
@@ -26,8 +30,10 @@ class MyTasksModel {
     required this.clientPhone,
     required this.itemCount,
     required this.price,
+    required this.vendor,
+    required this.driver,
     required this.vendorId,
-    required this.branchId,
+    required this.branch,
     required this.lon,
     required this.lat,
     required this.address,
@@ -39,6 +45,7 @@ class MyTasksModel {
 
   factory MyTasksModel.fromJson(Map<String, dynamic> json) => MyTasksModel(
         id: json["id"],
+        server: json["server"],
         orderNumber: json["orderNumber"],
         dispatcherId: json["dispatcherId"],
         driverId: json["driverId"],
@@ -50,7 +57,9 @@ class MyTasksModel {
         itemCount: json["itemCount"],
         comment: json["comment"],
         vendorId: json["vendorId"],
-        branchId: json["branchId"],
+        branch: json["branch"],
+        vendor: json["vendor"],
+        driver: json["driver"],
         address: json["address"],
         start: json["start"],
         end: json["end"],
@@ -59,6 +68,7 @@ class MyTasksModel {
 
   Map<String, dynamic> toJson() => {
         "id": id,
+        "server": server,
         "orderNumber": orderNumber,
         "dispatcherId": dispatcherId,
         "driverId": driverId,
@@ -71,7 +81,9 @@ class MyTasksModel {
         "address": address,
         "price": price,
         "vendorId": vendorId,
-        "branchId": branchId,
+        "branch": branch,
+        "driver": driver,
+        "vendor": vendor,
         "start": start,
         "end": end,
         "status": status,

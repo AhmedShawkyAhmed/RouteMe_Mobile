@@ -182,8 +182,8 @@ class _TaskDetailsScreenState extends State<TaskDetailsScreen> {
             },
           ),
           Padding(
-            padding: const EdgeInsets.only(
-              top: 470,
+            padding: EdgeInsets.only(
+              top: 60.h,
               left: 30,
               right: 25,
             ),
